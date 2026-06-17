@@ -1,12 +1,14 @@
 <header class="header">
   <div class="container">
-    <a href="{{ site.baseurl }}/" class="logo" aria-label="Nosia Home">
-      <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia Logo" height="48">
+    {% assign t = site.data.translations[page.lang] %}
+    <a href="{{ site.baseurl }}/" class="logo" aria-label="{{ t.home }}">
+      <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="{{ t.logo_alt }}" height="48">
     </a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#documentation">Documentation</a>
-      <a href="#community">Community</a>
+    <nav class="nav" aria-label="{{ t.nav_aria }}">
+      <a href="#documentation">{{ t.documentation }}</a>
+      <a href="#community">{{ t.community }}</a>
       <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#" class="lang-toggle" data-lang-toggle aria-label="{{ t.toggle_lang }}">English</a>
     </nav>
   </div>
 </header>

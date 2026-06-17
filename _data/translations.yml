@@ -1,0 +1,15 @@
+fr:
+  home: "Nosia Accueil"
+  logo_alt: "Logo Nosia"
+  nav_aria: "Navigation principale"
+  documentation: "Documentation"
+  community: "Communauté"
+  toggle_lang: "Changer de langue"
+
+en:
+  home: "Nosia Home"
+  logo_alt: "Nosia Logo"
+  nav_aria: "Main navigation"
+  documentation: "Documentation"
+  community: "Community"
+  toggle_lang: "Change language"

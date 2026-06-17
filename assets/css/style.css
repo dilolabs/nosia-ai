@@ -271,6 +271,21 @@ section {
   color: var(--color-text-primary);
 }
 
+/* Language toggle button */
+.lang-toggle {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+.lang-toggle:hover {
+  color: var(--color-primary) !important;
+  text-decoration: none;
+}
+
+.lang-toggle::after {
+  display: none;
+}
+
 /* ===================================================================
    HERO SECTION - Premium with Depth
    =================================================================== */
@@ -632,6 +647,10 @@ section.hidden {
   
   .nav {
     display: none;
+  }
+  
+  .header .container {
+    justify-content: space-between;
   }
   
   h1 {

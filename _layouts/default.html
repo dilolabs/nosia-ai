@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: 'fr' }}">
 <head>
   {% include head.html %}
 </head>
@@ -9,5 +9,6 @@
     {{ content }}
   </main>
   <a href="#" class="back-to-top" aria-label="Back to top">^</a>
+  <script src="{{ site.baseurl }}/assets/js/language-toggle.js"></script>
 </body>
 </html>

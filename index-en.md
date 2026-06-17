@@ -1,73 +1,66 @@
 ---
 layout: default
-title: Accueil
-lang: fr
+title: Home
+lang: en
 ---
 
 <section class="hero">
   <div class="container">
     <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia" height="80">
-    <h1>Plateforme AI RAG + MCP auto-hébergée</h1>
-    <p class="subtitle">Exécutez des modèles d'IA sur vos propres données avec une confidentialité et un contrôle complets</p>
-    <a href="#quickstart" class="btn btn-primary">Commencer</a>
+    <h1>Self-hosted AI RAG + MCP Platform</h1>
+    <p class="subtitle">Run AI models on your own data with complete privacy and control</p>
+    <a href="#quickstart" class="btn btn-primary">Get Started</a>
   </div>
 </section>
 
 <section id="description" class="description">
   <div class="container">
-    <p>Nosia est une plateforme open-source qui apporte des capacités d'IA de niveau entreprise à votre propre infrastructure. Avec la génération augmentée par retrieval (RAG), l'intégration du protocole MCP (Model Context Protocol), et des APIs compatibles OpenAI, vous pouvez construire des applications d'IA qui fonctionnent avec vos données, à votre manière.</p>
+    <p>Nosia is an open-source platform that brings enterprise-grade AI capabilities to your own infrastructure. With Retrieval Augmented Generation (RAG), Model Context Protocol (MCP) integration, and OpenAI-compatible APIs, you can build AI applications that work with your data, your way.</p>
   </div>
 </section>
 
 <section id="demo" class="demo">
   <div class="container">
-    <h2>Découvrez Nosia en action</h2>
+    <h2>See Nosia in Action</h2>
     <div class="video-container">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/HD5k-LjGvGw?si=eaYP5pCkKq-qHh3A"
-        title="Nosia - Démo de la plateforme AI RAG + MCP auto-hébergée"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
+      <img src="{{ site.baseurl }}/assets/images/nosia-demo.gif" alt="Nosia Demo" class="demo-gif">
     </div>
   </div>
 </section>
 
 <section id="features" class="features">
   <div class="container">
-    <h2>Fonctionnalités clés</h2>
+    <h2>Key Features</h2>
     <div class="grid">
       <div class="card">
         <span class="icon">🔒</span>
-        <h3>Privé & Sécurisé</h3>
-        <p>Vos données restent sur votre infrastructure</p>
+        <h3>Private & Secure</h3>
+        <p>Your data stays on your infrastructure</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
-        <h3>API compatible OpenAI</h3>
-        <p>Remplacement direct des clients OpenAI</p>
+        <h3>OpenAI-Compatible API</h3>
+        <p>Drop-in replacement for OpenAI clients</p>
       </div>
       <div class="card">
         <span class="icon">📚</span>
-        <h3>Propulsé par RAG</h3>
-        <p>Enrichissez les réponses de l'IA avec vos documents</p>
+        <h3>RAG-Powered</h3>
+        <p>Augment AI responses with your documents</p>
       </div>
       <div class="card">
         <span class="icon">🔌</span>
-        <h3>Intégration MCP</h3>
-        <p>Connectez l'IA à des outils et services externes</p>
+        <h3>MCP Integration</h3>
+        <p>Connect AI to external tools and services</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
-        <h3>Compétences d'agent (bientôt)</h3>
-        <p>Étendez le chat avec des compétences personnalisées basées sur LLM et Ruby</p>
+        <h3>Agent Skills (soon)</h3>
+        <p>Extend chat with custom LLM-driven and Ruby-based skills</p>
       </div>
       <div class="card">
         <span class="icon">🔄</span>
-        <h3>Streaming en temps réel</h3>
-        <p>Événements envoyés par le serveur pour des réponses en direct</p>
+        <h3>Real-time Streaming</h3>
+        <p>Server-sent events for live responses</p>
       </div>
     </div>
   </div>
@@ -75,12 +68,12 @@ lang: fr
 
 <section id="quickstart" class="quickstart">
   <div class="container">
-    <h2>Commencez en quelques minutes</h2>
-    <p>Une seule commande installe Docker et toutes ses dépendances :</p>
+    <h2>Get Started in Minutes</h2>
+    <p>One command installs Docker and all dependencies:</p>
     <div class="code-block">
       <code>curl -fsSL https://get.nosia.ai | sh</code>
     </div>
-    <p>Pour Windows :</p>
+    <p>For Windows:</p>
     <div class="code-block">
       <code>Invoke-WebRequest https://get.nosia.ai/install.ps1 -OutFile install.ps1; .\install.ps1</code>
     </div>
@@ -93,33 +86,33 @@ lang: fr
     <div class="grid">
       <a href="https://blog.nosia.ai/" class="card" target="_blank" rel="noopener">
         <span class="icon">📖</span>
-        <h3>Blog Nosia</h3>
-        <p>Notre vision, notre mission, nos histoires</p>
+        <h3>Nosia Blog</h3>
+        <p>Our vision, mission, stories</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📐</span>
-        <h3>Documentation sur l'architecture</h3>
-        <p>Plongée technique approfondie</p>
+        <h3>Architecture Documentation</h3>
+        <p>Technical deep dive</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/DEPLOYMENT.md" class="card" target="_blank" rel="noopener">
         <span class="icon">🚀</span>
-        <h3>Guide de déploiement</h3>
-        <p>Stratégies de déploiement en production</p>
+        <h3>Deployment Guide</h3>
+        <p>Production deployment strategies</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/OBSERVABILITY.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📝</span>
-        <h3>Observabilité</h3>
-        <p>Observabilité complète</p>
+        <h3>Observability</h3>
+        <p>Comprehensive observability</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/tree/main/docs" class="card" target="_blank" rel="noopener">
         <span class="icon">📋</span>
-        <h3>Index complet de la documentation</h3>
-        <p>Toute la documentation</p>
+        <h3>Complete Documentation Index</h3>
+        <p>All documentation</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/DIAGRAMS.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📊</span>
-        <h3>Diagrammes du système</h3>
-        <p>Représentations visuelles</p>
+        <h3>System Diagrams</h3>
+        <p>Visual representations</p>
       </a>
     </div>
   </div>
@@ -127,27 +120,27 @@ lang: fr
 
 <section id="community" class="community">
   <div class="container">
-    <h2>Communauté & Support</h2>
+    <h2>Community & Support</h2>
     <div class="grid">
       <a href="https://github.com/nosia-ai/nosia/discussions" class="card" target="_blank" rel="noopener">
         <span class="icon">💬</span>
-        <h3>Discussions GitHub</h3>
-        <p>Posez des questions et partagez vos idées</p>
+        <h3>GitHub Discussions</h3>
+        <p>Ask questions and share ideas</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/issues" class="card" target="_blank" rel="noopener">
         <span class="icon">🐛</span>
-        <h3>Signaler des problèmes</h3>
-        <p>Signaler des bugs et demander des fonctionnalités</p>
+        <h3>Report Issues</h3>
+        <p>Bug reports and feature requests</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/CONTRIBUTING.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📝</span>
-        <h3>Guide de contribution</h3>
-        <p>Comment contribuer</p>
+        <h3>Contributing Guide</h3>
+        <p>How to contribute</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/CODE_OF_CONDUCT.md" class="card" target="_blank" rel="noopener">
         <span class="icon">🤝</span>
-        <h3>Code de conduite</h3>
-        <p>Règles de la communauté</p>
+        <h3>Code of Conduct</h3>
+        <p>Community guidelines</p>
       </a>
     </div>
   </div>
@@ -156,9 +149,9 @@ lang: fr
 <footer class="footer">
   <div class="container">
     <p>Copyright © 2024-2026 Dilolabs</p>
-    <p class="links">Sous licence <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></p>
+    <p class="links">Licensed under <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
     <div class="links">
-      <a href="https://nosia.ai" target="_blank" rel="noopener">Site web</a>
+      <a href="https://nosia.ai" target="_blank" rel="noopener">Website</a>
       <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener">GitHub</a>
       <a href="https://hub.docker.com/u/ai" target="_blank" rel="noopener">Docker Hub</a>
     </div>
