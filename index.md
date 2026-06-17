@@ -89,7 +89,7 @@ title: Home
         <h3>Deployment Guide</h3>
         <p>Production deployment strategies</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/agent-skills-development.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/OBSERVABILITY.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📝</span>
         <h3>Observability</h3>
         <p>Comprehensive observability</p>
