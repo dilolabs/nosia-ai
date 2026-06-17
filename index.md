@@ -18,6 +18,22 @@ title: Home
   </div>
 </section>
 
+<section id="demo" class="demo">
+  <div class="container">
+    <h2>See Nosia in Action</h2>
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/HD5k-LjGvGw?si=eaYP5pCkKq-qHh3A"
+        title="Nosia - Self-hosted AI RAG + MCP Platform Demo"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
 <section id="features" class="features">
   <div class="container">
     <h2>Key Features</h2>

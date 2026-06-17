@@ -583,6 +583,45 @@ section.hidden {
 }
 
 /* ===================================================================
+   VIDEO EMBED - Responsive with Glassmorphism
+   =================================================================== */
+
+.demo {
+  padding: var(--spacing-3xl) 0;
+}
+
+.demo h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-glass);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  border: none;
+}
+
+/* ===================================================================
    RESPONSIVE DESIGN
    =================================================================== */
 
