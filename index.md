@@ -55,6 +55,7 @@ lang: fr
 <section id="features" class="features">
   <div class="container">
     <h2>Fonctionnalités clés</h2>
+    <p>Découvrez comment Nosia vous donne le contrôle total sur votre IA avec des outils puissants et intuitifs.</p>
     <div class="grid">
       <div class="card">
         <span class="icon">🔒</span>
@@ -107,6 +108,7 @@ lang: fr
 <section id="documentation" class="documentation">
   <div class="container">
     <h2>Documentation</h2>
+    <p>Toute la documentation dont vous avez besoin pour déployer et utiliser Nosia efficacement.</p>
     <div class="grid">
       <a href="https://blog.nosia.ai/" class="card" target="_blank" rel="noopener">
         <span class="icon">📖</span>
@@ -145,6 +147,7 @@ lang: fr
 <section id="community" class="community">
   <div class="container">
     <h2>Communauté & Support</h2>
+    <p>Rejoignez notre communauté croissante et bénéficiez d'un support actif.</p>
     <div class="grid">
       <a href="https://github.com/nosia-ai/nosia/discussions" class="card" target="_blank" rel="noopener">
         <span class="icon">💬</span>
