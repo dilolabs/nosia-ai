@@ -277,8 +277,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('reveal');
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.remove('hidden');
     }
   });
 }, {
@@ -286,11 +285,10 @@ const revealObserver = new IntersectionObserver((entries) => {
   rootMargin: '0px 0px -50px 0px'
 });
 
-// Apply to all sections and cards
-document.querySelectorAll('section, .card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+// Apply to all sections and cards except hero
+// Hero section should be visible immediately as it's the first thing users see
+document.querySelectorAll('section:not(.hero), .card').forEach(el => {
+  el.classList.add('hidden');
   revealObserver.observe(el);
 });
 
@@ -310,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===================================================================
 
 const logoGlow = () => {
-  const logo = document.querySelector('.hero .logo img');
+  const logo = document.querySelector('.hero img');
   if (logo) {
     logo.style.boxShadow = '0 0 60px rgba(34, 197, 94, 0.2)';
     logo.style.transition = 'box-shadow 2s ease-in-out';
