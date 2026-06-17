@@ -338,12 +338,3 @@ a[target="_blank"]::after {
 .back-to-top.visible {
   display: flex;
 }
-
-/* ===== In-page anchor link styling ===== */
-[href^="#"] {
-  color: var(--color-accent);
-}
-
-[href^="#"]:hover {
-  color: var(--color-accent-dark);
-}
