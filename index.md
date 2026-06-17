@@ -74,10 +74,10 @@ title: Home
   <div class="container">
     <h2>Documentation</h2>
     <div class="grid">
-      <a href="https://guides.nosia.ai/" class="card" target="_blank" rel="noopener">
+      <a href="https://blog.nosia.ai/" class="card" target="_blank" rel="noopener">
         <span class="icon">📖</span>
-        <h3>Nosia Guides</h3>
-        <p>Step-by-step tutorials</p>
+        <h3>Nosia Blog</h3>
+        <p>Our vision, mission, stories</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📐</span>
