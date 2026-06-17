@@ -173,7 +173,7 @@ lang: en
     <div class="links">
       <a href="https://nosia.ai" target="_blank" rel="noopener">Website</a>
       <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://hub.docker.com/u/ai" target="_blank" rel="noopener">Docker Hub</a>
+      <a href="https://hub.docker.com/r/dilolabs/nosia" target="_blank" rel="noopener">Docker Hub</a>
     </div>
   </div>
 </footer>
