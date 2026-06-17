@@ -44,7 +44,7 @@ title: Home
       </div>
       <div class="card">
         <span class="icon">🤖</span>
-        <h3>Agent Skills</h3>
+        <h3>Agent Skills (soon)</h3>
         <p>Extend chat with custom LLM-driven and Ruby-based skills</p>
       </div>
       <div class="card">
