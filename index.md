@@ -19,6 +19,23 @@ lang: fr
   </div>
 </section>
 
+<section id="story" class="story highlighted">
+  <div class="container">
+    <h2>🌱 Notre histoire</h2>
+    <div class="story-content">
+      <p>Nosia, c'est avant tout une <strong>belle histoire humaine</strong>. Celle de quatre passionnés — Cyril, Olivier, Aude et Melvin — unis par des années d'amitié et de collaboration. Une aventure née d'une conviction commune : <strong>la technologie doit servir l'humain, pas l'inverse</strong>.</p>
+      
+      <p><strong>Tout a commencé en 2024.</strong> Olivier, toujours à l'affût des innovations qui font sens, partage avec Cyril sa découverte du RAG. Une étincelle. <strong>C'est Cyril qui trouve le nom Nosia</strong> — un nom qui porte nos valeurs : souveraineté numérique, éthique, respect des données. Puis Aude, Cyril et Melvin relèvent le défi : allier l'expertise technique à une approche centrée humain, pour créer une IA qui respecte à la fois les personnes et la planète.</p>
+      
+      <p><strong>Des heures de brainstorming, des tests, des prototypes...</strong> Toujours la même question : comment concilier innovation technologique, souveraineté des données, open source et valeurs européennes ? Comment prouver qu'un autre numérique est possible, plus responsable, plus humain ?</p>
+      
+      <p><strong>C'est dans cette énergie collective que Nosia a pris vie.</strong> Pas dans le cadre formel d'une entreprise, mais dans l'enthousiasme de quatre personnes convaincues qu'on peut allier performance technique et éthique. Une aventure où chaque détail compte : du choix du nom jusqu'à la dernière ligne de code.</p>
+      
+      <p><strong>Et cette aventure humaine et responsable</strong> continue. En <strong>juin 2026</strong>, François, qui anime la chaîne YouTube <strong>Kokori Kodo</strong>, a réalisé une première vidéo de présentation — que vous pouvez découvrir dans la section suivante.</p>
+    </div>
+  </div>
+</section>
+
 <section id="demo" class="demo">
   <div class="container">
     <h2>Découvrez Nosia en action</h2>

@@ -19,6 +19,23 @@ lang: en
   </div>
 </section>
 
+<section id="story" class="story highlighted">
+  <div class="container">
+    <h2>🌱 Our Story</h2>
+    <div class="story-content">
+      <p>Nosia is first and foremost <strong>a human story</strong>. The story of four passionate individuals — Cyril, Olivier, Aude, and Melvin — united by years of friendship and collaboration. An adventure born from a shared conviction: <strong>technology should serve humans, not the other way around</strong>.</p>
+      
+      <p><strong>It all began in 2024.</strong> Olivier, always on the lookout for meaningful innovations, shared his discovery of RAG with Cyril. A spark. <strong>Cyril came up with the name Nosia</strong> — a name that carries our values: digital sovereignty, ethics, data respect. Then Aude, Cyril, and Melvin took on the challenge: combining technical expertise with a human-centered approach to create an AI that respects both people and the planet.</p>
+      
+      <p><strong>Hours of brainstorming, testing, prototyping...</strong> Always the same question: how to reconcile technological innovation with data sovereignty, open source, and European values? How to prove that a different kind of digital world is possible, more responsible, more human?</p>
+      
+      <p><strong>It was in this collective energy that Nosia came to life.</strong> Not within the formal framework of a company, but in the enthusiasm of four people convinced that we can combine technical performance with ethics. An adventure where every detail matters: from choosing the name to the last line of code.</p>
+      
+      <p><strong>And this human and responsible adventure</strong> continues. In <strong>June 2026</strong>, François, who runs the YouTube channel <strong>Kokori Kodo</strong>, created the first presentation video — which you can discover in the French version.</p>
+    </div>
+  </div>
+</section>
+
 <section id="demo" class="demo">
   <div class="container">
     <h2>See Nosia in Action</h2>
