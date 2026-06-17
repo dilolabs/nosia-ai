@@ -8,7 +8,7 @@ title: Home
     <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia" height="80">
     <h1>Self-hosted AI RAG + MCP Platform</h1>
     <p class="subtitle">Run AI models on your own data with complete privacy and control</p>
-    <a href="https://get.nosia.ai" class="btn btn-primary">Get Started</a>
+    <a href="#quickstart" class="btn btn-primary">Get Started</a>
   </div>
 </section>
 
@@ -90,9 +90,9 @@ title: Home
         <p>Production deployment strategies</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/agent-skills-development.md" class="card" target="_blank" rel="noopener">
-        <span class="icon">🤖</span>
-        <h3>Agent Skills Development</h3>
-        <p>Create custom skills</p>
+        <span class="icon">📝</span>
+        <h3>Observability</h3>
+        <p>Comprehensive observability</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/tree/main/docs" class="card" target="_blank" rel="noopener">
         <span class="icon">📋</span>
@@ -138,12 +138,12 @@ title: Home
 
 <footer class="footer">
   <div class="container">
-    <p>Copyright © 2024-2026 Cyril Blaecke</p>
+    <p>Copyright © 2024-2026 Dilolabs</p>
     <p>Licensed under <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
     <div class="links">
       <a href="https://nosia.ai" target="_blank" rel="noopener">Website</a>
       <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://hub.docker.com/u/ai" target="_blank" rel="noopener">Docker Hub</a>
+      <a href="https://hub.docker.com/r/dilolabs/nosia" target="_blank" rel="noopener">Docker Hub</a>
     </div>
   </div>
 </footer>
