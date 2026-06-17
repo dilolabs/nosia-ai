@@ -15,7 +15,7 @@ lang: fr
 
 <section id="description" class="description">
   <div class="container">
-    <p>Nosia est une plateforme open-source qui apporte des capacités d'IA de niveau entreprise à votre propre infrastructure. Avec la génération augmentée par retrieval (RAG), l'intégration du protocole MCP (Model Context Protocol), et des APIs compatibles OpenAI, vous pouvez construire des applications d'IA qui fonctionnent avec vos données, à votre manière.</p>
+    <p>Nosia est une plateforme open-source qui apporte des capacités d'IA de niveau entreprise à votre propre infrastructure. Avec la génération augmentée par récupération (RAG), l'intégration du protocole MCP (Model Context Protocol), et des APIs compatibles OpenAI, vous pouvez construire des applications d'IA qui fonctionnent avec vos données, à votre manière.</p>
   </div>
 </section>
 
