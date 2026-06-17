@@ -8,7 +8,7 @@ title: Home
     <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia" height="80">
     <h1>Self-hosted AI RAG + MCP Platform</h1>
     <p class="subtitle">Run AI models on your own data with complete privacy and control</p>
-    <a href="https://get.nosia.ai" class="btn btn-primary">Get Started</a>
+    <a href="#quickstart" class="btn btn-primary">Get Started</a>
   </div>
 </section>
 
@@ -76,8 +76,8 @@ title: Home
     <div class="grid">
       <a href="https://guides.nosia.ai/" class="card" target="_blank" rel="noopener">
         <span class="icon">📖</span>
-        <h3>Nosia Guides</h3>
-        <p>Step-by-step tutorials</p>
+        <h3>Nosia Blog</h3>
+        <p>Our vision, mission, stories</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📐</span>
@@ -90,9 +90,9 @@ title: Home
         <p>Production deployment strategies</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/blob/main/docs/agent-skills-development.md" class="card" target="_blank" rel="noopener">
-        <span class="icon">🤖</span>
-        <h3>Agent Skills Development</h3>
-        <p>Create custom skills</p>
+        <span class="icon">📝</span>
+        <h3>Observability</h3>
+        <p>Comprehensive observability</p>
       </a>
       <a href="https://github.com/nosia-ai/nosia/tree/main/docs" class="card" target="_blank" rel="noopener">
         <span class="icon">📋</span>
@@ -139,7 +139,7 @@ title: Home
 <footer class="footer">
   <div class="container">
     <p>Copyright © 2024-2026 Cyril Blaecke</p>
-    <p>Licensed under <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
+    <p class="links">Licensed under <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
     <div class="links">
       <a href="https://nosia.ai" target="_blank" rel="noopener">Website</a>
       <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener">GitHub</a>
@@ -147,173 +147,3 @@ title: Home
     </div>
   </div>
 </footer>
-
-<script>
-// ===================================================================
-// Apple-Class JavaScript Enhancements
-// ===================================================================
-
-// Configuration - Apple spring curve
-const springConfig = {
-  tension: 0.4,
-  friction: 0.2,
-  mass: 1
-};
-
-// ===================================================================
-// Header - Glass Navigation with Enhanced Scroll
-// ===================================================================
-
-const header = document.querySelector('.header');
-const headerScrolled = () => {
-  const scrolled = window.pageYOffset > 20;
-  if (scrolled) {
-    header.classList.add('scrolled');
-    header.style.background = 'rgba(10, 10, 10, 0.95)';
-  } else {
-    header.classList.remove('scrolled');
-    header.style.background = 'rgba(10, 10, 10, 0.8)';
-  }
-};
-
-window.addEventListener('scroll', headerScrolled);
-
-// ===================================================================
-// Hero - Parallax Effect
-// ===================================================================
-
-const heroParallax = () => {
-  const scrolled = window.pageYOffset;
-  const hero = document.querySelector('.hero');
-  const heroContent = document.querySelector('.hero .container');
-  
-  if (hero && heroContent) {
-    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-    heroContent.style.opacity = 1 - (scrolled * 0.002);
-  }
-};
-
-window.addEventListener('scroll', heroParallax);
-
-// ===================================================================
-// Back to Top Button - Enhanced
-// ===================================================================
-
-const backToTop = document.querySelector('.back-to-top');
-
-const backToTopVisibility = () => {
-  if (window.pageYOffset > window.innerHeight) {
-    backToTop.classList.add('visible');
-    backToTop.style.transform = 'translateY(0)';
-    backToTop.style.opacity = '1';
-  } else {
-    backToTop.classList.remove('visible');
-    backToTop.style.transform = 'translateY(20px)';
-    backToTop.style.opacity = '0';
-  }
-};
-
-window.addEventListener('scroll', backToTopVisibility);
-
-backToTop.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-// ===================================================================
-// Smooth Scroll with Header Offset
-// ===================================================================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const target = document.querySelector(targetId);
-    if (target) {
-      const headerOffset = 80;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// ===================================================================
-// 3D Card Hover Effects
-// ===================================================================
-
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-  });
-});
-
-// ===================================================================
-// Reveal Animations with Intersection Observer
-// ===================================================================
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('reveal');
-      entry.target.classList.remove('hidden');
-    }
-  });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-});
-
-// Apply to all sections and cards except hero
-// Hero section should be visible immediately as it's the first thing users see
-document.querySelectorAll('section:not(.hero), .card').forEach(el => {
-  el.classList.add('hidden');
-  revealObserver.observe(el);
-});
-
-// ===================================================================
-// Initialize on DOM load
-// ===================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Initial checks
-  headerScrolled();
-  heroParallax();
-  backToTopVisibility();
-});
-
-// ===================================================================
-// Logo Glow Effect (Optional Enhancement)
-// ===================================================================
-
-const logoGlow = () => {
-  const logo = document.querySelector('.hero img');
-  if (logo) {
-    logo.style.boxShadow = '0 0 60px rgba(34, 197, 94, 0.2)';
-    logo.style.transition = 'box-shadow 2s ease-in-out';
-  }
-};
-
-// Call after a short delay to allow page load
-setTimeout(logoGlow, 500);
