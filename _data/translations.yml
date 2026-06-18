@@ -6,6 +6,11 @@ fr:
   community: "Communauté"
   toggle_lang: "Changer de langue"
   toggle_theme: "Changer de thème"
+  nav_features: "Fonctionnalités"
+  nav_usecases: "Cas d'usage"
+  nav_faq: "FAQ"
+  usecases_url: "/cas-usage/"
+  faq_url: "/faq/"
 
 en:
   home: "Nosia Home"
@@ -15,3 +20,8 @@ en:
   community: "Community"
   toggle_lang: "Change language"
   toggle_theme: "Toggle theme"
+  nav_features: "Features"
+  nav_usecases: "Use cases"
+  nav_faq: "FAQ"
+  usecases_url: "/en/use-cases/"
+  faq_url: "/en/faq/"
