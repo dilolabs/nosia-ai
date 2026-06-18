@@ -30,6 +30,15 @@ jobs:
           gem install bundler
           bundle install
       
+      - name: Build and verify (html-proofer)
+        run: |
+          bundle exec jekyll build --baseurl ""
+          bundle exec htmlproofer ./_site \
+            --disable-external \
+            --allow-missing-href \
+            --ignore-empty-alt \
+            --no-enforce-https
+
       - name: Build site
         run: bundle exec jekyll build --baseurl ""
       
