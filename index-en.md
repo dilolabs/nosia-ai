@@ -1,7 +1,11 @@
 ---
 layout: default
-title: Home
 lang: en
+ref: home
+title: Home
+seo_title: "Self-Hosted AI Platform — RAG, MCP & Private Data"
+seo_description: "Nosia is an open-source, self-hosted AI platform: RAG, MCP, and an OpenAI-compatible API on your own infrastructure. Complete privacy and data sovereignty."
+schema: [SoftwareApplication, FAQPage]
 ---
 
 <section class="hero">

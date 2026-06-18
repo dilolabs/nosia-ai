@@ -1,7 +1,12 @@
 ---
 layout: default
-title: Accueil
 lang: fr
+ref: home
+permalink: /
+title: Accueil
+seo_title: "Plateforme IA auto-hébergée — RAG, MCP et données privées"
+seo_description: "Nosia est une plateforme IA open source et auto-hébergée : RAG, MCP et API compatible OpenAI, sur votre infrastructure. Confidentialité et souveraineté totales."
+schema: [SoftwareApplication, FAQPage]
 ---
 
 <section class="hero">
