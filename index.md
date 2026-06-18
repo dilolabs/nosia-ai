@@ -129,27 +129,27 @@ faq:
         <h3>Blog Nosia</h3>
         <p>Notre vision, notre mission, nos histoires</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📐</span>
         <h3>Documentation sur l'architecture</h3>
         <p>Plongée technique approfondie</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/DEPLOYMENT.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/docs/DEPLOYMENT.md" class="card" target="_blank" rel="noopener">
         <span class="icon">🚀</span>
         <h3>Guide de déploiement</h3>
         <p>Stratégies de déploiement en production</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/OBSERVABILITY.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/docs/OBSERVABILITY.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📝</span>
         <h3>Observabilité</h3>
         <p>Observabilité complète</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/tree/main/docs" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/tree/main/docs" class="card" target="_blank" rel="noopener">
         <span class="icon">📋</span>
         <h3>Index complet de la documentation</h3>
         <p>Toute la documentation</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/docs/DIAGRAMS.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/docs/DIAGRAMS.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📊</span>
         <h3>Diagrammes du système</h3>
         <p>Représentations visuelles</p>
@@ -163,22 +163,22 @@ faq:
     <h2>Communauté & Support</h2>
     <p>Rejoignez notre communauté croissante et bénéficiez d'un support actif.</p>
     <div class="grid">
-      <a href="https://github.com/nosia-ai/nosia/discussions" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/discussions" class="card" target="_blank" rel="noopener">
         <span class="icon">💬</span>
         <h3>Discussions GitHub</h3>
         <p>Posez des questions et partagez vos idées</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/issues" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/issues" class="card" target="_blank" rel="noopener">
         <span class="icon">🐛</span>
         <h3>Signaler des problèmes</h3>
         <p>Signaler des bugs et demander des fonctionnalités</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/CONTRIBUTING.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/CONTRIBUTING.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📝</span>
         <h3>Guide de contribution</h3>
         <p>Comment contribuer</p>
       </a>
-      <a href="https://github.com/nosia-ai/nosia/blob/main/CODE_OF_CONDUCT.md" class="card" target="_blank" rel="noopener">
+      <a href="https://github.com/dilolabs/nosia/blob/main/CODE_OF_CONDUCT.md" class="card" target="_blank" rel="noopener">
         <span class="icon">🤝</span>
         <h3>Code de conduite</h3>
         <p>Règles de la communauté</p>
@@ -204,10 +204,10 @@ faq:
 <footer class="footer">
   <div class="container">
     <p>Copyright © 2024-2026 Dilolabs</p>
-    <p class="links">Sous licence <a href="https://github.com/nosia-ai/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></p>
+    <p class="links">Sous licence <a href="https://github.com/dilolabs/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></p>
     <div class="links">
       <a href="https://nosia.ai" target="_blank" rel="noopener">Site web</a>
-      <a href="https://github.com/nosia-ai/nosia" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener">GitHub</a>
       <a href="https://hub.docker.com/r/dilolabs/nosia" target="_blank" rel="noopener">Docker Hub</a>
     </div>
   </div>
