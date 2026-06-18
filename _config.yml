@@ -26,3 +26,5 @@ exclude:
   - .github/
   - .gitignore
   - README.md
+  - bin/
+  - docs/        # internal specs/plans — not part of the public site
