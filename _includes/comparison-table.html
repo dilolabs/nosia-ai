@@ -1,0 +1,21 @@
+{%- comment -%}
+  Usage:
+    {% include comparison-table.html
+        col_a="Nosia" col_b="OpenAI / ChatGPT"
+        rows=page.comparison %}
+  where page.comparison is a list of { dimension, a, b } maps.
+{%- endcomment -%}
+<table class="comparison-table">
+  <thead>
+    <tr><th></th><th>{{ include.col_a }}</th><th>{{ include.col_b }}</th></tr>
+  </thead>
+  <tbody>
+    {%- for row in include.rows -%}
+    <tr>
+      <th scope="row">{{ row.dimension }}</th>
+      <td>{{ row.a }}</td>
+      <td>{{ row.b }}</td>
+    </tr>
+    {%- endfor -%}
+  </tbody>
+</table>
