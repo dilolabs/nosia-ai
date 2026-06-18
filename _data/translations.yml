@@ -5,6 +5,7 @@ fr:
   documentation: "Documentation"
   community: "Communauté"
   toggle_lang: "Changer de langue"
+  toggle_theme: "Changer de thème"
 
 en:
   home: "Nosia Home"
@@ -13,3 +14,4 @@ en:
   documentation: "Documentation"
   community: "Community"
   toggle_lang: "Change language"
+  toggle_theme: "Toggle theme"
