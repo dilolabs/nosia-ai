@@ -1,12 +1,16 @@
 <header class="header">
   <div class="container">
     {% assign t = site.data.translations[page.lang] %}
-    <a href="{{ site.baseurl }}/" class="logo" aria-label="{{ t.home }}">
+    {%- assign home_url = '/' -%}
+    {%- if page.lang == 'en' -%}{%- assign home_url = '/en/' -%}{%- endif -%}
+    <a href="{{ home_url | relative_url }}" class="logo" aria-label="{{ t.home }}">
       <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="{{ t.logo_alt }}" height="48">
     </a>
     <nav class="nav" aria-label="{{ t.nav_aria }}">
-      <a href="#documentation">{{ t.documentation }}</a>
-      <a href="#community">{{ t.community }}</a>
+      <a href="{{ t.usecases_url | relative_url }}">{{ t.nav_usecases }}</a>
+      <a href="{{ t.faq_url | relative_url }}">{{ t.nav_faq }}</a>
+      <a href="{{ home_url | relative_url }}#documentation">{{ t.documentation }}</a>
+      <a href="{{ home_url | relative_url }}#community">{{ t.community }}</a>
       <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="#" class="lang-toggle" data-lang-toggle aria-label="{{ t.toggle_lang }}">English</a>
       <button type="button" class="theme-toggle" data-theme-toggle aria-label="{{ t.toggle_theme }}">

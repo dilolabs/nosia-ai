@@ -105,6 +105,15 @@ faq:
   </div>
 </section>
 
+<section id="use-cases-teaser" class="description">
+  <div class="container">
+    {%- assign t = site.data.translations[page.lang] -%}
+    <h2>Que pouvez-vous construire avec Nosia ?</h2>
+    <p>Des bases de connaissances internes et questions-réponses sur documents aux assistants de support privés et aux outils pour développeurs — Nosia s'adapte à votre cas d'usage.</p>
+    <a href="{{ t.usecases_url | relative_url }}" class="btn">Explorer les cas d'usage</a>
+  </div>
+</section>
+
 <section id="quickstart" class="quickstart">
   <div class="container">
     <h2>Commencez en quelques minutes</h2>
