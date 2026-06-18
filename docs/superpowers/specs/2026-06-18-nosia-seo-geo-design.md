@@ -119,8 +119,10 @@ plus new files.
   Docker Hub (`dilolabs/nosia`).
 - **`Organization`** (Dilolabs) site-wide.
 - **`FAQPage`** on any page with a Q&A block (landing FAQ section, FAQ page, comparison
-  pages).
-- **`BreadcrumbList`** on sub-pages.
+  pages). **At most one `FAQPage` block per page** (Google expects a single FAQPage per
+  URL) — do not stack multiple Q&A blocks into separate FAQPage schemas on one page.
+- **`BreadcrumbList`** on sub-pages. The IA is flat, so the trail is simply
+  Home → Page (e.g. Home → FAQ, Home → Nosia vs OpenAI), localized per language.
 
 ### Crawler & AI-engine files
 - **`robots.txt`** — allow all; reference `sitemap.xml`. Explicitly allow AI crawlers
@@ -170,7 +172,9 @@ avoid cannibalization. Indicative (finalized during implementation):
   ChatGPT open source", "IA privée", "plateforme IA on-premise".
 - **Page mapping:** landing → core platform/self-hosted terms; FAQ → question/long-tail;
   use-cases → "IA pour [cas]" / "private AI for [use case]"; comparison pages → "Nosia vs
-  X" / "X alternative".
+  X" / "X alternative". Each comparison page owns a **distinct** primary term to avoid
+  cannibalization: `/nosia-vs-openai/` → "Nosia vs OpenAI / open source ChatGPT
+  alternative"; `/nosia-vs-ollama/` → "Nosia vs Ollama".
 
 ## 9. Phase 2 pages
 
