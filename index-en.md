@@ -9,20 +9,33 @@ title: Home
 seo_title: "Self-Hosted AI Platform — RAG, MCP & Private Data"
 seo_description: "Nosia is an open-source, self-hosted AI platform: RAG, MCP, and an OpenAI-compatible API on your own infrastructure. Complete privacy and data sovereignty."
 schema: [SoftwareApplication, FAQPage]
+faq:
+  - q: "Is Nosia free and open-source?"
+    a: "Yes. Nosia is open source under the MIT license and free to self-host. The source is on GitHub at github.com/dilolabs/nosia."
+  - q: "Does my data leave my servers?"
+    a: "No. Nosia is self-hosted, so your documents and model interactions stay on your own infrastructure. You keep full control and data sovereignty."
+  - q: "What is the difference between Nosia and ChatGPT?"
+    a: "ChatGPT is a hosted service run by OpenAI. Nosia is a self-hosted platform you run on your own infrastructure, with RAG over your data, MCP tool integration, and an OpenAI-compatible API."
+  - q: "Does Nosia work with the OpenAI API?"
+    a: "Yes. Nosia exposes an OpenAI-compatible API, so existing OpenAI client libraries and tools can point at your Nosia instance with minimal changes."
+  - q: "What are the hardware requirements?"
+    a: "Nosia runs via Docker on Linux, macOS, or Windows. Requirements depend on the model you run; smaller models run on commodity hardware while larger models benefit from a GPU."
+  - q: "What are RAG and MCP?"
+    a: "RAG (Retrieval Augmented Generation) augments model answers with your own documents. MCP (Model Context Protocol) is an open standard for connecting AI to external tools and data sources."
 ---
 
 <section class="hero">
   <div class="container">
     <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia" height="80">
-    <h1>Self-hosted AI RAG + MCP Platform</h1>
-    <p class="subtitle">Run AI models on your own data with complete privacy and control</p>
+    <h1>Self-Hosted AI Platform — RAG, MCP &amp; Agent Skills on Your Own Data</h1>
+    <p class="subtitle">Run open large language models on your own infrastructure with Retrieval Augmented Generation, an OpenAI-compatible API, and complete data privacy.</p>
     <a href="#quickstart" class="btn btn-primary">Get Started</a>
   </div>
 </section>
 
 <section id="description" class="description">
   <div class="container">
-    <p>Nosia is an open-source platform that brings enterprise-grade AI capabilities to your own infrastructure. With Retrieval Augmented Generation (RAG), Model Context Protocol (MCP) integration, and OpenAI-compatible APIs, you can build AI applications that work with your data, your way.</p>
+    <p><strong>Nosia is an open-source, self-hosted AI platform that runs large language models on your own infrastructure — with RAG over your documents, MCP tool integration, and an OpenAI-compatible API.</strong> It brings enterprise-grade AI to your servers with complete privacy and control, so your data never leaves your infrastructure.</p>
   </div>
 </section>
 
@@ -31,13 +44,9 @@ schema: [SoftwareApplication, FAQPage]
     <h2>🌱 Our Story</h2>
     <div class="story-content">
       <p>Nosia is first and foremost <strong>a human story</strong>. The story of four passionate individuals — Cyril, Olivier, Aude, and Melvin — united by years of friendship and collaboration. An adventure born from a shared conviction: <strong>technology should serve humans, not the other way around</strong>.</p>
-      
-      <p><strong>It all began in 2024.</strong> Olivier, always on the lookout for meaningful innovations, shared his discovery of RAG with Cyril. A spark. <strong>Cyril came up with the name Nosia</strong> — a name that carries our values: digital sovereignty, ethics, data respect. Then Aude, Cyril, and Melvin took on the challenge: combining technical expertise with a human-centered approach to create an AI that respects both people and the planet.</p>
-      
-      <p><strong>Hours of brainstorming, testing, prototyping...</strong> Always the same question: how to reconcile technological innovation with data sovereignty, open source, and European values? How to prove that a different kind of digital world is possible, more responsible, more human?</p>
-      
-      <p><strong>It was in this collective energy that Nosia came to life.</strong> Not within the formal framework of a company, but in the enthusiasm of four people convinced that we can combine technical performance with ethics. An adventure where every detail matters: from choosing the name to the last line of code.</p>
-      
+
+      <p><strong>It all began in 2024</strong>, when Olivier shared his discovery of RAG with Cyril. A spark. <strong>Cyril came up with the name Nosia</strong> — a name that carries our values: digital sovereignty, ethics, and data respect. The same question has driven us ever since: how do you reconcile technological innovation with data sovereignty, open source, and European values?</p>
+
       <p><strong>And this human and responsible adventure</strong> continues. In <strong>June 2026</strong>, François, who runs the YouTube channel <strong>Kokori Kodo</strong>, created the first presentation video — which you can discover in the French version.</p>
     </div>
   </div>
@@ -59,33 +68,33 @@ schema: [SoftwareApplication, FAQPage]
     <div class="grid">
       <div class="card">
         <span class="icon">🔒</span>
-        <h3>Private & Secure</h3>
-        <p>Your data stays on your infrastructure</p>
+        <h3>Private &amp; Self-Hosted</h3>
+        <p>Run AI entirely on your own servers. Your documents and prompts never leave your infrastructure — ideal for data sovereignty and regulated environments.</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
         <h3>OpenAI-Compatible API</h3>
-        <p>Drop-in replacement for OpenAI clients</p>
+        <p>Nosia exposes an OpenAI-compatible API, so your existing OpenAI client libraries and tools can point at your instance without rewriting code.</p>
       </div>
       <div class="card">
         <span class="icon">📚</span>
         <h3>RAG-Powered</h3>
-        <p>Augment AI responses with your documents</p>
+        <p>Retrieval Augmented Generation grounds answers in your own documents, so responses are accurate, current, and specific to your organization.</p>
       </div>
       <div class="card">
         <span class="icon">🔌</span>
         <h3>MCP Integration</h3>
-        <p>Connect AI to external tools and services</p>
+        <p>The Model Context Protocol connects AI to your internal tools, APIs, and data sources through an open, interoperable standard.</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
         <h3>Agent Skills (soon)</h3>
-        <p>Extend chat with custom LLM-driven and Ruby-based skills</p>
+        <p>Extend chat with custom, LLM-driven skills written in Ruby to automate your business workflows.</p>
       </div>
       <div class="card">
         <span class="icon">🔄</span>
         <h3>Real-time Streaming</h3>
-        <p>Server-sent events for live responses</p>
+        <p>Server-sent events (SSE) stream responses live for a smooth, responsive chat experience.</p>
       </div>
     </div>
   </div>
@@ -169,6 +178,20 @@ schema: [SoftwareApplication, FAQPage]
         <h3>Code of Conduct</h3>
         <p>Community guidelines</p>
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="features">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {% for item in page.faq %}
+      <details class="faq-item">
+        <summary><h3>{{ item.q }}</h3></summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
     </div>
   </div>
 </section>

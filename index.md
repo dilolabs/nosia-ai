@@ -7,20 +7,33 @@ title: Accueil
 seo_title: "Plateforme IA auto-hébergée — RAG, MCP et données privées"
 seo_description: "Nosia est une plateforme IA open source et auto-hébergée : RAG, MCP et API compatible OpenAI, sur votre infrastructure. Confidentialité et souveraineté totales."
 schema: [SoftwareApplication, FAQPage]
+faq:
+  - q: "Nosia est-il gratuit et open source ?"
+    a: "Oui. Nosia est open source sous licence MIT et gratuit à auto-héberger. Le code source est disponible sur GitHub : github.com/dilolabs/nosia."
+  - q: "Mes données quittent-elles mes serveurs ?"
+    a: "Non. Nosia est auto-hébergé : vos documents et vos interactions avec les modèles restent sur votre propre infrastructure. Vous gardez un contrôle total et la souveraineté de vos données."
+  - q: "Quelle est la différence entre Nosia et ChatGPT ?"
+    a: "ChatGPT est un service hébergé par OpenAI. Nosia est une plateforme auto-hébergée que vous exécutez sur votre propre infrastructure, avec du RAG sur vos données, l'intégration d'outils via MCP et une API compatible OpenAI."
+  - q: "Nosia fonctionne-t-il avec l'API OpenAI ?"
+    a: "Oui. Nosia expose une API compatible OpenAI : les bibliothèques et outils clients OpenAI existants peuvent pointer vers votre instance Nosia avec un minimum de modifications."
+  - q: "Quelle est la configuration matérielle requise ?"
+    a: "Nosia s'exécute via Docker sur Linux, macOS ou Windows. Les besoins dépendent du modèle utilisé : les petits modèles fonctionnent sur du matériel courant, tandis que les modèles plus grands bénéficient d'un GPU."
+  - q: "Qu'est-ce que le RAG et le MCP ?"
+    a: "Le RAG (génération augmentée par récupération) enrichit les réponses du modèle avec vos propres documents. Le MCP (Model Context Protocol) est un standard ouvert pour connecter l'IA à des outils et sources de données externes."
 ---
 
 <section class="hero">
   <div class="container">
     <img src="{{ site.baseurl }}/assets/images/nosia-logo.png" alt="Nosia" height="80">
-    <h1>Plateforme AI RAG + MCP auto-hébergée</h1>
-    <p class="subtitle">Exécutez des modèles d'IA sur vos propres données avec une confidentialité et un contrôle complets</p>
+    <h1>Plateforme IA auto-hébergée — RAG, MCP et compétences d'agent sur vos propres données</h1>
+    <p class="subtitle">Exécutez des grands modèles de langage open source sur votre propre infrastructure, avec la génération augmentée par récupération (RAG), une API compatible OpenAI et une confidentialité totale des données.</p>
     <a href="#quickstart" class="btn btn-primary">Commencer</a>
   </div>
 </section>
 
 <section id="description" class="description">
   <div class="container">
-    <p>Nosia est une plateforme open-source qui apporte des capacités d'IA de niveau entreprise à votre propre infrastructure. Avec la génération augmentée par récupération (RAG), l'intégration du protocole MCP (Model Context Protocol), et des APIs compatibles OpenAI, vous pouvez construire des applications d'IA qui fonctionnent avec vos données, à votre manière.</p>
+    <p><strong>Nosia est une plateforme IA open source et auto-hébergée qui exécute de grands modèles de langage sur votre propre infrastructure — avec du RAG sur vos documents, l'intégration d'outils via MCP et une API compatible OpenAI.</strong> Elle apporte une IA de niveau entreprise sur vos serveurs, avec une confidentialité et un contrôle complets : vos données ne quittent jamais votre infrastructure.</p>
   </div>
 </section>
 
@@ -29,14 +42,10 @@ schema: [SoftwareApplication, FAQPage]
     <h2>🌱 Notre histoire</h2>
     <div class="story-content">
       <p>Nosia, c'est avant tout une <strong>belle histoire humaine</strong>. Celle de quatre passionnés — Cyril, Olivier, Aude et Melvin — unis par des années d'amitié et de collaboration. Une aventure née d'une conviction commune : <strong>la technologie doit servir l'humain, pas l'inverse</strong>.</p>
-      
-      <p><strong>Tout a commencé en 2024.</strong> Olivier, toujours à l'affût des innovations qui font sens, partage avec Cyril sa découverte du RAG. Une étincelle. <strong>C'est Cyril qui trouve le nom Nosia</strong> — un nom qui porte nos valeurs : souveraineté numérique, éthique, respect des données. Puis Aude, Cyril et Melvin relèvent le défi : allier l'expertise technique à une approche centrée humain, pour créer une IA qui respecte à la fois les personnes et la planète.</p>
-      
-      <p><strong>Des heures de brainstorming, des tests, des prototypes...</strong> Toujours la même question : comment concilier innovation technologique, souveraineté des données, open source et valeurs européennes ? Comment prouver qu'un autre numérique est possible, plus responsable, plus humain ?</p>
-      
-      <p><strong>C'est dans cette énergie collective que Nosia a pris vie.</strong> Pas dans le cadre formel d'une entreprise, mais dans l'enthousiasme de quatre personnes convaincues qu'on peut allier performance technique et éthique. Une aventure où chaque détail compte : du choix du nom jusqu'à la dernière ligne de code.</p>
-      
-      <p><strong>Et cette aventure humaine et responsable</strong> continue. En <strong>juin 2026</strong>, François, qui anime la chaîne YouTube <strong>Kokori Kodo</strong>, a réalisé une première vidéo de présentation — que vous pouvez découvrir dans la section suivante.</p>
+
+      <p><strong>Tout a commencé en 2024</strong>, lorsque Olivier partage avec Cyril sa découverte du RAG. Une étincelle. <strong>C'est Cyril qui trouve le nom Nosia</strong> — un nom qui porte nos valeurs : souveraineté numérique, éthique, respect des données. Toujours la même question nous anime : comment concilier innovation technologique, souveraineté des données, open source et valeurs européennes ?</p>
+
+      <p><strong>Et cette aventure humaine et responsable</strong> continue. En <strong>juin 2026</strong>, François, qui anime la chaîne YouTube <strong>Kokori Kodo</strong>, a réalisé une première vidéo de présentation — que vous pouvez découvrir ci-dessous.</p>
     </div>
   </div>
 </section>
@@ -64,33 +73,33 @@ schema: [SoftwareApplication, FAQPage]
     <div class="grid">
       <div class="card">
         <span class="icon">🔒</span>
-        <h3>Privé & Sécurisé</h3>
-        <p>Vos données restent sur votre infrastructure</p>
+        <h3>Privé et auto-hébergé</h3>
+        <p>Exécutez l'IA entièrement sur vos propres serveurs. Vos documents et vos requêtes ne quittent jamais votre infrastructure — idéal pour la souveraineté des données et les environnements réglementés.</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
         <h3>API compatible OpenAI</h3>
-        <p>Remplacement direct des clients OpenAI</p>
+        <p>Nosia expose une API compatible OpenAI : pointez vos bibliothèques et outils clients OpenAI existants vers votre instance, sans réécrire votre code.</p>
       </div>
       <div class="card">
         <span class="icon">📚</span>
         <h3>Propulsé par RAG</h3>
-        <p>Enrichissez les réponses de l'IA avec vos documents</p>
+        <p>La génération augmentée par récupération ancre les réponses dans vos propres documents, pour des réponses précises, à jour et spécifiques à votre organisation.</p>
       </div>
       <div class="card">
         <span class="icon">🔌</span>
         <h3>Intégration MCP</h3>
-        <p>Connectez l'IA à des outils et services externes</p>
+        <p>Le Model Context Protocol connecte l'IA à vos outils, API et sources de données internes via un standard ouvert et interopérable.</p>
       </div>
       <div class="card">
         <span class="icon">🤖</span>
         <h3>Compétences d'agent (bientôt)</h3>
-        <p>Étendez le chat avec des compétences personnalisées basées sur LLM et Ruby</p>
+        <p>Étendez le chat avec des compétences personnalisées, pilotées par LLM et écrites en Ruby, pour automatiser vos workflows métier.</p>
       </div>
       <div class="card">
         <span class="icon">🔄</span>
         <h3>Streaming en temps réel</h3>
-        <p>Événements envoyés par le serveur pour des réponses en direct</p>
+        <p>Les événements envoyés par le serveur (SSE) diffusent les réponses en direct, pour une expérience de chat fluide et réactive.</p>
       </div>
     </div>
   </div>
@@ -174,6 +183,20 @@ schema: [SoftwareApplication, FAQPage]
         <h3>Code de conduite</h3>
         <p>Règles de la communauté</p>
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="features">
+  <div class="container">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      {% for item in page.faq %}
+      <details class="faq-item">
+        <summary><h3>{{ item.q }}</h3></summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
     </div>
   </div>
 </section>
