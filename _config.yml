@@ -11,6 +11,7 @@ theme: null
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-redirect-from
 
 # Exclude from processing
 exclude:
