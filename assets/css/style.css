@@ -527,6 +527,89 @@ a.card:hover {
 }
 
 /* ===================================================================
+   COMPARISON TABLE — card surface, token borders, flat elevation,
+   green-accented "Nosia" column (first data column). Mirrors the
+   design system: light-first, 1px borders, shadow-sm, class-based dark.
+   =================================================================== */
+.comparison-table-wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  overflow-x: auto;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  color: var(--text-body);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table tbody tr:last-child th,
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column headers */
+.comparison-table thead th {
+  background: var(--surface-sunken);
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-15);
+  white-space: nowrap;
+}
+
+/* Row header = the dimension label */
+.comparison-table tbody th[scope="row"] {
+  font-weight: var(--weight-medium);
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+/* Highlight the Nosia column (first data column) with the house green tint */
+.comparison-table thead th:nth-child(2),
+.comparison-table tbody td:nth-child(2) {
+  background: var(--accent-soft);
+  color: var(--accent-soft-text);
+  font-weight: var(--weight-medium);
+}
+
+.comparison-table thead th:nth-child(2) {
+  color: var(--accent-strong);
+  font-weight: var(--weight-bold);
+}
+
+.dark .comparison-table thead th:nth-child(2) {
+  color: var(--accent-soft-text);
+}
+
+/* Row hover uses the house green hover tint */
+.comparison-table tbody tr:hover th[scope="row"],
+.comparison-table tbody tr:hover td {
+  background: var(--hover-tint);
+  color: var(--accent-soft-text);
+}
+
+@media (max-width: 768px) {
+  .comparison-table { font-size: var(--text-xs); }
+  .comparison-table th,
+  .comparison-table td { padding: var(--space-2) var(--space-3); }
+}
+
+/* ===================================================================
    FAQ — <details>/<summary> accordion, card styling, inline chevron
    =================================================================== */
 .faq-list {
