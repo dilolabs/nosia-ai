@@ -11,6 +11,11 @@ theme: null
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-redirect-from
+
+# SEO / social defaults
+og_image: /assets/images/nosia-social-card.png
+twitter_handle: ""   # set if/when a Twitter/X account exists
 
 # Exclude from processing
 exclude:
@@ -21,3 +26,5 @@ exclude:
   - .github/
   - .gitignore
   - README.md
+  - bin/
+  - docs/        # internal specs/plans — not part of the public site

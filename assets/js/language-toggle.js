@@ -15,32 +15,10 @@
    */
   function getCurrentLang() {
     const path = window.location.pathname;
-    
-    // Check if path ends with -en or -fr
-    if (path.endsWith('-en/') || path.endsWith('-en.html') || path === '/index-en.html') {
+    if (path === '/en' || path === '/en/' || path.startsWith('/en/')) {
       return 'en';
     }
-    if (path.endsWith('-fr/') || path.endsWith('-fr.html') || path === '/index-fr.html') {
-      return 'fr';
-    }
-    
-    // Check for root paths
-    if (path === '/' || path === '/index.html' || path === '') {
-      // Check localStorage preference
-      const storedLang = localStorage.getItem(LANG_KEY);
-      if (storedLang && SUPPORTED_LANGS.includes(storedLang)) {
-        return storedLang;
-      }
-      return DEFAULT_LANG;
-    }
-    
-    // For other pages, use localStorage or default
-    const storedLang = localStorage.getItem(LANG_KEY);
-    if (storedLang && SUPPORTED_LANGS.includes(storedLang)) {
-      return storedLang;
-    }
-    
-    return DEFAULT_LANG;
+    return 'fr';
   }
 
   /**
@@ -58,14 +36,14 @@
    * @returns {string} URL for the language
    */
   function getLangUrl(lang) {
-    const baseUrl = window.location.origin;
-    if (lang === 'fr') {
-      // French is the default (index.html or root)
-      return baseUrl + (window.location.pathname === '/' ? '/' : '/index.html');
-    } else {
-      // English version
-      return baseUrl + '/index-en.html';
+    const origin = window.location.origin;
+    let path = window.location.pathname;
+    // Normalize: strip an existing /en prefix to get the FR-relative path.
+    let frPath = path.replace(/^\/en(\/|$)/, '/');
+    if (lang === 'en') {
+      return origin + (frPath === '/' ? '/en/' : '/en' + frPath);
     }
+    return origin + frPath;
   }
 
   /**
@@ -98,6 +76,14 @@
     toggleButtons.forEach(button => {
       button.addEventListener('click', function(e) {
         e.preventDefault();
+        // Prefer the explicit target the template resolved via the page `ref`
+        // (handles language pairs with different slugs, e.g. /cas-usage/ ↔ /en/use-cases/).
+        const href = button.getAttribute('href');
+        if (href && href !== '#') {
+          localStorage.setItem(LANG_KEY, oppositeLang);
+          window.location.href = href;
+          return;
+        }
         switchLanguage(oppositeLang);
       });
     });

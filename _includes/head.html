@@ -1,19 +1,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{{ site.description }}">
 
-<!-- Open Graph / Social -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="{{ site.url }}">
-<meta property="og:title" content="{{ site.title }}">
-<meta property="og:description" content="{{ site.description }}">
-<meta property="og:image" content="{{ site.url }}/assets/images/nosia-logo.png">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="{{ site.title }}">
-<meta property="twitter:description" content="{{ site.description }}">
-<meta property="twitter:image" content="{{ site.url }}/assets/images/nosia-logo.png">
+{% include seo-meta.html %}
+{% include hreflang.html %}
+{% include structured-data.html %}
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon-32x32.png" sizes="32x32">
@@ -34,5 +24,3 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-
-<title>{{ site.title }} - {{ page.title }}</title>

@@ -37,10 +37,18 @@
   --neutral-900: #171717;
   --neutral-950: #0a0a0a;
 
-  /* --- Semantic raw --- */
-  --red-600: #dc2626;
-  --blue-600: #2563eb;
-  --blue-400: #60a5fa;
+  /* --- Semantic raw scales --- */
+  --red-100: #fee2e2;  --red-200: #fecaca;  --red-300: #fca5a5;
+  --red-500: #ef4444;  --red-600: #dc2626;  --red-700: #b91c1c;
+  --red-800: #991b1b;  --red-900: #7f1d1d;
+
+  --orange-200: #fed7aa; --orange-500: #f97316; --orange-800: #9a3412;
+
+  --yellow-100: #fef9c3; --yellow-800: #854d0e;
+
+  --blue-400: #60a5fa; --blue-500: #3b82f6; --blue-600: #2563eb;
+
+  --pink-400: #f472b6; --pink-600: #db2777;
 
   /* --- Brand wordmark gradient --- */
   --brand-gradient: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
@@ -74,8 +82,16 @@
   --hover-tint:          var(--green-200);
 
   /* --- Semantic intent --- */
-  --danger: var(--red-600);
-  --info:   var(--blue-600);
+  --danger:            var(--red-600);
+  --danger-soft:       var(--red-100);
+  --danger-soft-text:  var(--red-800);
+  --danger-hover-tint: var(--red-200);
+  --warning-soft:      var(--yellow-100);
+  --warning-soft-text: var(--yellow-800);
+  --tertiary:          var(--orange-500);
+  --tertiary-hover-tint: var(--orange-200);
+  --info:              var(--blue-600);
+  --code-text:         var(--pink-600);
 
   /* --- Typography (Tailwind v4 default system stacks) --- */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -111,6 +127,7 @@
   --tracking-wide:  0.05em;
 
   /* --- Spacing (Tailwind step = 0.25rem) --- */
+  --space-0:  0;
   --space-1:  0.25rem;
   --space-2:  0.5rem;
   --space-3:  0.75rem;
@@ -137,6 +154,10 @@
   --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* --- Focus ring (2px outline, 1px offset, green) --- */
+  --focus-ring-width:  2px;
+  --focus-ring-offset: 1px;
 
   /* --- Motion (the house transition is 200ms color) --- */
   --duration-fast: 150ms;
@@ -178,7 +199,16 @@
   --accent-soft-text:    var(--green-400);
   --hover-tint:          var(--green-800);
 
-  --info: var(--blue-400);
+  --danger:            var(--red-700);
+  --danger-soft:       color-mix(in srgb, var(--red-900) 30%, transparent);
+  --danger-soft-text:  var(--red-300);
+  --danger-hover-tint: var(--red-800);
+  --warning-soft:      color-mix(in srgb, var(--yellow-800) 30%, transparent);
+  --warning-soft-text: #fde047;
+  --tertiary:          var(--orange-500);
+  --tertiary-hover-tint: var(--orange-800);
+  --info:              var(--blue-400);
+  --code-text:         var(--pink-400);
 
   color-scheme: dark;
 }
@@ -219,8 +249,8 @@ body {
 }
 
 :focus-visible {
-  outline: var(--ring-focus) solid 2px;
-  outline-offset: 1px;
+  outline: var(--ring-focus) solid var(--focus-ring-width);
+  outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-md);
 }
 
@@ -427,6 +457,17 @@ section > .container > h2 + p {
   padding-bottom: var(--space-16);
 }
 
+/* Description sections are centered as a whole — heading, paragraphs and
+   buttons alike. Without this, a heading or a paragraph following one
+   (overridden by `section > .container > h2 + p`) drifts to the left while
+   bare paragraphs stay centered. */
+.description .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .description p {
   max-width: 46rem;
   margin: 0 auto;
@@ -482,6 +523,86 @@ a.card:hover {
 .card p {
   color: var(--text-muted);
   font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* ===================================================================
+   FAQ — <details>/<summary> accordion, card styling, inline chevron
+   =================================================================== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.faq-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease);
+}
+
+.faq-item[open] {
+  border-color: var(--border-strong);
+}
+
+/* Remove the default disclosure triangle that otherwise sits on its own
+   line above the block-level <h2> inside the summary. */
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary h2 {
+  margin: 0;
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+/* Custom inline chevron, sits to the right of the question and rotates open */
+.faq-item summary::after {
+  content: "";
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(-45deg);
+  transition: transform var(--duration) var(--ease);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item summary:hover h2 {
+  color: var(--accent-strong);
+}
+
+.faq-item summary:hover::after {
+  border-color: var(--accent-strong);
+}
+
+.faq-item > p {
+  margin: 0;
+  padding: 0 var(--space-6) var(--space-6);
+  color: var(--text-muted);
+  font-size: var(--text-15);
   line-height: var(--leading-normal);
 }
 
@@ -735,6 +856,57 @@ a.card:hover {
   transform: translateY(0);
   pointer-events: auto;
 }
+
+/* ===================================================================
+   EFFECTS — shared keyframes & utilities (mirrors tokens/effects.css)
+   =================================================================== */
+@keyframes nosia-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Message bubble entrance (chat) */
+@keyframes nosia-message-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Small pop for streaming bubbles */
+@keyframes nosia-bubble-enter {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Ephemeral thinking-phase label */
+@keyframes nosia-fade-in-out {
+  0%   { opacity: 0; transform: translateY(-10px); }
+  10%  { opacity: 1; transform: translateY(0); }
+  90%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Subtle elevation pulse on the thinking container */
+@keyframes nosia-subtle-pulse {
+  0%, 100% { box-shadow: var(--shadow-sm); }
+  50%      { box-shadow: var(--shadow-md); }
+}
+
+.nosia-animate-spin { animation: nosia-spin 1s linear infinite; }
+.nosia-message-in   { animation: nosia-message-slide-in 0.3s var(--ease-out); }
+
+/* Thin custom scrollbars used app-wide */
+.nosia-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175 / 0.3) transparent;
+}
+.nosia-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.nosia-scroll::-webkit-scrollbar-track { background: transparent; }
+.nosia-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.dark .nosia-scroll::-webkit-scrollbar-thumb { background: var(--neutral-700); }
 
 /* ===================================================================
    RESPONSIVE
