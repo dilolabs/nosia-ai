@@ -699,11 +699,14 @@ a.card:hover {
   gap: var(--space-2);
   padding: var(--space-3) var(--space-6);
   font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);
   font-family: inherit;
-  line-height: 1;
+  line-height: 1.2;
   border-radius: var(--radius-lg);
-  border: 1px solid transparent;
+  /* Bare .btn = design-system "outline" variant */
+  background: transparent;
+  color: var(--text-body);
+  border: 1px solid var(--border);
   cursor: pointer;
   text-decoration: none;
   transition: background-color var(--duration) var(--ease),
@@ -711,27 +714,30 @@ a.card:hover {
               color var(--duration) var(--ease);
 }
 
+.btn:hover {
+  background: var(--hover-tint);
+}
+
 /* High-emphasis CTA = solid green-600 */
 .btn-primary {
   background: var(--accent-strong);
   color: var(--text-on-accent);
+  border-color: transparent;
 }
 
 .btn-primary:hover {
   background: var(--accent-strong-hover);
 }
 
-/* Secondary / quiet button on light surfaces */
+/* Secondary / quiet button = design-system "secondary" variant */
 .btn-secondary {
-  background: var(--surface-card);
+  background: var(--bg-chrome);
   color: var(--text-strong);
-  border-color: var(--border-strong);
+  border-color: transparent;
 }
 
 .btn-secondary:hover {
-  background: var(--hover-tint);
-  color: var(--accent-soft-text);
-  border-color: var(--hover-tint);
+  background: var(--border-strong);
 }
 
 /* Group of CTA buttons (e.g. comparison teaser) — wrap and space evenly */
