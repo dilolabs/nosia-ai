@@ -76,6 +76,14 @@
     toggleButtons.forEach(button => {
       button.addEventListener('click', function(e) {
         e.preventDefault();
+        // Prefer the explicit target the template resolved via the page `ref`
+        // (handles language pairs with different slugs, e.g. /cas-usage/ ↔ /en/use-cases/).
+        const href = button.getAttribute('href');
+        if (href && href !== '#') {
+          localStorage.setItem(LANG_KEY, oppositeLang);
+          window.location.href = href;
+          return;
+        }
         switchLanguage(oppositeLang);
       });
     });
