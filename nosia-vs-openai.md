@@ -73,6 +73,13 @@ faq:
   </div>
 </section>
 
+<section id="related" class="description">
+  <div class="container">
+    <h2>Autre comparaison</h2>
+    <p>Vous hébergez déjà des modèles en local ? Lisez <a href="{{ '/nosia-vs-ollama/' | relative_url }}">Nosia vs Ollama</a>.</p>
+  </div>
+</section>
+
 <section id="faq" class="features">
   <div class="container">
     <h2>Questions fréquentes</h2>

@@ -734,6 +734,14 @@ a.card:hover {
   border-color: var(--hover-tint);
 }
 
+/* Group of CTA buttons (e.g. comparison teaser) — wrap and space evenly */
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
 /* ===================================================================
    CODE BLOCKS — sunken surface, mono, no blur
    =================================================================== */

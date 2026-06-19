@@ -73,6 +73,13 @@ faq:
   </div>
 </section>
 
+<section id="related" class="description">
+  <div class="container">
+    <h2>Another comparison</h2>
+    <p>Already self-hosting models locally? Read <a href="{{ '/en/nosia-vs-ollama/' | relative_url }}">Nosia vs Ollama</a>.</p>
+  </div>
+</section>
+
 <section id="faq" class="features">
   <div class="container">
     <h2>Frequently Asked Questions</h2>

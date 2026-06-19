@@ -114,6 +114,17 @@ faq:
   </div>
 </section>
 
+<section id="comparisons-teaser" class="features">
+  <div class="container">
+    <h2>Nosia comparé aux alternatives</h2>
+    <p>Vous évaluez vos options ? Découvrez comment Nosia se positionne face aux principales solutions d'IA et de LLM.</p>
+    <div class="cta-group">
+      <a href="{{ '/nosia-vs-openai/' | relative_url }}" class="btn">Nosia vs OpenAI / ChatGPT</a>
+      <a href="{{ '/nosia-vs-ollama/' | relative_url }}" class="btn">Nosia vs Ollama</a>
+    </div>
+  </div>
+</section>
+
 <section id="quickstart" class="quickstart">
   <div class="container">
     <h2>Commencez en quelques minutes</h2>

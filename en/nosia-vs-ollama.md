@@ -71,6 +71,13 @@ faq:
   </div>
 </section>
 
+<section id="related" class="description">
+  <div class="container">
+    <h2>Another comparison</h2>
+    <p>Also comparing against cloud AI services? Read <a href="{{ '/en/nosia-vs-openai/' | relative_url }}">Nosia vs OpenAI / ChatGPT</a>.</p>
+  </div>
+</section>
+
 <section id="faq" class="features">
   <div class="container">
     <h2>Frequently Asked Questions</h2>
