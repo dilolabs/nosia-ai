@@ -144,11 +144,6 @@ faq:
     <h2>Documentation</h2>
     <p>Toute la documentation dont vous avez besoin pour déployer et utiliser Nosia efficacement.</p>
     <div class="grid">
-      <a href="https://blog.nosia.ai/" class="card" target="_blank" rel="noopener">
-        <span class="icon">📖</span>
-        <h3>Blog Nosia</h3>
-        <p>Notre vision, notre mission, nos histoires</p>
-      </a>
       <a href="https://github.com/dilolabs/nosia/blob/main/docs/ARCHITECTURE.md" class="card" target="_blank" rel="noopener">
         <span class="icon">📐</span>
         <h3>Documentation sur l'architecture</h3>
@@ -227,6 +222,7 @@ faq:
     <p class="links">Sous licence <a href="https://github.com/dilolabs/nosia/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></p>
     <div class="links">
       <a href="https://nosia.ai" target="_blank" rel="noopener">Site web</a>
+      <a href="https://blog.nosia.ai/" target="_blank" rel="noopener">Blog</a>
       <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener">GitHub</a>
       <a href="https://hub.docker.com/r/dilolabs/nosia" target="_blank" rel="noopener">Docker Hub</a>
     </div>
