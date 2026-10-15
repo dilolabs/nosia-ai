@@ -1,0 +1,14 @@
+{%- comment -%}
+  Emit hreflang alternates for every page sharing this page's `ref`.
+  x-default points to the French (default) version.
+{%- endcomment -%}
+{%- if page.ref -%}
+  {%- assign siblings = site.pages | where: "ref", page.ref -%}
+  {%- for p in siblings -%}
+    {%- assign u = p.url | replace: 'index.html', '' | absolute_url -%}
+    <link rel="alternate" hreflang="{{ p.lang }}" href="{{ u }}">
+    {%- if p.lang == 'fr' -%}
+    <link rel="alternate" hreflang="x-default" href="{{ u }}">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

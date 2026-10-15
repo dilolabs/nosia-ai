@@ -1,0 +1,31 @@
+# Site settings
+title: Nosia
+description: >-
+  Self-hosted AI RAG + MCP Platform. Run AI models on your own data with
+  complete privacy and control.
+url: https://nosia.ai
+baseurl: ""
+
+# Build settings
+theme: null
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-redirect-from
+
+# SEO / social defaults
+og_image: /assets/images/nosia-social-card.png
+twitter_handle: ""   # set if/when a Twitter/X account exists
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - .github/
+  - .gitignore
+  - README.md
+  - bin/
+  - test/        # local browser tests — not part of the public site
+  - docs/        # internal specs/plans — not part of the public site

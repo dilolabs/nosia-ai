@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% include seo-meta.html %}
+{% include hreflang.html %}
+{% include structured-data.html %}
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon-16x16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/nosia-logo.png">
+
+<!-- Theme: apply saved/preferred color scheme before paint to avoid a flash -->
+<script>
+  (function () {
+    var stored;
+    try { stored = localStorage.getItem('nosia-theme'); } catch (error) {}
+    var explicit = stored === 'dark' || stored === 'light';
+    var dark = explicit ? stored === 'dark'
+      : Boolean(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+
+<!-- Styles -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+<link rel="stylesheet" href="{{ '/assets/css/developer.css' | relative_url }}">

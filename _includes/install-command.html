@@ -1,0 +1,9 @@
+{%- assign t = site.data.translations[page.lang] -%}
+<div class="command-block" data-command>
+  <div class="command-heading">
+    <span>{{ include.label }}</span>
+    <button class="copy-button" type="button" aria-label="{{ t.copy }} — {{ include.label }}" data-copy-target="{{ include.id | escape }}" data-copy-success="{{ t.copied | escape }}" data-copy-error="{{ t.copy_failed | escape }}" hidden>{{ t.copy }}</button>
+  </div>
+  <pre><code id="{{ include.id | escape }}">{{ include.command | escape }}</code></pre>
+  <p class="copy-status" data-copy-status role="status"></p>
+</div>

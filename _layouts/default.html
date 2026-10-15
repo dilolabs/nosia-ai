@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'fr' }}">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% assign t = site.data.translations[page.lang] %}
+  <a class="skip-link" href="#main-content">{{ t.skip_link }}</a>
+  {% include header.html %}
+  <main id="main-content" tabindex="-1">
+    {{ content }}
+  </main>
+  <a href="#main-content" class="back-to-top" aria-label="{{ t.back_to_top }}" hidden>
+    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 12 6-6 6 6M12 6v14"/></svg>
+  </a>
+  <script src="{{ site.baseurl }}/assets/js/site.js"></script>
+  <!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-aI8zAp6oCsVcG8Iq2ZBUP.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</body>
+</html>

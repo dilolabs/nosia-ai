@@ -1,0 +1,1039 @@
+/* ===================================================================
+   Nosia.ai — Marketing site
+   Styled with the Nosia Design System: light-first, flat, system fonts,
+   green primary + neutral grays, subtle Tailwind elevation, class-based
+   dark mode, and the house 200ms color transition. No glassmorphism,
+   no gradients (except the brand wordmark / hero accents per the system).
+   Tokens mirror the design system's tokens/{colors,typography,spacing}.css.
+   =================================================================== */
+
+/* ===================================================================
+   DESIGN TOKENS — light theme (default)
+   =================================================================== */
+:root {
+  /* --- Green (primary / brand) --- */
+  --green-50:  #f0fdf4;
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
+  --green-950: #052e16;
+
+  /* --- Neutral (surfaces / text / borders) --- */
+  --neutral-50:  #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+
+  /* --- Semantic raw scales --- */
+  --red-100: #fee2e2;  --red-200: #fecaca;  --red-300: #fca5a5;
+  --red-500: #ef4444;  --red-600: #dc2626;  --red-700: #b91c1c;
+  --red-800: #991b1b;  --red-900: #7f1d1d;
+
+  --orange-200: #fed7aa; --orange-500: #f97316; --orange-800: #9a3412;
+
+  --yellow-100: #fef9c3; --yellow-800: #854d0e;
+
+  --blue-400: #60a5fa; --blue-500: #3b82f6; --blue-600: #2563eb;
+
+  --pink-400: #f472b6; --pink-600: #db2777;
+
+  /* --- Brand wordmark gradient --- */
+  --brand-gradient: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+
+  /* --- Surfaces --- */
+  --bg-app:          var(--neutral-100);
+  --bg-chrome:       var(--neutral-200);
+  --surface-card:    #ffffff;
+  --surface-sunken:  var(--neutral-50);
+  --surface-overlay: var(--neutral-100);
+
+  /* --- Text --- */
+  --text-strong:    var(--neutral-900);
+  --text-body:      var(--neutral-800);
+  --text-muted:     var(--neutral-500);
+  --text-faint:     var(--neutral-400);
+  --text-on-accent: #ffffff;
+
+  /* --- Borders & focus --- */
+  --border:        var(--neutral-200);
+  --border-strong: var(--neutral-300);
+  --ring-focus:    var(--green-500);
+
+  /* --- Accent (interactive green) --- */
+  --accent:              var(--green-300);
+  --accent-hover:        var(--green-400);
+  --accent-strong:       var(--green-600);
+  --accent-strong-hover: var(--green-700);
+  --accent-soft:         var(--green-100);
+  --accent-soft-text:    var(--green-800);
+  --hover-tint:          var(--green-200);
+
+  /* --- Semantic intent --- */
+  --danger:            var(--red-600);
+  --danger-soft:       var(--red-100);
+  --danger-soft-text:  var(--red-800);
+  --danger-hover-tint: var(--red-200);
+  --warning-soft:      var(--yellow-100);
+  --warning-soft-text: var(--yellow-800);
+  --tertiary:          var(--orange-500);
+  --tertiary-hover-tint: var(--orange-200);
+  --info:              var(--blue-600);
+  --code-text:         var(--pink-600);
+
+  /* --- Typography (Tailwind v4 default system stacks) --- */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji",
+               sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-15:   0.9375rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+
+  --weight-normal:    400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  --leading-tight:   1.25;
+  --leading-snug:    1.4;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.025em;
+  --tracking-wide:  0.05em;
+
+  /* --- Spacing (Tailwind step = 0.25rem) --- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- Radius --- */
+  --radius-md:   0.375rem;
+  --radius-lg:   0.5rem;
+  --radius-xl:   0.75rem;
+  --radius-2xl:  1rem;
+  --radius-3xl:  1.5rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows (Tailwind elevation; no glow) --- */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* --- Focus ring (2px outline, 1px offset, green) --- */
+  --focus-ring-width:  2px;
+  --focus-ring-offset: 1px;
+
+  /* --- Motion (the house transition is 200ms color) --- */
+  --duration-fast: 150ms;
+  --duration:      200ms;
+  --duration-slow: 300ms;
+  --ease:          ease-in-out;
+  --ease-out:      ease-out;
+
+  --header-height: 4rem;   /* 64px fixed bar */
+  --max-width:     1140px;
+
+  color-scheme: light;
+}
+
+/* ===================================================================
+   DESIGN TOKENS — dark theme (.dark on <html>)
+   =================================================================== */
+.dark {
+  --bg-app:          var(--neutral-900);
+  --bg-chrome:       var(--neutral-800);
+  --surface-card:    var(--neutral-800);
+  --surface-sunken:  var(--neutral-700);
+  --surface-overlay: var(--neutral-900);
+
+  --text-strong:    #ffffff;
+  --text-body:      var(--neutral-200);
+  --text-muted:     var(--neutral-400);
+  --text-faint:     var(--neutral-500);
+  --text-on-accent: #ffffff;
+
+  --border:        var(--neutral-700);
+  --border-strong: var(--neutral-600);
+
+  --accent:              var(--green-900);
+  --accent-hover:        var(--green-800);
+  --accent-strong:       var(--green-600);
+  --accent-strong-hover: var(--green-700);
+  --accent-soft:         color-mix(in srgb, var(--green-900) 30%, transparent);
+  --accent-soft-text:    var(--green-400);
+  --hover-tint:          var(--green-800);
+
+  --danger:            var(--red-700);
+  --danger-soft:       color-mix(in srgb, var(--red-900) 30%, transparent);
+  --danger-soft-text:  var(--red-300);
+  --danger-hover-tint: var(--red-800);
+  --warning-soft:      color-mix(in srgb, var(--yellow-800) 30%, transparent);
+  --warning-soft-text: #fde047;
+  --tertiary:          var(--orange-500);
+  --tertiary-hover-tint: var(--orange-800);
+  --info:              var(--blue-400);
+  --code-text:         var(--pink-400);
+
+  color-scheme: dark;
+}
+
+/* ===================================================================
+   RESET & BASE
+   =================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background-color: var(--bg-app);
+  min-height: 100vh;
+  transition: background-color var(--duration) var(--ease),
+              color var(--duration) var(--ease);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-soft-text);
+}
+
+:focus-visible {
+  outline: var(--ring-focus) solid var(--focus-ring-width);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-md);
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--info); }
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ===================================================================
+   TYPOGRAPHY
+   =================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-strong);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: var(--weight-semibold);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-extrabold);
+}
+
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-lg); }
+
+p {
+  color: var(--text-body);
+  line-height: var(--leading-relaxed);
+}
+
+.subtitle {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  max-width: 38rem;
+  margin: 0 auto;
+  line-height: var(--leading-snug);
+  font-weight: var(--weight-normal);
+}
+
+/* ===================================================================
+   LAYOUT
+   =================================================================== */
+section {
+  padding: var(--space-24) 0;
+  position: relative;
+}
+
+section > .container > h2 {
+  margin-bottom: var(--space-3);
+}
+
+section > .container > h2 + p {
+  color: var(--text-muted);
+  max-width: 42rem;
+  margin-bottom: var(--space-10);
+  font-size: var(--text-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ===================================================================
+   HEADER — fixed 64px chrome bar
+   =================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: var(--bg-app);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo { display: block; line-height: 0; }
+
+.logo img {
+  height: 40px;
+  width: auto;
+  transition: opacity var(--duration) var(--ease);
+}
+
+.logo:hover img { opacity: 0.85; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav a {
+  color: var(--text-body);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  transition: background-color var(--duration) var(--ease),
+              color var(--duration) var(--ease);
+}
+
+.nav a:hover {
+  background: var(--hover-tint);
+  color: var(--accent-soft-text);
+}
+
+/* Language toggle */
+.lang-toggle {
+  color: var(--accent-strong) !important;
+  font-weight: var(--weight-semibold);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: var(--space-1);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background-color var(--duration) var(--ease),
+              color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease);
+}
+
+.theme-toggle:hover {
+  background: var(--hover-tint);
+  color: var(--accent-soft-text);
+  border-color: var(--hover-tint);
+}
+
+.theme-toggle svg { width: 1.125rem; height: 1.125rem; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+.dark .theme-toggle .icon-sun { display: block; }
+.dark .theme-toggle .icon-moon { display: none; }
+
+/* ===================================================================
+   HERO
+   =================================================================== */
+.hero {
+  margin-top: var(--header-height);
+  padding: var(--space-24) 0 var(--space-20);
+  text-align: center;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero img {
+  height: 72px;
+  width: auto;
+  margin-bottom: var(--space-8);
+}
+
+.hero h1 {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-6xl);
+  max-width: 18ch;
+}
+
+.hero .subtitle {
+  margin-bottom: var(--space-8);
+}
+
+/* ===================================================================
+   DESCRIPTION
+   =================================================================== */
+.description {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-16);
+}
+
+/* Description sections are centered as a whole — heading, paragraphs and
+   buttons alike. Without this, a heading or a paragraph following one
+   (overridden by `section > .container > h2 + p`) drifts to the left while
+   bare paragraphs stay centered. */
+.description .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.description p {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+}
+
+/* ===================================================================
+   CARDS — white surface, 1px border, shadow-sm, rounded-xl
+   =================================================================== */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  display: block;
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease);
+}
+
+/* Clickable cards get the house green hover tint */
+a.card:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.card .icon {
+  font-size: var(--text-2xl);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--accent-soft);
+}
+
+.card h3 {
+  margin-bottom: var(--space-2);
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-lg);
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* ===================================================================
+   COMPARISON TABLE — card surface, token borders, flat elevation,
+   green-accented "Nosia" column (first data column). Mirrors the
+   design system: light-first, 1px borders, shadow-sm, class-based dark.
+   =================================================================== */
+.comparison-table-wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  overflow-x: auto;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  color: var(--text-body);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table tbody tr:last-child th,
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column headers */
+.comparison-table thead th {
+  background: var(--surface-sunken);
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-15);
+  white-space: nowrap;
+}
+
+/* Row header = the dimension label */
+.comparison-table tbody th[scope="row"] {
+  font-weight: var(--weight-medium);
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+/* Highlight the Nosia column (first data column) with the house green tint */
+.comparison-table thead th:nth-child(2),
+.comparison-table tbody td:nth-child(2) {
+  background: var(--accent-soft);
+  color: var(--accent-soft-text);
+  font-weight: var(--weight-medium);
+}
+
+.comparison-table thead th:nth-child(2) {
+  color: var(--accent-strong);
+  font-weight: var(--weight-bold);
+}
+
+.dark .comparison-table thead th:nth-child(2) {
+  color: var(--accent-soft-text);
+}
+
+/* Row hover uses the house green hover tint */
+.comparison-table tbody tr:hover th[scope="row"],
+.comparison-table tbody tr:hover td {
+  background: var(--hover-tint);
+  color: var(--accent-soft-text);
+}
+
+@media (max-width: 768px) {
+  .comparison-table { font-size: var(--text-xs); }
+  .comparison-table th,
+  .comparison-table td { padding: var(--space-2) var(--space-3); }
+}
+
+/* ===================================================================
+   FAQ — <details>/<summary> accordion, card styling, inline chevron
+   =================================================================== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.faq-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease);
+}
+
+.faq-item[open] {
+  border-color: var(--border-strong);
+}
+
+/* Remove the default disclosure triangle that otherwise sits on its own
+   line above the block-level <h2> inside the summary. */
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary h2 {
+  margin: 0;
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+/* Custom inline chevron, sits to the right of the question and rotates open */
+.faq-item summary::after {
+  content: "";
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(-45deg);
+  transition: transform var(--duration) var(--ease);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item summary:hover h2 {
+  color: var(--accent-strong);
+}
+
+.faq-item summary:hover::after {
+  border-color: var(--accent-strong);
+}
+
+.faq-item > p {
+  margin: 0;
+  padding: 0 var(--space-6) var(--space-6);
+  color: var(--text-muted);
+  font-size: var(--text-15);
+  line-height: var(--leading-normal);
+}
+
+/* ===================================================================
+   BUTTONS — sentence case, green, rounded-lg, no uppercase/scale
+   =================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  font-family: inherit;
+  line-height: 1.2;
+  border-radius: var(--radius-lg);
+  /* Bare .btn = design-system "outline" variant */
+  background: transparent;
+  color: var(--text-body);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              color var(--duration) var(--ease);
+}
+
+.btn:hover {
+  background: var(--hover-tint);
+}
+
+/* High-emphasis CTA = solid green-600 */
+.btn-primary {
+  background: var(--accent-strong);
+  color: var(--text-on-accent);
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong-hover);
+}
+
+/* Secondary / quiet button = design-system "secondary" variant */
+.btn-secondary {
+  background: var(--bg-chrome);
+  color: var(--text-strong);
+  border-color: transparent;
+}
+
+.btn-secondary:hover {
+  background: var(--border-strong);
+}
+
+/* Group of CTA buttons (e.g. comparison teaser) — wrap and space evenly */
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+/* ===================================================================
+   CODE BLOCKS — sunken surface, mono, no blur
+   =================================================================== */
+.code-block {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+  max-width: 46rem;
+  width: 100%;
+}
+
+.code-block code {
+  font-family: var(--font-mono);
+  color: var(--text-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ===================================================================
+   QUICKSTART
+   =================================================================== */
+.quickstart .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quickstart > .container > h2 {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.quickstart p {
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+  width: 100%;
+  max-width: 46rem;
+}
+
+.quickstart .code-block:not(:last-child) { margin-bottom: var(--space-6); }
+
+/* ===================================================================
+   STORY — flat card, restrained green left accent
+   =================================================================== */
+.story h2 {
+  text-align: center;
+  margin-bottom: var(--space-10);
+  font-size: var(--text-4xl);
+}
+
+.story-content {
+  max-width: 48rem;
+  margin: 0 auto;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-10) var(--space-12);
+}
+
+.story-content p {
+  position: relative;
+  margin-bottom: var(--space-5);
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--border);
+  color: var(--text-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+}
+
+.story-content p:last-child { margin-bottom: 0; }
+
+.story-content p:first-child {
+  border-left-color: var(--accent-strong);
+  font-size: var(--text-lg);
+  color: var(--text-strong);
+  font-weight: var(--weight-medium);
+}
+
+.story-content strong {
+  color: var(--accent-strong);
+  font-weight: var(--weight-semibold);
+}
+
+.dark .story-content strong { color: var(--accent-soft-text); }
+
+/* ===================================================================
+   DEMO / VIDEO — flat framed surface
+   =================================================================== */
+.demo > .container > h2 {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--surface-sunken);
+  box-shadow: var(--shadow-md);
+}
+
+.video-container iframe,
+.video-container .demo-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.footer {
+  padding: var(--space-16) 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg-app);
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.footer .links {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer .links a {
+  color: var(--text-body);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition: color var(--duration) var(--ease);
+}
+
+.footer .links a:hover { color: var(--accent-strong); }
+
+/* ===================================================================
+   BACK TO TOP
+   =================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: background-color var(--duration) var(--ease),
+              color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              opacity var(--duration) var(--ease),
+              transform var(--duration) var(--ease);
+}
+
+.back-to-top:hover {
+  background: var(--hover-tint);
+  color: var(--accent-soft-text);
+  border-color: var(--hover-tint);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ===================================================================
+   EFFECTS — shared keyframes & utilities (mirrors tokens/effects.css)
+   =================================================================== */
+@keyframes nosia-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Message bubble entrance (chat) */
+@keyframes nosia-message-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Small pop for streaming bubbles */
+@keyframes nosia-bubble-enter {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Ephemeral thinking-phase label */
+@keyframes nosia-fade-in-out {
+  0%   { opacity: 0; transform: translateY(-10px); }
+  10%  { opacity: 1; transform: translateY(0); }
+  90%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Subtle elevation pulse on the thinking container */
+@keyframes nosia-subtle-pulse {
+  0%, 100% { box-shadow: var(--shadow-sm); }
+  50%      { box-shadow: var(--shadow-md); }
+}
+
+.nosia-animate-spin { animation: nosia-spin 1s linear infinite; }
+.nosia-message-in   { animation: nosia-message-slide-in 0.3s var(--ease-out); }
+
+/* Thin custom scrollbars used app-wide */
+.nosia-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175 / 0.3) transparent;
+}
+.nosia-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.nosia-scroll::-webkit-scrollbar-track { background: transparent; }
+.nosia-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.dark .nosia-scroll::-webkit-scrollbar-thumb { background: var(--neutral-700); }
+
+/* ===================================================================
+   RESPONSIVE
+   =================================================================== */
+@media (max-width: 768px) {
+  .nav a:not(.lang-toggle) { display: none; }
+
+  h1 { font-size: var(--text-4xl); }
+  .hero h1 { font-size: var(--text-4xl); }
+  h2 { font-size: var(--text-2xl); }
+  .story h2 { font-size: var(--text-3xl); }
+
+  section { padding: var(--space-16) 0; }
+  .hero { padding: var(--space-16) 0 var(--space-12); }
+
+  .subtitle { font-size: var(--text-lg); }
+
+  .story-content { padding: var(--space-6); }
+
+  .container { padding: 0 var(--space-4); }
+}
+
+/* ===================================================================
+   MOTION PREFERENCES
+   =================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

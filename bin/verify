@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Build the site and run html-proofer against the output.
+set -euo pipefail
+
+echo "==> Building site"
+bundle exec jekyll build --baseurl ""
+
+echo "==> Running html-proofer"
+bundle exec htmlproofer ./_site \
+  --disable-external \
+  --allow-missing-href \
+  --ignore-empty-alt \
+  --no-enforce-https
+
+echo "==> OK"

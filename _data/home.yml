@@ -1,0 +1,23 @@
+fr:
+  eyebrow: "Pour les équipes qui construisent"
+  title: "Votre stack IA."
+  title_accent: "Sans dépendance au cloud."
+  summary: "Déployez une plateforme RAG + MCP sur vos serveurs. Connectez vos clients OpenAI existants et vos propres documents, sur une base ouverte et auto-hébergée."
+  source: "Explorer le code"
+  terminal_title: "votre-serveur ~ terminal"
+  terminal_intro: "Votre IA commence ici"
+  platforms: "Instructions Linux, macOS et Windows"
+  ownership: "Votre infrastructure. Vos modèles. Vos données."
+  capabilities: ["Docker", "RAG + MCP", "API compatible OpenAI", "Open source · MIT"]
+
+en:
+  eyebrow: "For teams that build"
+  title: "Your AI stack."
+  title_accent: "No cloud dependency."
+  summary: "Deploy a RAG + MCP platform on your servers. Connect your existing OpenAI clients and your own documents, on an open, self-hosted foundation."
+  source: "Explore the code"
+  terminal_title: "your-server ~ terminal"
+  terminal_intro: "Your AI starts here"
+  platforms: "Linux, macOS and Windows instructions"
+  ownership: "Your infrastructure. Your models. Your data."
+  capabilities: ["Docker", "RAG + MCP", "OpenAI-compatible API", "Open source · MIT"]

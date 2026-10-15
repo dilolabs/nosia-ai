@@ -1,0 +1,32 @@
+{%- assign home = site.data.home[page.lang] -%}
+{%- assign t = site.data.translations[page.lang] -%}
+<section class="developer-hero">
+  <div class="container developer-hero-grid">
+    <div class="developer-hero-copy">
+      <p class="developer-eyebrow">{{ home.eyebrow }}</p>
+      <h1>{{ home.title }} <span>{{ home.title_accent }}</span></h1>
+      <p class="developer-summary">{{ home.summary }}</p>
+      <div class="developer-actions">
+        <a class="btn btn-primary" href="#quickstart">{{ t.deploy }}</a>
+        <a class="btn" href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">{{ home.source }}</a>
+      </div>
+      <p class="developer-ownership">{{ home.ownership }}</p>
+    </div>
+    <div class="developer-terminal">
+      <div class="terminal-heading">
+        <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>{{ home.terminal_title }}</span>
+      </div>
+      <div class="terminal-content">
+        <p class="terminal-intro">{{ home.terminal_intro }}</p>
+        {% include install-command.html id="hero-install" label="Linux / macOS" command="curl -fsSL https://get.nosia.ai | sh" %}
+        <a class="terminal-platforms" href="#quickstart">{{ home.platforms }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="developer-capabilities">
+      {% for capability in home.capabilities %}<li>{{ capability }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>

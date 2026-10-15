@@ -1,0 +1,39 @@
+<header class="header" data-menu-open="false">
+  <div class="container">
+    {% assign t = site.data.translations[page.lang] %}
+    {%- assign home_url = '/' -%}
+    {%- if page.lang == 'en' -%}{%- assign home_url = '/en/' -%}{%- endif -%}
+    {%- comment -%} Resolve the matching page in the other language via shared `ref`. {%- endcomment -%}
+    {%- assign opp_lang = 'en' -%}
+    {%- if page.lang == 'en' -%}{%- assign opp_lang = 'fr' -%}{%- endif -%}
+    {%- assign alt_url = '' -%}
+    {%- if page.ref -%}
+      {%- assign siblings = site.pages | where: "ref", page.ref -%}
+      {%- for p in siblings -%}
+        {%- if p.lang == opp_lang -%}{%- assign alt_url = p.url | replace: 'index.html', '' -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- assign fallback_url = '/' -%}
+    {%- if opp_lang == 'en' -%}{%- assign fallback_url = '/en/' -%}{%- endif -%}
+    <a href="{{ home_url | relative_url }}" class="logo" aria-label="{{ t.home }}">
+      <img src="{{ '/assets/images/nosia-logo.png' | relative_url }}" alt="{{ t.logo_alt }}" width="399" height="120">
+    </a>
+    <nav class="nav" id="primary-nav" aria-label="{{ t.nav_aria }}">
+      <a href="{{ t.usecases_url | relative_url }}">{{ t.nav_usecases }}</a>
+      <a href="{{ t.faq_url | relative_url }}">{{ t.nav_faq }}</a>
+      <a href="{{ home_url | relative_url }}#documentation">{{ t.documentation }}</a>
+      <a href="{{ home_url | relative_url }}#community">{{ t.community }}</a>
+      <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn btn-primary mobile-deploy" href="{{ home_url | relative_url }}#quickstart">{{ t.deploy }}</a>
+    </nav>
+    <div class="header-controls">
+      <a href="{% if alt_url != '' %}{{ alt_url | relative_url }}{% else %}{{ fallback_url | relative_url }}{% endif %}" class="lang-toggle" lang="{{ opp_lang }}" hreflang="{{ opp_lang }}" aria-label="{{ t.other_lang_label }}" title="{{ t.other_lang_name }}">{{ t.other_lang }}</a>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="{{ t.dark_mode }}" aria-pressed="false" hidden>
+        <svg class="icon-sun" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <svg class="icon-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20 13A8.5 8.5 0 0 1 11 4a8.5 8.5 0 1 0 9 9Z"/></svg>
+      </button>
+      <a class="btn btn-primary header-deploy" href="{{ home_url | relative_url }}#quickstart">{{ t.deploy }}</a>
+      <button type="button" class="menu-toggle" data-menu-toggle aria-controls="primary-nav" aria-expanded="false" hidden>{{ t.menu }}</button>
+    </div>
+  </div>
+</header>

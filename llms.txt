@@ -1,0 +1,17 @@
+# Nosia
+
+> Nosia is an open-core, self-hosted AI platform that runs large language models on your own infrastructure with Retrieval Augmented Generation (RAG), Model Context Protocol (MCP), an OpenAI-compatible API, and (soon) agent skills. It is built for data privacy and sovereignty.
+
+## Key facts
+- License: MIT (open source). Repository: https://github.com/dilolabs/nosia
+- Install (Linux/macOS): `curl -fsSL https://get.nosia.ai | sh`
+- OpenAI-compatible API: drop-in replacement for OpenAI clients.
+- Self-hosted: your data stays on your own servers.
+- Maintained by Dilolabs.
+
+## Links
+- Website: https://nosia.ai
+- English site: https://nosia.ai/en/
+- GitHub: https://github.com/dilolabs/nosia
+- Docker Hub: https://hub.docker.com/r/dilolabs/nosia
+- Blog: https://blog.nosia.ai
