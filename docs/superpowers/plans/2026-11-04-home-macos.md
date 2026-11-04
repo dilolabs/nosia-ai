@@ -107,7 +107,7 @@ for (const home of homes) {
 }
 ```
 
-- [ ] **Step 2: Construire puis lancer le test pour observer le rouge.**
+- [x] **Step 2: Construire puis lancer le test pour observer le rouge.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -357,7 +357,7 @@ for (const home of homes) {
 }
 ```
 
-- [ ] **Step 2: Reconstruire et observer les échecs d’installation et de vidéo.**
+- [x] **Step 2: Reconstruire et observer les échecs d’installation et de vidéo.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -558,7 +558,7 @@ for (const home of homes) {
 }
 ```
 
-- [ ] **Step 2: Reconstruire et lancer les tests ciblés avant les nouveaux contenus.**
+- [x] **Step 2: Reconstruire et lancer les tests ciblés avant les nouveaux contenus.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -1023,7 +1023,7 @@ for (const home of homes) {
 }
 ```
 
-- [ ] **Step 2: Reconstruire et observer le résultat avant le correctif de défilement.**
+- [x] **Step 2: Reconstruire et observer le résultat avant le correctif de défilement.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -1180,7 +1180,7 @@ git diff --check
 
 Attendu : toutes les commandes réussissent. Les captures des nouveaux tests distinguent bandeau et guide pour FR/EN, 320/375/768/1280 px, clair/sombre. Ouvrir des captures réelles avec l’outil de lecture d’images ; ne pas conclure sur leur seule existence.
 
-- [ ] **Step 2: Examiner les captures et les textes français/anglais.** Vérifier concrètement : titre et sens du produit lisibles, pas de sigles développeur au premier écran, CTA et prérequis proches, mots « français » / « French » sur la vidéo, vidéo non étirée, commandes repliées mais retrouvables, contenu non masqué par l’en-tête ou le retour en haut. Si un défaut est détecté, ajouter une assertion ciblée avant son correctif et relancer les commandes de l’étape 1.
+- [x] **Step 2: Examiner les captures et les textes français/anglais.** Vérifier concrètement : titre et sens du produit lisibles, pas de sigles développeur au premier écran, CTA et prérequis proches, mots « français » / « French » sur la vidéo, vidéo non étirée, commandes repliées mais retrouvables, contenu non masqué par l’en-tête ou le retour en haut. Si un défaut est détecté, ajouter une assertion ciblée avant son correctif et relancer les commandes de l’étape 1.
 
 - [x] **Step 3: Contrôler les médias et l’absence de modifications hors périmètre.**
 
@@ -1201,7 +1201,7 @@ a9594fe0210b43b4c37ec2c72f4b9aadbf8cccaa3376810bc23f65aab2221284  assets/films/n
 
 Le diff ciblé doit être vide. Si de nouveaux changements utilisateur sont présents, les identifier et les préserver ; ne pas rétablir ces fichiers automatiquement.
 
-- [ ] **Step 4: Relire le diff d’implémentation contre la spécification.** Cette revue peut être faite en session ; une revue par agent nécessite le mode d’exécution choisi par l’utilisateur. Vérifier les points de la matrice ci-dessous et corriger les défauts constatés sans refonte supplémentaire.
+- [x] **Step 4: Relire le diff d’implémentation contre la spécification.** Cette revue peut être faite en session ; une revue par agent nécessite le mode d’exécution choisi par l’utilisateur. Vérifier les points de la matrice ci-dessous et corriger les défauts constatés sans refonte supplémentaire.
 
 - [x] **Step 5: Cocher les tâches réellement terminées et consigner les commandes finales, leur résultat et les limites constatées dans le journal d’exécution.** Ne pas préremplir une réussite. Ajouter chaque entrée sous la forme : date, commande exacte, nombre de tests réussis/échoués, emplacement des captures et éventuel blocage de lecture vidéo.
 
@@ -1326,3 +1326,64 @@ Fichiers concernés : `assets/css/style.css:917–954` positionne le contrôle f
 **Aucun correctif source ni test suivi n’est ajouté dans cette tâche documentaire. Le coordinateur doit arbitrer le correctif ciblé et sa régression avant de fermer les étapes 5.2 et 5.4 et de donner l’approbation finale.** Les 76 tests verts ne suffisent pas à lever ce constat visuel indépendant.
 
 **Limites et livraison.** Vérifications locales sous Linux avec Chromium/CDP et serveur de test ; aucune exécution native sur Mac, validation matérielle, lecture Safari, vérification de déploiement/production ou test des téléchargements externes en situation réelle. Les requêtes HTTPS externes sont bloquées par le harnais navigateur ; les URLs publiées sont contrôlées, pas une installation complète depuis GitHub. Aucun blocage de décodage/lecture du MP4 local constaté. Aucun push, publication, fusion ou nettoyage de branche ; la revue globale finale du coordinateur reste à effectuer. Statut de cette remise : **NEEDS_CONTEXT**, avec preuves documentées et source préservée.
+
+### 2026-11-04 — Reprise après correction du dégagement : DONE, prêt pour revue globale
+
+**Résolution et historique.** Le blocage visuel ci-dessus est résolu dans `64e67b3f2c7e35e666ceaf89fec939c464108069` (`fix: keep homepage text clear of the back-to-top control`). L’entrée **NEEDS_CONTEXT** précédente est conservée intégralement comme constat au moment de la première vérification, pas comme statut courant. Attention : `/tmp/opencode/nosia-home-macos-review/obstruction-fr-light-375.png` a été écrasé par les nouvelles exécutions de la sonde et montre désormais l’état **après correction** ; ce fichier actuel n’est donc plus une capture du défaut historique. Les coordonnées et l’échec consignés précédemment restent les preuves textuelles de ce constat initial. Une copie après correction est conservée dans le nouveau répertoire final sous `obstruction-fr-light-375-postfix.png`.
+
+Le diff `git show 64e67b3 -- assets/css/developer.css test/home-macos.test.mjs` confirme seulement **5 lignes CSS et 88 lignes de tests** ajoutées. La règle `main:has(> .home-hero)` réserve à droite `calc(2.75rem + var(--space-5))`, soit **64 px**, uniquement sur les accueils ; elle conserve le bouton 44×44, les textes, les tailles de caractères et les contrôles existants. Les **20 nouvelles régressions** utilisent les centres des glyphes et `elementFromPoint`, parcourent les régions de contenu avec les disclosures ouverts, et couvrent FR/EN, clair/sombre, 320×900, 375×900, 768×900, 812×375 et 1280×900. Elles vérifient aussi visibilité, cible de 44 px, clic possible, focus visible et activation au clavier avec retour au contenu principal. Le coordinateur confirme les revues séparées de conformité et de qualité, chacune avec 96 tests et la sonde d’origine réussis ; la vérification ci-dessous est un nouveau passage indépendant.
+
+#### Attribution des étapes historiques et clôture des cases
+
+Le coordinateur précise que le suivi porte sur l’ensemble du travail multiagent. Les quatre actions RED des tâches 1–4 avaient été exécutées par les implémenteurs et reproduites indépendamment pendant les revues de conformité. Elles sont maintenant cochées sur cette preuve attribuée, **sans prétendre les avoir personnellement réexécutées pendant la tâche 5** :
+
+| Étape historique | RED communiqué et reproduit lors des revues précédentes | GREEN communiqué |
+| --- | --- | --- |
+| Tâche 1, étape 2 | 2 échecs sur les anciens titres | 2 tests réussis |
+| Tâche 2, étape 2 | 2 réussites, 6 échecs d’installation/média | 8 tests réussis |
+| Tâche 3, étape 2 | 8 réussites, 4 échecs de parcours/FAQ | 12 tests réussis |
+| Tâche 4, étape 2 | 25 échecs d’attentes historiques devenues obsolètes et 2 tests de média bloqué attendant l’erreur de `<source>` sans capture | 76 tests réussis après adaptation |
+
+L’échec attendu sous l’en-tête fixe était une **hypothèse du plan, pas un échec observé** : le `scroll-padding` global fonctionnait déjà. La marge locale prévue a été ajoutée malgré cela ; l’ajustement du traitement de l’erreur non bouillonnante reste documenté. La nouvelle régression de gouttière part bien, elle, d’une obstruction réelle. Les étapes 5.2 et 5.4 sont maintenant closes après les captures et sondes fraîches ci-dessous. **39 étapes sur 39 cochées** ; cela signifie tâche 5 terminée et dossier prêt pour la revue globale du coordinateur, **pas revue globale finale déjà approuvée**.
+
+#### Vérification fraîche après correction
+
+Commandes exécutées séparément dans le même worktree, sur `home-macos-public` à `64e67b3`, le 2026-11-04 :
+
+```bash
+bin/verify
+NOSIA_SCREENSHOTS=/tmp/opencode/nosia-home-macos-final-review node --test test/*.test.mjs
+git diff --check
+node /tmp/opencode/nosia-home-macos-obstruction.mjs
+NOSIA_SCREENSHOTS=/tmp/opencode/nosia-home-macos-final-review node /tmp/opencode/nosia-home-macos-final-review.mjs
+node /tmp/opencode/nosia-home-macos-gutter-probe.mjs
+sha256sum assets/films/nosia-macos-installation-fr-v0.6.1.mp4 assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4
+git diff 7658dd0 -- engagement.md en/commitment.md assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4 assets/js/site.js _config.yml
+git diff --stat 7658dd0
+git diff --stat 16f64ea HEAD
+git status --short
+```
+
+- Construction/liens : **code 0**, Jekyll et HTML-Proofer réussis ; 32 liens internes, ancres dans 12 fichiers, 14 fichiers examinés.
+- Suite avec le **nouveau dossier final distinct** : **code 0, 96 tests réussis, 0 échec, 0 annulé, 0 ignoré, 0 todo**. Ce total remplace le résultat de 76 pour l’état courant, sans réécrire le résultat historique.
+- `git diff --check` : **code 0**, aucune sortie ; contrôle documentaire renouvelé avant commit.
+- Sonde d’origine, inchangée : **code 0**, `scrollY = 3604`, bouton visible à `(300, 840)`, dimensions **44×44**, `blocked: []`.
+- Sonde complémentaire de captures : **code 0**, commandes initialement fermées puis accessibles ; la preuve de requête en attente reste **0 entrée Resource Timing terminée / 1 événement initié** après action forcée, et 0 requête avant action.
+- Sonde de mutation en DevTools, sans édition des sources : **code 0**, **0 ligne masquée avec gouttière → 55 sans gouttière → 0 après restauration**, contrôle toujours 44×44. Elle réutilise le calcul de la régression suivie, avec remise en position et deux frames de stabilisation après changement de style. Une première tentative ad hoc sans cette stabilisation n’avait pas reproduit le témoin rouge ; seule la sonde temporaire a été ajustée avant ces mesures.
+- Les trois SHA-256 correspondent encore exactement aux valeurs attendues : tutoriel `8dce9f8f0df93566062cd72b3f60028e2f28bba6073097d6d82113c67a2bc9e5`, plaidoyer FR `a9594fe0210b43b4c37ec2c72f4b9aadbf8cccaa3376810bc23f65aab2221284`, plaidoyer EN `555119709423bde13efab6b27009c21952b35d0acbc07f82ec77e6290f61dab5`.
+- Diff protégé toujours **vide** ; statut propre avant cette mise à jour documentaire. Depuis `16f64ea`, seuls le CSS ciblé et le fichier de tests ont changé avant cette édition. Aucun texte du plaidoyer, film existant, JS public, dépendance, configuration ou déploiement modifié par la correction.
+
+#### Images finales réellement ouvertes
+
+Répertoire neuf : **`/tmp/opencode/nosia-home-macos-final-review/`**, **129 PNG** : 104 issus de la suite (les 84 précédents et 20 cas de gouttière), 24 captures complémentaires et la copie de la sonde d’origine après correction. Les **20 captures finales suivantes ont été ouvertes avec l’outil de lecture** :
+
+- Bandeaux : `home-fr-light-320.png`, `home-en-dark-375.png`, `home-fr-dark-768.png`, `home-fr-dark-1280.png`, `home-en-light-1280.png`, `fr-light-375x812.png`, `en-dark-375x812.png`.
+- Guides : `mac-guide-fr-light-1280.png`, `mac-guide-en-dark-375.png`, `mac-guide-en-light-1280.png`.
+- Dégagement/régression : `control-gutter-fr-light-375x900.png`, `control-gutter-en-dark-812x375.png`, `obstruction-fr-light-375-postfix.png`.
+- Prérequis : `review-fr-light-375-preflight.png`, `review-en-dark-375-preflight.png`.
+- Commandes : `review-en-dark-375-commands-open.png`, `review-fr-dark-1280-commands-closed.png`.
+- FAQ et pied de page : `review-fr-dark-1280-faq.png`, `review-en-light-1280-footer.png`, `review-fr-light-375-footer.png`.
+
+L’inspection confirme les titres et le sens du produit lisibles, sans jargon développeur au premier écran ; le CTA et les prérequis restent visibles à 375×812 dans les deux langues malgré les retours à la ligne supplémentaires. La gouttière garde le bouton hors des paragraphes, commandes, liens et encarts observés. Le lecteur conserve le ratio 1048:720, les légendes françaises explicites, les contrôles natifs et le lien de secours ; guide à côté sur grand écran et dessous sur mobile, commandes repliées mais retrouvables, focus visible et pied de page accessible. Aucun nouveau défaut réel trouvé dans ces captures ou les tests. La confrontation éditoriale/SEO/FAQ et les limites de confidentialité du passage précédent restent valides : la correction n’a modifié aucun de ces contenus.
+
+**Statut courant : DONE pour la tâche 5, prêt pour la revue globale finale du coordinateur, qui reste à effectuer.** Seuls les six marqueurs de complétion restants et cette entrée du journal changent dans ce commit documentaire ; le plan initial et l’historique NEEDS_CONTEXT sont préservés. Vérifications Chromium/CDP locales sous Linux uniquement : toujours aucune validation de matériel Mac, installation native réelle, Safari, téléchargement externe en conditions réelles ou déploiement/production revendiquée. Aucun push, publication, fusion ou nettoyage de branche.
