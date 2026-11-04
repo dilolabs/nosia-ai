@@ -66,7 +66,7 @@ La suite historique contient volontairement des exigences développeur devenues 
 
 **Files:** Create `_data/downloads.yml`, `_includes/mac-requirements.html`, `test/home-macos.test.mjs`; modify `_data/home.yml`, `_includes/home-hero.html`, `_data/translations.yml`, `assets/css/developer.css`.
 
-- [ ] **Step 1: Créer le contrat du bandeau dans `test/home-macos.test.mjs`.**
+- [x] **Step 1: Créer le contrat du bandeau dans `test/home-macos.test.mjs`.**
 
 ```js
 import { test, before, after } from 'node:test';
@@ -116,7 +116,7 @@ node --test test/home-macos.test.mjs
 
 Attendu : deux échecs métier (ancien titre et absence du nouveau bandeau), pas une erreur de lancement de Chromium.
 
-- [ ] **Step 3: Créer `_data/downloads.yml`.**
+- [x] **Step 3: Créer `_data/downloads.yml`.**
 
 ```yaml
 macos:
@@ -131,7 +131,7 @@ macos:
   video_height: 720
 ```
 
-- [ ] **Step 4: Remplacer `_data/home.yml` par ces textes du bandeau.** Les clés du guide sont ajoutées en tâche 2 et celles des autres sections en tâche 3, sous les mêmes entrées `fr` et `en`.
+- [x] **Step 4: Remplacer `_data/home.yml` par ces textes du bandeau.** Les clés du guide sont ajoutées en tâche 2 et celles des autres sections en tâche 3, sous les mêmes entrées `fr` et `en`.
 
 ```yaml
 fr:
@@ -168,7 +168,7 @@ en:
   memory_after: "of memory or more for the included AI configuration."
 ```
 
-- [ ] **Step 5: Créer `_includes/mac-requirements.html` et remplacer `_includes/home-hero.html`.**
+- [x] **Step 5: Créer `_includes/mac-requirements.html` et remplacer `_includes/home-hero.html`.**
 
 `_includes/mac-requirements.html` :
 
@@ -203,7 +203,7 @@ en:
 </section>
 ```
 
-- [ ] **Step 6: Modifier uniquement la valeur de `deploy` dans chaque langue de `_data/translations.yml`.**
+- [x] **Step 6: Modifier uniquement la valeur de `deploy` dans chaque langue de `_data/translations.yml`.**
 
 ```diff
 -  deploy: "Déployer Nosia"
@@ -215,7 +215,7 @@ en:
 +  deploy: "Install Nosia"
 ```
 
-- [ ] **Step 7: Ajouter les styles du bandeau à la fin de `assets/css/developer.css`.** Ne pas renommer la feuille ni retirer les règles partagées de navigation et du plaidoyer. Les anciennes règles `.developer-*` deviennent inutilisées, sans imposer une réorganisation de la feuille dans ce chantier.
+- [x] **Step 7: Ajouter les styles du bandeau à la fin de `assets/css/developer.css`.** Ne pas renommer la feuille ni retirer les règles partagées de navigation et du plaidoyer. Les anciennes règles `.developer-*` deviennent inutilisées, sans imposer une réorganisation de la feuille dans ce chantier.
 
 ```css
 /* Public-facing editorial home: existing theme tokens remain authoritative. */
@@ -246,7 +246,7 @@ en:
 }
 ```
 
-- [ ] **Step 8: Reconstruire, vérifier les deux tests ciblés, puis committer les fichiers de cette tâche.**
+- [x] **Step 8: Reconstruire, vérifier les deux tests ciblés, puis committer les fichiers de cette tâche.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -262,7 +262,7 @@ Attendu : les deux tests de bandeau passent. Les anciens tests « developer-firs
 
 **Files:** Modify `_data/home.yml`, `index.md`, `index-en.md`, `assets/css/developer.css`, `test/home-macos.test.mjs`; create `_includes/home-installation.html`, `assets/films/nosia-macos-installation-fr-v0.6.1.mp4`.
 
-- [ ] **Step 1: Ajouter ces tests au fichier `test/home-macos.test.mjs`.**
+- [x] **Step 1: Ajouter ces tests au fichier `test/home-macos.test.mjs`.**
 
 ```js
 for (const home of homes) {
@@ -366,7 +366,7 @@ node --test test/home-macos.test.mjs
 
 Attendu : les deux tests du bandeau restent verts ; les six nouveaux tests échouent sur les éléments ou le média absents.
 
-- [ ] **Step 3: Ajouter ces clés à `fr` et `en` de `_data/home.yml`.**
+- [x] **Step 3: Ajouter ces clés à `fr` et `en` de `_data/home.yml`.**
 
 ```yaml
 # Sous fr:
@@ -417,7 +417,7 @@ Attendu : les deux tests du bandeau restent verts ; les six nouveaux tests écho
 
 Les commentaires `Sous fr` / `Sous en` délimitent les ajouts : ne pas coller ces deux blocs sous une même langue ni créer une deuxième clé racine `fr` ou `en`.
 
-- [ ] **Step 4: Créer `_includes/home-installation.html`.**
+- [x] **Step 4: Créer `_includes/home-installation.html`.**
 
 ```liquid
 {%- assign home = site.data.home[page.lang] -%}
@@ -456,7 +456,7 @@ Les commentaires `Sous fr` / `Sous en` délimitent les ajouts : ne pas coller ce
 </section>
 ```
 
-- [ ] **Step 5: Dans `index.md` et `index-en.md`, remplacer uniquement la section `#quickstart` par l’inclusion.**
+- [x] **Step 5: Dans `index.md` et `index-en.md`, remplacer uniquement la section `#quickstart` par l’inclusion.**
 
 ```liquid
 {% include home-installation.html %}
@@ -464,7 +464,7 @@ Les commentaires `Sous fr` / `Sous en` délimitent les ajouts : ne pas coller ce
 
 Le bloc remplacé commence à `<section id="quickstart" class="quickstart">` et se termine à son `</section>`, avant `#demo`. En tâche 3, la composition commune reprendra cette inclusion ; ne pas conserver deux guides.
 
-- [ ] **Step 6: Récupérer le MP4 dans son chemin final et contrôler son empreinte.**
+- [x] **Step 6: Récupérer le MP4 dans son chemin final et contrôler son empreinte.**
 
 ```bash
 curl --location --fail --show-error --output assets/films/nosia-macos-installation-fr-v0.6.1.mp4 https://github.com/user-attachments/assets/1f41e171-75e7-4cf8-bacb-889312e4e8cb
@@ -473,7 +473,7 @@ sha256sum assets/films/nosia-macos-installation-fr-v0.6.1.mp4
 
 Attendu : empreinte `8dce9f8f0df93566062cd72b3f60028e2f28bba6073097d6d82113c67a2bc9e5`. En cas de différence, contrôler le fichier et la source plutôt que modifier l’empreinte attendue ou publier un fichier incomplet. Aucun réencodage.
 
-- [ ] **Step 7: Ajouter ces styles à la fin de `assets/css/developer.css`.**
+- [x] **Step 7: Ajouter ces styles à la fin de `assets/css/developer.css`.**
 
 ```css
 .home-installation > .container { display: block; }
@@ -497,7 +497,7 @@ Attendu : empreinte `8dce9f8f0df93566062cd72b3f60028e2f28bba6073097d6d82113c67a2
 @media (max-width: 800px) { .mac-installation { grid-template-columns: minmax(0, 1fr); } }
 ```
 
-- [ ] **Step 8: Reconstruire, exécuter les huit tests ciblés, puis committer.**
+- [x] **Step 8: Reconstruire, exécuter les huit tests ciblés, puis committer.**
 
 ```bash
 bundle exec jekyll build --baseurl ""
@@ -513,7 +513,7 @@ Attendu : huit tests passent, dont la lecture réelle et le déplacement dans le
 
 **Files:** Modify `_data/home.yml`, `index.md`, `index-en.md`, `_includes/structured-data.html`, `faq.md`, `en/faq.md`, `assets/css/developer.css`, `test/home-macos.test.mjs`; create `_includes/home-content.html`, `_includes/home-resources.html`.
 
-- [ ] **Step 1: Ajouter ces tests de parcours et de cohérence à `test/home-macos.test.mjs`.**
+- [x] **Step 1: Ajouter ces tests de parcours et de cohérence à `test/home-macos.test.mjs`.**
 
 ```js
 for (const home of homes) {
@@ -567,7 +567,7 @@ node --test test/home-macos.test.mjs
 
 Attendu : les tests de bandeau et de tutoriel passent ; les nouveaux tests échouent sur l’ancien ordre, la catégorie développeur et les FAQ restées sur Docker.
 
-- [ ] **Step 3: Ajouter ces clés de contenu aux entrées existantes de `_data/home.yml`.**
+- [x] **Step 3: Ajouter ces clés de contenu aux entrées existantes de `_data/home.yml`.**
 
 Bloc à ajouter sous `fr` :
 
@@ -695,7 +695,7 @@ Bloc à ajouter sous `en` :
   website: "Website"
 ```
 
-- [ ] **Step 4: Créer `_includes/home-content.html`.** Les noms d’icônes `document`, `book`, `chat`, `bug`, `people`, `deploy`, `architecture`, `activity`, `list` ont été vérifiés dans `_includes/icon.html` ; réutiliser cet include sans ajouter de bibliothèque.
+- [x] **Step 4: Créer `_includes/home-content.html`.** Les noms d’icônes `document`, `book`, `chat`, `bug`, `people`, `deploy`, `architecture`, `activity`, `list` ont été vérifiés dans `_includes/icon.html` ; réutiliser cet include sans ajouter de bibliothèque.
 
 ```liquid
 {%- assign home = site.data.home[page.lang] -%}
@@ -743,7 +743,7 @@ Bloc à ajouter sous `en` :
 {% include home-resources.html %}
 ```
 
-- [ ] **Step 5: Créer `_includes/home-resources.html`.**
+- [x] **Step 5: Créer `_includes/home-resources.html`.**
 
 ```liquid
 {%- assign home = site.data.home[page.lang] -%}
@@ -818,7 +818,7 @@ Bloc à ajouter sous `en` :
 </footer>
 ```
 
-- [ ] **Step 6: Remplacer les deux fichiers d’accueil par leur composition finale.**
+- [x] **Step 6: Remplacer les deux fichiers d’accueil par leur composition finale.**
 
 `index.md` :
 
@@ -858,7 +858,7 @@ schema: [SoftwareApplication, FAQPage]
 {% include home-content.html %}
 ```
 
-- [ ] **Step 7: Adapter le JSON-LD dans `_includes/structured-data.html`.**
+- [x] **Step 7: Adapter le JSON-LD dans `_includes/structured-data.html`.**
 
 Remplacer uniquement ces valeurs du bloc `SoftwareApplication` :
 
@@ -898,7 +898,7 @@ Remplacer le bloc `FAQPage` complet par :
 
 Conserver le JSON-LD Organization et BreadcrumbList à l’identique. Les FAQ dédiées continuent à utiliser `page.faq`.
 
-- [ ] **Step 8: Remplacer seulement les deux réponses concernées dans chacune des FAQ dédiées.**
+- [x] **Step 8: Remplacer seulement les deux réponses concernées dans chacune des FAQ dédiées.**
 
 Dans `faq.md`, conserver les intitulés et les autres entrées, et remplacer ces couples :
 
@@ -920,7 +920,7 @@ Dans `en/faq.md` :
 
 Les intitulés reproduits ci-dessus correspondent aux fichiers vérifiés. Remplacer les deux valeurs `a` en place, sans déplacer les questions ni créer de nouvelle entrée.
 
-- [ ] **Step 9: Ajouter les styles éditoriaux ciblés.**
+- [x] **Step 9: Ajouter les styles éditoriaux ciblés.**
 
 ```css
 .home-quote { margin: 0; padding: var(--space-6); border-left: 3px solid var(--accent-strong); border-radius: var(--radius-lg); background: var(--surface-card); }
@@ -933,7 +933,7 @@ Les intitulés reproduits ci-dessus correspondent aux fichiers vérifiés. Rempl
 .home-content#demo .btn { min-height: 44px; }
 ```
 
-- [ ] **Step 10: Reconstruire, exécuter les tests ciblés et vérifier les liens avant commit.**
+- [x] **Step 10: Reconstruire, exécuter les tests ciblés et vérifier les liens avant commit.**
 
 ```bash
 bin/verify
@@ -949,7 +949,7 @@ Attendu : tests ciblés et liens internes verts ; FAQ JSON-LD strictement identi
 
 **Files:** Modify `test/home-macos.test.mjs`, `test/site-ui.test.mjs`, `assets/css/developer.css`.
 
-- [ ] **Step 1: Ajouter les vérifications d’adaptation et de navigation à `test/home-macos.test.mjs`.**
+- [x] **Step 1: Ajouter les vérifications d’adaptation et de navigation à `test/home-macos.test.mjs`.**
 
 ```js
 for (const home of homes) {
@@ -1033,7 +1033,7 @@ node --test test/site-ui.test.mjs
 
 Attendu : la navigation vers les installations secondaires expose l’absence de marge sous l’en-tête fixe ; les anciens tests d’accueil échouent encore sur le Terminal, l’ordre, les couleurs du bandeau et la démo intégrée. Les tests du plaidoyer et du lecteur réel doivent rester verts. Ne pas corriger une attente obsolète en réintroduisant une commande ou un iframe.
 
-- [ ] **Step 3: Migrer les trois tests historiques de parcours dans `test/site-ui.test.mjs`.** Remplacer les tests nommés `all platform commands remain visible without JavaScript`, `developer-first home preserves anchors, moves installation forward, and keeps Windows exact` et `installation command is visible in the first small-phone viewport` par les blocs suivants.
+- [x] **Step 3: Migrer les trois tests historiques de parcours dans `test/site-ui.test.mjs`.** Remplacer les tests nommés `all platform commands remain visible without JavaScript`, `developer-first home preserves anchors, moves installation forward, and keeps Windows exact` et `installation command is visible in the first small-phone viewport` par les blocs suivants.
 
 ```js
 test('secondary platform commands remain available without JavaScript', async () => {
@@ -1066,7 +1066,7 @@ test('Mac download and requirements are visible in the first small-phone viewpor
 });
 ```
 
-- [ ] **Step 4: Ouvrir le bloc secondaire avant les tests de copie et de focus existants.** Ajouter cette fonction après les hooks `before`/`after` de `test/site-ui.test.mjs` :
+- [x] **Step 4: Ouvrir le bloc secondaire avant les tests de copie et de focus existants.** Ajouter cette fonction après les hooks `before`/`after` de `test/site-ui.test.mjs` :
 
 ```js
 async function revealOtherInstallations() {
@@ -1108,7 +1108,7 @@ Dans `responsive navigation transfers focus instead of hiding the active control
    await browser.evaluate('document.querySelector("[data-copy-target]").focus()');
 ```
 
-- [ ] **Step 5: Remplacer les attentes de contraste, de démo et de couleur du bandeau.**
+- [x] **Step 5: Remplacer les attentes de contraste, de démo et de couleur du bandeau.**
 
 Dans le test de contraste existant, remplacer uniquement la déclaration `const selectors = ...` à l’intérieur de `browser.evaluate` par :
 
@@ -1144,7 +1144,7 @@ assert.equal(await browser.evaluate('document.querySelector(".home-download").hr
 
 Conserver l’assertion de non-débordement, les captures, la matrice de tailles et les autres tests. Conserver également les tests de fonds uniformes : les sections restent sur `--bg-app`, les encarts sur `--surface-card`.
 
-- [ ] **Step 6: Ajouter le correctif de défilement et les couleurs des liens du bandeau.**
+- [x] **Step 6: Ajouter le correctif de défilement et les couleurs des liens du bandeau.**
 
 ```css
 .home-hero, .home-content[id], .home-installation, #other-installations { scroll-margin-top: 7rem; }
@@ -1154,7 +1154,7 @@ Conserver l’assertion de non-débordement, les captures, la matrice de tailles
 
 Ne pas supprimer la règle globale `:focus-visible`, les points d’entrée clavier ou les styles `prefers-reduced-motion`. Ne pas réduire le texte à une taille illisible pour faire passer un test de viewport : examiner les espacements et retours à la ligne si ce test révèle une régression réelle.
 
-- [ ] **Step 7: Reconstruire, relancer toute la suite et committer seulement après lecture des résultats.**
+- [x] **Step 7: Reconstruire, relancer toute la suite et committer seulement après lecture des résultats.**
 
 ```bash
 bin/verify
@@ -1170,7 +1170,7 @@ Attendu : aucune erreur Jekyll ou de lien interne ; tous les tests passent, y co
 
 **Files:** Review all files changed by tasks 1–4; update only the completion checkboxes and evidence notes in `docs/superpowers/plans/2026-11-04-home-macos.md`.
 
-- [ ] **Step 1: Réexécuter la construction et les vérifications finales avec captures locales.**
+- [x] **Step 1: Réexécuter la construction et les vérifications finales avec captures locales.**
 
 ```bash
 bin/verify
@@ -1182,7 +1182,7 @@ Attendu : toutes les commandes réussissent. Les captures des nouveaux tests dis
 
 - [ ] **Step 2: Examiner les captures et les textes français/anglais.** Vérifier concrètement : titre et sens du produit lisibles, pas de sigles développeur au premier écran, CTA et prérequis proches, mots « français » / « French » sur la vidéo, vidéo non étirée, commandes repliées mais retrouvables, contenu non masqué par l’en-tête ou le retour en haut. Si un défaut est détecté, ajouter une assertion ciblée avant son correctif et relancer les commandes de l’étape 1.
 
-- [ ] **Step 3: Contrôler les médias et l’absence de modifications hors périmètre.**
+- [x] **Step 3: Contrôler les médias et l’absence de modifications hors périmètre.**
 
 ```bash
 sha256sum assets/films/nosia-macos-installation-fr-v0.6.1.mp4 assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4
@@ -1203,9 +1203,9 @@ Le diff ciblé doit être vide. Si de nouveaux changements utilisateur sont pré
 
 - [ ] **Step 4: Relire le diff d’implémentation contre la spécification.** Cette revue peut être faite en session ; une revue par agent nécessite le mode d’exécution choisi par l’utilisateur. Vérifier les points de la matrice ci-dessous et corriger les défauts constatés sans refonte supplémentaire.
 
-- [ ] **Step 5: Cocher les tâches réellement terminées et consigner les commandes finales, leur résultat et les limites constatées dans le journal d’exécution.** Ne pas préremplir une réussite. Ajouter chaque entrée sous la forme : date, commande exacte, nombre de tests réussis/échoués, emplacement des captures et éventuel blocage de lecture vidéo.
+- [x] **Step 5: Cocher les tâches réellement terminées et consigner les commandes finales, leur résultat et les limites constatées dans le journal d’exécution.** Ne pas préremplir une réussite. Ajouter chaque entrée sous la forme : date, commande exacte, nombre de tests réussis/échoués, emplacement des captures et éventuel blocage de lecture vidéo.
 
-- [ ] **Step 6: Présenter le résultat sans publier ni pousser automatiquement.** Donner le changement visible, les tests réellement exécutés, l’emplacement des captures et tout défaut restant. Ne pas annoncer un déploiement en production, une compatibilité matérielle testée sur Mac ou une lecture sous Safari si seuls les tests Chromium locaux ont été exécutés.
+- [x] **Step 6: Présenter le résultat sans publier ni pousser automatiquement.** Donner le changement visible, les tests réellement exécutés, l’emplacement des captures et tout défaut restant. Ne pas annoncer un déploiement en production, une compatibilité matérielle testée sur Mac ou une lecture sous Safari si seuls les tests Chromium locaux ont été exécutés.
 
 ## Matrice de couverture de la spécification
 
@@ -1238,3 +1238,91 @@ Le diff ciblé doit être vide. Si de nouveaux changements utilisateur sont pré
 ## Journal d’exécution
 
 Aucune tâche d’implémentation n’a été exécutée lors de la rédaction du plan. Les seules vérifications déjà réalisées sont la baseline de 58 tests et l’inspection du MP4 décrites dans le contexte initial.
+
+### 2026-11-04 — Vérification indépendante de la tâche 5 : NEEDS_CONTEXT
+
+**Périmètre et état vérifié.** Revue sur la branche `home-macos-public`, dans `/home/cbldev/gitd/dilolabs/nosia-ai/.worktrees/home-macos-public`, à partir de `1cdda5f4ada5c6454229b34acb6701d812672d6d`. Les commits `f433d5e` (tâche 1), `09d784a` (tâche 2), `c1369ee` et `bc66bda` (tâche 3), `71190f4` et `1cdda5f` (tâche 4) contiennent les réalisations relues. Le coordinateur signale leurs deux revues préalables ; cette entrée consigne une vérification indépendante, pas une nouvelle approbation globale. Seul le présent document est modifié par la tâche 5 ; les captures et sondes restent sous `/tmp/opencode`.
+
+**Lecture des cases.** Le plan comporte **39 étapes** : 8 + 8 + 10 + 7 + 6. Les réalisations des tâches 1–4 sont cochées après contrôle du diff, des commits et des tests actuels. Les étapes 2 des tâches 1–4 restent décochées : les exécutions historiques avant correctif ne sont pas reconstituées par cette vérification finale, et aucun résultat rouge historique n’est inventé. Les étapes 2 et 4 de la tâche 5 ont été examinées mais restent ouvertes à cause du chevauchement mobile décrit ci-dessous. **33 étapes cochées, 6 ouvertes** ; cela ne constitue pas une validation visuelle complète.
+
+#### Commandes réellement exécutées et résultats
+
+Exécutées séparément dans le worktree, le 2026-11-04 :
+
+```bash
+bin/verify
+NOSIA_SCREENSHOTS=/tmp/opencode/nosia-home-macos-review node --test test/*.test.mjs
+git diff --check
+```
+
+- `bin/verify` : code 0 ; construction Jekyll et HTML-Proofer réussis, 32 liens internes contrôlés, ancres contrôlées dans 12 fichiers, 14 fichiers examinés.
+- Suite complète avec captures : code 0, **76 tests réussis, 0 échec, 0 annulé, 0 ignoré, 0 todo**. Ce résultat actuel ne réutilise pas la baseline de 58 tests. Les tests incluent lecture, décodage, progression et déplacement dans le tutoriel pour FR/EN, vidéo bloquée, absence de chargement initial, navigation, clavier, copie, thèmes, adaptation et plaidoyers.
+- `git diff --check` : code 0, aucune sortie. Un nouveau contrôle est effectué sur la modification documentaire avant commit.
+
+```bash
+sha256sum assets/films/nosia-macos-installation-fr-v0.6.1.mp4 assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4
+git diff 7658dd0 -- engagement.md en/commitment.md assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4 assets/js/site.js _config.yml
+git diff --stat 7658dd0
+git status --short
+```
+
+Les trois empreintes obtenues sont exactement celles attendues :
+
+```text
+8dce9f8f0df93566062cd72b3f60028e2f28bba6073097d6d82113c67a2bc9e5  assets/films/nosia-macos-installation-fr-v0.6.1.mp4
+a9594fe0210b43b4c37ec2c72f4b9aadbf8cccaa3376810bc23f65aab2221284  assets/films/nosia-film-fr-1280x720.mp4
+555119709423bde13efab6b27009c21952b35d0acbc07f82ec77e6290f61dab5  assets/films/nosia-film-en-1280x720.mp4
+```
+
+Le diff protégé est vide. Avant l’édition de ce journal, le statut est propre et le diff depuis `7658dd0` comporte 19 fichiers, 1 986 insertions et 503 suppressions, dont ce plan. `git diff --numstat 07e3fd5` confirme le périmètre de l’implémentation : aucune dépendance, aucun framework, script public JavaScript, configuration ou déploiement ajouté/modifié ; seulement deux réponses changées dans chacune des FAQ dédiées. Aucun changement utilisateur inattendu n’a été rétabli.
+
+La relecture effective comprend :
+
+```bash
+git diff 7658dd0 -- _data _includes assets/css index.md index-en.md faq.md en/faq.md
+git diff 7658dd0 -- test/site-ui.test.mjs test/support/browser.mjs
+git diff --numstat 07e3fd5
+git log 07e3fd5..HEAD --format=fuller
+node /tmp/opencode/nosia-home-macos-final-review.mjs
+node /tmp/opencode/nosia-home-macos-obstruction.mjs
+```
+
+La première sonde locale sort avec le code 0, ajoute 24 captures de vidéo/prérequis/commandes/FAQ/pied de page (FR clair 375, EN sombre 375, FR sombre 1280, EN clair 1280), vérifie que les commandes sont initialement repliées puis accessibles et reproduit la preuve négative de requête en attente : **0 entrée Resource Timing terminée, mais 1 événement `Network.requestWillBeSent`** après `video.load()` avec interception de la réponse. La seconde sonde sort avec le code **1** sur l’assertion d’absence de texte masqué : c’est le défaut indépendant reproduit ci-dessous, pas un échec parmi les 76 tests de la suite.
+
+#### Captures réellement ouvertes et inspection éditoriale
+
+Répertoire : `/tmp/opencode/nosia-home-macos-review/`. La suite produit 84 PNG : 32 bandeau/guide FR/EN à 320/375/768/1280 px en clair/sombre, 32 plaidoyer/films et 20 captures historiques. Les sondes ajoutent 24 captures complémentaires et une capture de reproduction. Les **24 images suivantes ont été ouvertes avec l’outil de lecture**, et non seulement listées :
+
+- `home-fr-light-320.png`, `home-en-dark-375.png`, `home-fr-dark-768.png`, `home-fr-dark-1280.png`, `home-en-light-1280.png`.
+- `mac-guide-fr-light-1280.png`, `mac-guide-en-dark-1280.png`, `mac-guide-fr-dark-320.png`, `mac-guide-en-light-375.png`, `mac-guide-en-light-768.png`.
+- `fr-light-375x812.png`, `en-dark-812x375.png`, `engagement-fr-light-1280.png`, `film-en-dark-375.png`.
+- `review-fr-light-375-video.png`, `review-en-dark-375-video.png`, `review-en-dark-375-preflight.png`, `review-fr-dark-1280-commands-closed.png`, `review-en-dark-375-commands-open.png`.
+- `review-fr-dark-1280-faq.png`, `review-en-light-1280-faq.png`, `review-fr-light-375-faq.png`, `review-en-light-1280-footer.png`, `obstruction-fr-light-375.png`.
+
+Les titres, l’explication du produit et le téléchargement sont lisibles ; aucun sigle développeur ni Terminal dans le bandeau. CTA et compatibilité/mémoire restent proches, et sont visibles à 375×812 dans les deux langues. Le tutoriel garde son ratio 1048:720, apparaît à côté des étapes sur grand écran et dessous sur mobile ; les mots « français » / « French », le fichier direct et le guide écrit sont visibles. Les contrôles du lecteur avant action ne prouvent pas une lecture : celle-ci est établie par les tests distincts. Les commandes sont repliées, puis atteignables avec focus visible ; pas de débordement horizontal relevé. Les ancres testées restent sous l’en-tête. **L’absence générale de texte masqué par le retour en haut n’est pas validée** : voir le défaut mobile.
+
+#### Confrontation à la spécification et à la matrice
+
+- Direction C présente en FR/EN : conviction, citation exacte et liens `/engagement/` / `/en/commitment/`, trois usages concrets, installation, six FAQ, histoire/engagement/communauté puis ressources techniques et anciennes démonstrations sous forme de liens. Les citations correspondent aux plaidoyers inchangés.
+- Données communes et téléchargements exacts v0.6.1 : DMG `Nosia-Native-arm64.dmg`, release versionnée, Apple M1 ou ultérieure, macOS 26.5 minimum, prévoir 16 Go/GB ou plus. Mac précède Linux et Windows ; les deux commandes restent identiques.
+- Cinq étapes localisées avec Applications et « Préparer Nosia » / « Set Up Nosia » ; connexion initiale, plusieurs gigaoctets, espace pour les documents, mot de passe administrateur, réseau local et Trousseau/Keychain explicités. Aucun Terminal nécessaire au parcours Mac.
+- Vidéo locale originale, contrôles natifs, `playsinline`, `preload="none"`, ni autoplay ni boucle ; fallback visible, guide utilisable sans JS et en cas de média bloqué. Lecture réelle et recherche à 2 secondes vérifiées en Chromium ; métadonnées 1048×720 et durée proche de 108,4 s. Aucun sous-titre ou transcription inventé.
+- Confidentialité explicitement limitée à « Sur ce Mac » / « On this Mac » ; FAQ distinguant Nosia Cloud, autres serveurs et connexions externes. Erreurs possibles de l’IA et différence entre fermer la fenêtre et quitter l’application clairement présentes dans les deux langues.
+- Six questions affichées correspondent exactement aux six entrées JSON-LD ; catégorie `ProductivityApplication`, ordre macOS/Linux/Windows, descriptions SEO et canonicals cohérents. Les FAQ dédiées ne changent que sur installation et matériel.
+- Ancres, liens de langue, menu, thèmes, clavier/focus, copie et presse-papiers en échec couverts par la suite ; plaidoyers et films inchangés. **Écart restant : recouvrement ponctuel de texte mobile par le contrôle flottant**, non couvert par les assertions actuelles.
+
+#### Ajustements mineurs des tests, sans réécriture du plan initial
+
+Les exemples de code ci-dessus sont conservés comme référence initiale. Contrairement à l’hypothèse de la carte des fichiers, `test/support/browser.mjs` a reçu cinq lignes de support de tests : `observeRequests(listener)` s’abonne à `Network.requestWillBeSent` et retourne une fonction de désabonnement. L’écoute est installée avant `visit`, puis retirée dans `finally`. Cela remplace la seule observation des Resource Timing terminés, susceptible de laisser passer un téléchargement encore en attente ; la preuve négative a été reproduite pendant cette vérification.
+
+Le test de média bloqué capture l’erreur non bouillonnante de `<source>` ; le test de FAQ exige explicitement six entrées rendues et six entrées structurées avant leur comparaison. Ce sont des renforcements ciblés de tests, pas des changements de JS public ou de configuration. Le `scroll-padding` global assurait déjà le dégagement sous l’en-tête ; la marge de défilement locale prévue a néanmoins été ajoutée. Aucun échec historique de dégagement n’est revendiqué ici.
+
+#### Défaut à arbitrer par le coordinateur — NEEDS_CONTEXT
+
+À **375×900, accueil FR clair**, faire défiler jusqu’au début de `.mac-video` reproduit un recouvrement du paragraphe des autorisations par le retour en haut. La sonde exacte est `node /tmp/opencode/nosia-home-macos-obstruction.mjs` ; capture `/tmp/opencode/nosia-home-macos-review/obstruction-fr-light-375.png` (également visible dans `review-fr-light-375-video.png`). À `scrollY = 3206`, le bouton visible occupe **x=300, y=840, largeur=44, hauteur=44**. Les centres des lettres « s » et « i » du mot « ainsi », respectivement **(309,796875 ; 850,59375)** et **(316,1953125 ; 850,59375)**, ont `.back-to-top` comme élément au premier plan selon `elementFromPoint`. L’assertion « Back-to-top must not cover the written installation guide » échoue réellement.
+
+Fichiers concernés : `assets/css/style.css:917–954` positionne le contrôle fixe et son empilement ; `assets/css/developer.css:354–357` le place à 16 px des bords sur mobile ; `_includes/home-installation.html:19–24` rend l’encart et `_data/home.yml:27` son texte français. Le test existant `test/site-ui.test.mjs:141–150` ne vérifie que la conclusion des pages de plaidoyer à la fin du défilement ; il ne détecte donc pas cette obstruction du nouveau guide. Les règles partagées de positionnement préexistaient : le constat porte sur leur interaction actuelle avec ce contenu, pas sur une attribution non démontrée à un nouveau style.
+
+**Aucun correctif source ni test suivi n’est ajouté dans cette tâche documentaire. Le coordinateur doit arbitrer le correctif ciblé et sa régression avant de fermer les étapes 5.2 et 5.4 et de donner l’approbation finale.** Les 76 tests verts ne suffisent pas à lever ce constat visuel indépendant.
+
+**Limites et livraison.** Vérifications locales sous Linux avec Chromium/CDP et serveur de test ; aucune exécution native sur Mac, validation matérielle, lecture Safari, vérification de déploiement/production ou test des téléchargements externes en situation réelle. Les requêtes HTTPS externes sont bloquées par le harnais navigateur ; les URLs publiées sont contrôlées, pas une installation complète depuis GitHub. Aucun blocage de décodage/lecture du MP4 local constaté. Aucun push, publication, fusion ou nettoyage de branche ; la revue globale finale du coordinateur reste à effectuer. Statut de cette remise : **NEEDS_CONTEXT**, avec preuves documentées et source préservée.
