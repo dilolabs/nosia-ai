@@ -35,6 +35,64 @@ fr:
   other_intro: "Ces méthodes utilisent des commandes à saisir. Elles ne sont pas nécessaires pour installer l’application Mac."
   linux: "Linux"
   windows: "Windows · PowerShell"
+  quote: "Le droit de comprendre un système, de l’adapter et de pouvoir en changer."
+  commitment_link: "Lire notre engagement"
+  features_title: "Votre savoir, plus accessible"
+  features_intro: "Au travail, dans une association ou pour vos projets : partez d’un besoin concret."
+  features:
+    - { icon: "document", title: "Préparer un texte", text: "Trouver une première formulation pour un courrier, développer une idée ou clarifier un texte." }
+    - { icon: "book", title: "Comprendre un dossier", text: "Importer vos documents et poser des questions sur leur contenu, avec vos propres mots." }
+    - { icon: "chat", title: "Retrouver une information", text: "Explorer les connaissances de votre équipe sans devoir relire tous les documents." }
+  caution: "Une IA peut se tromper. Vérifiez les réponses importantes dans les documents d’origine."
+  usecases_title: "Un besoin concret en tête ?"
+  usecases_intro: "Découvrez comment Nosia peut aider une petite entreprise, une association ou une équipe à retrouver et transmettre ses connaissances."
+  usecases_link: "Découvrir les cas d’usage"
+  faq_title: "Vous vous posez peut-être ces questions"
+  faq:
+    - q: "Nosia est-il gratuit ?"
+      a: "Le logiciel Nosia est gratuit à installer et son code est ouvert sous licence MIT : chacun peut le consulter, l’utiliser et contribuer. Cela ne signifie pas que tous les services hébergés ou prestations d’accompagnement sont gratuits."
+    - q: "Mon Mac est-il compatible ?"
+      a: "Les prérequis du guide ci-dessus indiquent la puce, la version de macOS et la mémoire à prévoir. Vous pouvez vérifier votre configuration dans le menu Pomme, puis À propos de ce Mac. Cette application n’est pas destinée aux Mac Intel."
+    - q: "Où sont conservées mes données ?"
+      a: "Dans l’espace Sur ce Mac, l’IA fonctionne sur votre ordinateur et vos conversations et documents y sont conservés. Si vous choisissez Nosia Cloud, un autre serveur ou des connexions externes, le lieu de traitement dépend de cet espace et de sa configuration."
+    - q: "Pourquoi télécharger des fichiers au premier lancement ?"
+      a: "La préparation télécharge les ressources nécessaires pour faire fonctionner l’IA sur votre Mac. Elle nécessite internet et peut prendre du temps selon votre connexion. Nosia affiche l’avancement et vous permet d’annuler."
+    - q: "Puis-je faire confiance à toutes les réponses ?"
+      a: "Non. Comme toute IA, Nosia peut se tromper ou mal interpréter un document. Vérifiez les informations importantes et ne remplacez pas un avis professionnel par une réponse automatique."
+    - q: "Que se passe-t-il quand je ferme Nosia ?"
+      a: "Fermer la fenêtre laisse Nosia actif. Quitter l’application arrête ses services locaux et conserve vos données pour la prochaine ouverture."
+  story_title: "Une aventure humaine"
+  story:
+    - "Nosia est né d’une conviction partagée par Cyril, Olivier, Aude et Melvin : la technologie doit servir l’humain, pas l’inverse."
+    - "En 2024, Olivier fait découvrir à Cyril une manière d’appuyer les réponses d’une IA sur des documents. Cyril trouve le nom Nosia. Leur objectif : rendre ces outils accessibles tout en gardant la maîtrise des données."
+    - "En juin 2026, François, de la chaîne YouTube Kokori Kodo, réalise une première vidéo de présentation. Retrouvez-la parmi les ressources ci-dessous."
+  commitment_title: "Notre engagement"
+  commitment: "Nous défendons le droit de choisir où nos données sont traitées, quels modèles nous utilisons et comment nos outils évoluent. Le droit de comprendre un système, de l’adapter et de pouvoir en changer."
+  community_title: "Besoin d’aide ou envie de participer ?"
+  community_intro: "Posez vos questions, partagez votre expérience ou contribuez au projet. Ces échanges ont lieu sur GitHub."
+  community:
+    - { icon: "chat", title: "Poser une question", text: "Échanger avec la communauté", url: "https://github.com/dilolabs/nosia/discussions" }
+    - { icon: "bug", title: "Signaler un problème", text: "Décrire ce qui ne fonctionne pas", url: "https://github.com/dilolabs/nosia/issues" }
+    - { icon: "document", title: "Contribuer à Nosia", text: "Découvrir comment participer", url: "https://github.com/dilolabs/nosia/blob/main/CONTRIBUTING.md" }
+    - { icon: "people", title: "Nos règles d’échange", text: "Consulter le code de conduite", url: "https://github.com/dilolabs/nosia/blob/main/CODE_OF_CONDUCT.md" }
+  documentation_title: "Pour aller plus loin"
+  documentation_intro: "Vous souhaitez installer Nosia pour une équipe ou le connecter à vos outils ? Ces ressources techniques s’adressent aux personnes qui configurent et maintiennent le logiciel."
+  documentation:
+    - { icon: "deploy", title: "Installer pour une équipe", text: "Guide de déploiement", url: "https://github.com/dilolabs/nosia/blob/main/docs/DEPLOYMENT.md" }
+    - { icon: "architecture", title: "Comprendre le fonctionnement", text: "Architecture du logiciel", url: "https://github.com/dilolabs/nosia/blob/main/docs/ARCHITECTURE.md" }
+    - { icon: "activity", title: "Suivre le fonctionnement", text: "Documentation d’observabilité", url: "https://github.com/dilolabs/nosia/blob/main/docs/OBSERVABILITY.md" }
+    - { icon: "architecture", title: "Voir les schémas techniques", text: "Diagrammes du système", url: "https://github.com/dilolabs/nosia/blob/main/docs/DIAGRAMS.md" }
+    - { icon: "list", title: "Toutes les ressources", text: "Index de la documentation", url: "https://github.com/dilolabs/nosia/tree/main/docs" }
+  comparisons_title: "Comparer les solutions"
+  comparisons_intro: "Pour approfondir les différences avec d’autres outils d’intelligence artificielle."
+  comparisons:
+    - { label: "Nosia et ChatGPT / OpenAI", url: "/nosia-vs-openai/" }
+    - { label: "Nosia et Ollama", url: "/nosia-vs-ollama/" }
+  demo_title: "La démonstration technique"
+  demo_intro: "Une présentation antérieure de Nosia, pour aller plus loin. Pour installer la nouvelle application Mac, suivez le guide et la vidéo ci-dessus."
+  demo_link: "Voir la démonstration sur YouTube"
+  license: "Sous licence"
+  website: "Site web"
 en:
   eyebrow: "A different approach to artificial intelligence"
   title: "Useful AI."
@@ -72,3 +130,61 @@ en:
   other_intro: "These methods use commands you enter yourself. They are not needed to install the Mac app."
   linux: "Linux"
   windows: "Windows · PowerShell"
+  quote: "The right to understand a system, adapt it, and be able to switch to another."
+  commitment_link: "Read our commitment"
+  features_title: "Make your knowledge easier to use"
+  features_intro: "At work, in an association or for your own projects: start with a practical need."
+  features:
+    - { icon: "document", title: "Prepare a piece of writing", text: "Find a starting point for a letter, develop an idea or make a text clearer." }
+    - { icon: "book", title: "Understand a document", text: "Import your documents and ask about their content in your own words." }
+    - { icon: "chat", title: "Find information", text: "Explore your team’s knowledge without rereading every document." }
+  caution: "AI can make mistakes. Check important answers against the original documents."
+  usecases_title: "Have a practical need in mind?"
+  usecases_intro: "See how Nosia can help a small business, an association or a team find information and pass on knowledge."
+  usecases_link: "Explore use cases"
+  faq_title: "You might be wondering"
+  faq:
+    - q: "Is Nosia free?"
+      a: "Nosia is free to install and its code is open under the MIT license: anyone can read it, use it and contribute. This does not mean that every hosted service or support offering is free."
+    - q: "Is my Mac compatible?"
+      a: "The requirements in the guide above list the chip, macOS version and memory to plan for. Check your configuration in the Apple menu, then About This Mac. This app is not intended for Intel Macs."
+    - q: "Where is my data stored?"
+      a: "In the On this Mac workspace, AI runs on your computer and your conversations and documents are stored there. If you choose Nosia Cloud, another server or external connections, where data is processed depends on that workspace and its configuration."
+    - q: "Why does the first launch download files?"
+      a: "Setup downloads the resources needed to run AI on your Mac. It needs internet and may take time depending on your connection. Nosia shows progress and lets you cancel."
+    - q: "Can I trust every answer?"
+      a: "No. Like any AI, Nosia can make mistakes or misinterpret a document. Check important information and do not replace professional advice with an automatic answer."
+    - q: "What happens when I close Nosia?"
+      a: "Closing the window keeps Nosia running. Quitting the app stops its local services and saves your data for the next launch."
+  story_title: "A human story"
+  story:
+    - "Nosia grew from a conviction shared by Cyril, Olivier, Aude and Melvin: technology should serve people, not the other way around."
+    - "In 2024, Olivier introduced Cyril to a way of grounding AI answers in documents. Cyril came up with the name Nosia. Their aim: make these tools accessible while keeping control of the data."
+    - "In June 2026, François, who runs the Kokori Kodo YouTube channel, created an early presentation video. Find it in the resources below on the French homepage."
+  commitment_title: "Our commitment"
+  commitment: "We defend the right to choose where our data is processed, which models we use, and how our tools evolve. The right to understand a system, adapt it, and be able to switch to another."
+  community_title: "Need help or want to take part?"
+  community_intro: "Ask questions, share your experience or contribute to the project. These conversations take place on GitHub."
+  community:
+    - { icon: "chat", title: "Ask a question", text: "Talk with the community", url: "https://github.com/dilolabs/nosia/discussions" }
+    - { icon: "bug", title: "Report a problem", text: "Describe what is not working", url: "https://github.com/dilolabs/nosia/issues" }
+    - { icon: "document", title: "Contribute to Nosia", text: "Find out how to take part", url: "https://github.com/dilolabs/nosia/blob/main/CONTRIBUTING.md" }
+    - { icon: "people", title: "Our community guidelines", text: "Read the code of conduct", url: "https://github.com/dilolabs/nosia/blob/main/CODE_OF_CONDUCT.md" }
+  documentation_title: "Going further"
+  documentation_intro: "Want to install Nosia for a team or connect it to your tools? These technical resources are for people who configure and maintain the software."
+  documentation:
+    - { icon: "deploy", title: "Install for a team", text: "Deployment guide", url: "https://github.com/dilolabs/nosia/blob/main/docs/DEPLOYMENT.md" }
+    - { icon: "architecture", title: "Understand how it works", text: "Software architecture", url: "https://github.com/dilolabs/nosia/blob/main/docs/ARCHITECTURE.md" }
+    - { icon: "activity", title: "Monitor the software", text: "Observability documentation", url: "https://github.com/dilolabs/nosia/blob/main/docs/OBSERVABILITY.md" }
+    - { icon: "architecture", title: "View technical diagrams", text: "System diagrams", url: "https://github.com/dilolabs/nosia/blob/main/docs/DIAGRAMS.md" }
+    - { icon: "list", title: "All resources", text: "Documentation index", url: "https://github.com/dilolabs/nosia/tree/main/docs" }
+  comparisons_title: "Compare the options"
+  comparisons_intro: "Take a closer look at how Nosia differs from other artificial intelligence tools."
+  comparisons:
+    - { label: "Nosia and ChatGPT / OpenAI", url: "/en/nosia-vs-openai/" }
+    - { label: "Nosia and Ollama", url: "/en/nosia-vs-ollama/" }
+  demo_title: "The technical demonstration"
+  demo_intro: "An earlier look at Nosia, for further exploration. To install the new Mac app, use the guide and video above."
+  demo_link: "Open the existing demonstration"
+  license: "Licensed under"
+  website: "Website"

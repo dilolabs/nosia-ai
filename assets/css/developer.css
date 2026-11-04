@@ -437,3 +437,12 @@
 .other-installations > p { margin-top: var(--space-4); }
 .other-installations .command-block { max-width: none; }
 @media (max-width: 800px) { .mac-installation { grid-template-columns: minmax(0, 1fr); } }
+
+.home-quote { margin: 0; padding: var(--space-6); border-left: 3px solid var(--accent-strong); border-radius: var(--radius-lg); background: var(--surface-card); }
+#description .home-quote p { font-size: var(--text-xl); max-width: 65ch; }
+.home-quote figcaption { margin-top: var(--space-4); }
+.home-content .ai-caution { margin-top: var(--space-6); color: var(--text-muted); font-size: var(--text-sm); }
+.home-content :is(blockquote, .card, .story-content) { overflow-wrap: anywhere; }
+.home-content :is(h2, h3) { text-wrap: balance; }
+.home-content#demo h2 { text-align: left; }
+.home-content#demo .btn { min-height: 44px; }

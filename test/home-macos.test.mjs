@@ -111,3 +111,39 @@ for (const home of homes) {
     assert.ok(state.time >= .1); assert.ok(state.frames > 0); assert.ok(Math.abs(state.seekTime - 2) < .1);
   });
 }
+
+for (const home of homes) {
+  test(`public journey ${home.lang} follows direction C and publishes matching metadata`, async () => {
+    await browser.visit(home.path);
+    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ['description', 'features', 'use-cases-teaser', 'quickstart', 'faq', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo']);
+    assert.equal(await browser.evaluate('document.querySelectorAll("#features .card").length'), 3);
+    const quote = await browser.evaluate('document.querySelector("#description blockquote").textContent.trim()');
+    assert.equal(quote, home.lang === 'fr' ? 'Le droit de comprendre un système, de l’adapter et de pouvoir en changer.' : 'The right to understand a system, adapt it, and be able to switch to another.');
+    assert.equal(await browser.evaluate('document.querySelector("#description figcaption a").getAttribute("href")'), home.lang === 'fr' ? '/engagement/' : '/en/commitment/');
+    assert.match(await browser.evaluate('document.querySelector(".ai-caution").textContent'), home.lang === 'fr' ? /peut se tromper/ : /can make mistakes/);
+    const schemas = await browser.evaluate('[...document.querySelectorAll(\'script[type="application/ld+json"]\')].map(script => JSON.parse(script.textContent))');
+    const app = schemas.find(schema => schema['@type'] === 'SoftwareApplication');
+    assert.equal(app.applicationCategory, 'ProductivityApplication');
+    assert.equal(app.operatingSystem, 'macOS, Linux, Windows');
+    assert.equal(app.description, await browser.evaluate('document.querySelector(\'meta[name="description"]\').content'));
+    assert.match(await browser.evaluate('document.title'), /Mac/);
+    assert.equal(await browser.evaluate('document.querySelector(\'link[rel="canonical"]\').href'), 'https://nosia.ai' + home.path);
+    const faq = schemas.find(schema => schema['@type'] === 'FAQPage');
+    assert.deepEqual(faq.mainEntity.map(item => [item.name, item.acceptedAnswer.text]), await browser.evaluate('[...document.querySelectorAll("#faq .faq-item")].map(item => [item.querySelector("h3").textContent, item.querySelector("p").textContent])'));
+    assert.equal(await browser.evaluate('document.querySelectorAll("#demo iframe, #demo img").length'), 0);
+    assert.equal(await browser.evaluate('document.querySelector("#demo a").getAttribute("href")'), home.lang === 'fr' ? 'https://www.youtube.com/watch?v=HD5k-LjGvGw' : '/assets/images/nosia-demo.gif');
+    assert.equal(await browser.evaluate('document.querySelectorAll("main video").length'), 1);
+  });
+
+  test(`dedicated FAQ ${home.lang} describes the native Mac path without rewriting other topics`, async () => {
+    await browser.visit(home.lang === 'fr' ? '/faq/' : '/en/faq/');
+    const copy = await browser.evaluate('document.querySelector("#faq").textContent');
+    assert.match(copy, /Applications/);
+    assert.match(copy, new RegExp(home.setup));
+    assert.match(copy, /M1/);
+    assert.match(copy, /26\.5/);
+    assert.match(copy, home.lang === 'fr' ? /16 Go/ : /16 GB/);
+    assert.match(copy, /MCP/);
+    assert.match(copy, /OpenAI/);
+  });
+}
