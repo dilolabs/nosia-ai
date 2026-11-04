@@ -154,28 +154,33 @@ for (const home of homes) {
   test(`layout ${home.lang} fits small screens and preserves the real tutorial ratio`, async () => {
     for (const theme of ['light', 'dark']) {
       for (const width of [320, 375, 768, 1280]) {
-        await browser.visit(home.path, { width, height: 900, theme, reduced: true });
-        await browser.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
-        const layout = await browser.evaluate(`(() => {
-          const video = document.querySelector('.mac-video video').getBoundingClientRect();
-          const steps = document.querySelector('.mac-steps').getBoundingClientRect();
-          return {
-            overflow: document.documentElement.scrollWidth > innerWidth,
-            ratio: video.width / video.height,
-            stacked: video.top >= steps.bottom,
-            columns: video.left > steps.right,
-            requests: performance.getEntriesByType('resource').filter(entry => entry.name.includes('nosia-macos-installation-fr-v0.6.1.mp4')).length
-          };
-        })()`);
-        assert.equal(layout.overflow, false, `${home.lang} ${theme} ${width}`);
-        assert.ok(Math.abs(layout.ratio - 1048 / 720) < .03);
-        assert.equal(layout.requests, 0);
-        if (width <= 768) assert.equal(layout.stacked, true);
-        if (width === 1280) assert.equal(layout.columns, true);
-        if (process.env.NOSIA_SCREENSHOTS) {
-          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/home-${home.lang}-${theme}-${width}.png`);
-          await browser.evaluate('document.querySelector("#quickstart").scrollIntoView({block:"start",behavior:"instant"})');
-          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/mac-guide-${home.lang}-${theme}-${width}.png`);
+        const requestedURLs = [];
+        const unsubscribe = browser.observeRequests(url => requestedURLs.push(url));
+        try {
+          await browser.visit(home.path, { width, height: 900, theme, reduced: true });
+          await browser.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+          assert.deepEqual(requestedURLs.filter(url => url.includes(film)), [], `${home.lang} ${theme} ${width}: tutorial must not download initially`);
+          const layout = await browser.evaluate(`(() => {
+            const video = document.querySelector('.mac-video video').getBoundingClientRect();
+            const steps = document.querySelector('.mac-steps').getBoundingClientRect();
+            return {
+              overflow: document.documentElement.scrollWidth > innerWidth,
+              ratio: video.width / video.height,
+              stacked: video.top >= steps.bottom,
+              columns: video.left > steps.right
+            };
+          })()`);
+          assert.equal(layout.overflow, false, `${home.lang} ${theme} ${width}`);
+          assert.ok(Math.abs(layout.ratio - 1048 / 720) < .03);
+          if (width <= 768) assert.equal(layout.stacked, true);
+          if (width === 1280) assert.equal(layout.columns, true);
+          if (process.env.NOSIA_SCREENSHOTS) {
+            await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/home-${home.lang}-${theme}-${width}.png`);
+            await browser.evaluate('document.querySelector("#quickstart").scrollIntoView({block:"start",behavior:"instant"})');
+            await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/mac-guide-${home.lang}-${theme}-${width}.png`);
+          }
+        } finally {
+          unsubscribe();
         }
       }
     }

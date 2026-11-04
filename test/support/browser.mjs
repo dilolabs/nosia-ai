@@ -105,6 +105,11 @@ export async function openBrowser() {
     return {
       origin,
       cdp,
+      observeRequests(listener) {
+        const handler = event => listener(event.request.url);
+        events.on('Network.requestWillBeSent', handler);
+        return () => events.off('Network.requestWillBeSent', handler);
+      },
       async evaluate(expression) {
         const result = await cdp('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
         if (result.exceptionDetails) throw new Error(JSON.stringify(result.exceptionDetails));
