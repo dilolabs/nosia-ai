@@ -1387,3 +1387,19 @@ Répertoire neuf : **`/tmp/opencode/nosia-home-macos-final-review/`**, **129 PNG
 L’inspection confirme les titres et le sens du produit lisibles, sans jargon développeur au premier écran ; le CTA et les prérequis restent visibles à 375×812 dans les deux langues malgré les retours à la ligne supplémentaires. La gouttière garde le bouton hors des paragraphes, commandes, liens et encarts observés. Le lecteur conserve le ratio 1048:720, les légendes françaises explicites, les contrôles natifs et le lien de secours ; guide à côté sur grand écran et dessous sur mobile, commandes repliées mais retrouvables, focus visible et pied de page accessible. Aucun nouveau défaut réel trouvé dans ces captures ou les tests. La confrontation éditoriale/SEO/FAQ et les limites de confidentialité du passage précédent restent valides : la correction n’a modifié aucun de ces contenus.
 
 **Statut courant : DONE pour la tâche 5, prêt pour la revue globale finale du coordinateur, qui reste à effectuer.** Seuls les six marqueurs de complétion restants et cette entrée du journal changent dans ce commit documentaire ; le plan initial et l’historique NEEDS_CONTEXT sont préservés. Vérifications Chromium/CDP locales sous Linux uniquement : toujours aucune validation de matériel Mac, installation native réelle, Safari, téléchargement externe en conditions réelles ou déploiement/production revendiquée. Aucun push, publication, fusion ou nettoyage de branche.
+
+### 2026-11-04 — Suivi après correction sémantique de la légende
+
+Correction relue dans `8d4fdbfb3481dfe40e2f527941e04fad041b135d` : la note écrite existante est déplacée après le lien à l’intérieur de `<figcaption>`, qui devient le dernier enfant de `<figure>`. Les assertions FR/EN vérifient maintenant cette position et la présence de la note dans la légende. Le coordinateur confirme les deux revues approuvées, les deux tests RED reproduits indépendamment avant correction, puis 96 tests GREEN, ainsi que l’ordre visuel et la typographie inchangés sur 10 mises en page comparées ; ces vérifications historiques sont attribuées aux revues, non revendiquées comme personnellement réexécutées ici.
+
+Nouveau passage indépendant dans le même worktree, commandes exécutées séparément :
+
+```bash
+bin/verify
+node --test test/*.test.mjs
+git diff --check
+```
+
+Résultats frais : **code 0** pour les trois commandes ; Jekyll et HTML-Proofer réussis (32 liens internes, ancres dans 12 fichiers, 14 fichiers examinés), **96 tests réussis, 0 échec, 0 annulé, 0 ignoré, 0 todo**, aucun problème de whitespace. Aucun nouvel inventaire de captures ni nouvelle comparaison visuelle revendiqué dans ce rappel. Les **39 cases restent cochées** et toutes les entrées précédentes sont conservées comme historique au moment de leur rédaction ; seul ce suivi est ajouté.
+
+**DONE pour ce suivi documentaire, prêt pour une nouvelle revue globale finale du coordinateur, non encore approuvée.** Limites inchangées : Chromium/CDP local sous Linux, sans validation matérielle Mac, installation native réelle, Safari ou déploiement/production. Aucun push, fusion ou publication.
