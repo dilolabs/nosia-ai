@@ -11,6 +11,7 @@ Publier le plaidoyer « Pour une intelligence artificielle dont nous gardons la 
 - « Votre plaidoyer conservé intégralement, sans réécriture » : proposition approuvée, pour respecter la voix et les nuances du texte fourni.
 - « Un lien dans la navigation » et « un court extrait sur l’accueil, près de “Notre histoire” » : proposition approuvée, pour rendre le texte visible dans les parcours existants.
 - « Une mise en page de lecture sobre, cohérente avec le site » : proposition approuvée, pour privilégier la lecture plutôt qu’un nouveau dispositif graphique.
+- Cadrage écrit validé par l’utilisateur (« Oui »), y compris la première publication en français uniquement : le document ci-dessous constitue la référence pour l’implémentation.
 
 ## Périmètre proposé pour cette première publication
 
