@@ -35,7 +35,7 @@ a9594fe0210b43b4c37ec2c72f4b9aadbf8cccaa3376810bc23f65aab2221284  assets/films/n
 
 ## Task 1: Lecteur partagé et intégration bilingue
 
-- [ ] **Step 1: Créer `test/engagement-films.test.mjs` avec les tests suivants.**
+- [x] **Step 1: Créer `test/engagement-films.test.mjs` avec les tests suivants.**
 
 ```js
 import { test, before, after } from 'node:test';
@@ -114,13 +114,13 @@ for (const film of films) {
 }
 ```
 
-- [ ] **Step 2: Construire le site et observer les échecs avant l’implémentation.**
+- [x] **Step 2: Construire le site et observer les échecs avant l’implémentation.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test test/engagement-films.test.mjs`.
 
 Expected: quatre tests en échec car les pages ne comportent pas encore de vidéo. Résoudre un éventuel problème de démarrage Chromium avant de considérer ce résultat comme le rouge attendu.
 
-- [ ] **Step 3: Créer `_includes/engagement-film.html` avec ce balisage.**
+- [x] **Step 3: Créer `_includes/engagement-film.html` avec ce balisage.**
 
 ```liquid
 {%- assign film_text = site.data.translations[page.lang] -%}
@@ -132,7 +132,7 @@ Expected: quatre tests en échec car les pages ne comportent pas encore de vidé
 </figure>
 ```
 
-- [ ] **Step 4: Ajouter les libellés dans `_data/translations.yml`.** À proximité des clés d’engagement françaises :
+- [x] **Step 4: Ajouter les libellés dans `_data/translations.yml`.** À proximité des clés d’engagement françaises :
 
 ```yaml
   engagement_film_label: "Le film de notre engagement"
@@ -146,7 +146,7 @@ Expected: quatre tests en échec car les pages ne comportent pas encore de vidé
   engagement_film_open: "Open the video"
 ```
 
-- [ ] **Step 5: Ajouter le champ `film` au front matter de chaque page et inclure la figure juste après son h1.** Dans `engagement.md` :
+- [x] **Step 5: Ajouter le champ `film` au front matter de chaque page et inclure la figure juste après son h1.** Dans `engagement.md` :
 
 ```yaml
 film: /assets/films/nosia-film-fr-1280x720.mp4
@@ -164,7 +164,7 @@ Après le h1 et avant le premier paragraphe, dans les deux fichiers :
   {% include engagement-film.html %}
 ```
 
-- [ ] **Step 6: Ajouter ces styles à la fin de `assets/css/developer.css`.**
+- [x] **Step 6: Ajouter ces styles à la fin de `assets/css/developer.css`.**
 
 ```css
 .engagement-film { margin-bottom: var(--space-8); }
@@ -185,19 +185,19 @@ Après le h1 et avant le premier paragraphe, dans les deux fichiers :
 }
 ```
 
-- [ ] **Step 7: Reconstruire et relancer les quatre tests.**
+- [x] **Step 7: Reconstruire et relancer les quatre tests.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test test/engagement-films.test.mjs`.
 
 Expected: tous passent, sans modification des paragraphes existants ni chargement du MP4 avant lecture. Les états réseau EMPTY et IDLE sont acceptés ; seul un chargement effectif avant activation est interdit.
 
-- [ ] **Step 8: Vérifier le diff puis créer un commit ciblé incluant explicitement les deux médias fournis.**
+- [x] **Step 8: Vérifier le diff puis créer un commit ciblé incluant explicitement les deux médias fournis.**
 
 Run `git diff --check`, puis `git add -- _includes/engagement-film.html _data/translations.yml engagement.md en/commitment.md assets/css/developer.css test/engagement-films.test.mjs assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4`, puis `git commit -m "feat: embed bilingual commitment films"`.
 
 ## Task 2: Lecture réelle et serveur de tests
 
-- [ ] **Step 1: Ajouter les deux tests suivants dans la boucle `for (const film of films)` du fichier dédié.**
+- [x] **Step 1: Ajouter les deux tests suivants dans la boucle `for (const film of films)` du fichier dédié.**
 
 ```js
   test(`film ${film.language} is served as MP4 and plays after a user gesture`, async () => {
@@ -246,13 +246,13 @@ Run `git diff --check`, puis `git add -- _includes/engagement-film.html _data/tr
   });
 ```
 
-- [ ] **Step 2: Observer le rouge attendu sur le MIME.**
+- [x] **Step 2: Observer le rouge attendu sur le MIME.**
 
 Run `node --test --test-name-pattern='served as MP4' test/engagement-films.test.mjs`.
 
 Expected: FAIL, `application/octet-stream` au lieu de `video/mp4`, car le serveur de test ne connaît pas encore l’extension.
 
-- [ ] **Step 3: Ajouter `.mp4` dans le tableau `types` de `test/support/browser.mjs`.**
+- [x] **Step 3: Ajouter `.mp4` dans le tableau `types` de `test/support/browser.mjs`.**
 
 ```js
     '.mp4': 'video/mp4',
@@ -260,21 +260,37 @@ Expected: FAIL, `application/octet-stream` au lieu de `video/mp4`, car le serveu
 
 Le serveur de tests sait servir un fichier complet. Ne pas ajouter de traitement Range sans constater un besoin réel : la production reste l’hébergement statique existant. Si le décodage échoue, analyser l’erreur et signaler une incompatibilité au lieu de contourner le test avec une réussite fictive.
 
-- [ ] **Step 4: Relancer la lecture réelle et toute la suite.**
+- [x] **Step 4: Relancer la lecture réelle et toute la suite.**
 
 Run `node --test test/engagement-films.test.mjs test/site-ui.test.mjs`.
 
 Expected: les six tests média et les 50 tests existants passent. Chaque film charge ses métadonnées puis produit des images décodées et une progression temporelle après activation utilisateur simulée ; la lecture est ensuite mise en pause.
 
-- [ ] **Step 5: Créer le commit de tests vérifiés.**
+- [x] **Step 5: Créer le commit de tests vérifiés.**
 
 Run `git diff --check`, puis `git add -- test/engagement-films.test.mjs test/support/browser.mjs`, puis `git commit -m "test: verify real commitment film playback"`.
 
 ## Task 3: Vérification finale et restitution
 
-- [ ] **Step 1: Charger `verification-before-completion`, relire la spec et vérifier que le diff est limité aux fichiers prévus.**
-- [ ] **Step 2: Exécuter `bin/verify`, puis `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-films node --test test/engagement-films.test.mjs test/site-ui.test.mjs`.** Attendre une construction et des liens valides, ainsi que 56 tests réussis.
-- [ ] **Step 3: Examiner avec read les captures `/tmp/opencode/nosia-films/film-fr-light-375.png`, `film-en-dark-375.png` et `film-fr-light-1280.png`.** Vérifier le lecteur sous le titre, son cadre, le lien visible et la séparation du texte. L’écran noir avant lecture est attendu avec `preload="none"` et sans affiche fournie ; ne pas générer d’image sans demande.
-- [ ] **Step 4: Exécuter `sha256sum assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4` et comparer aux empreintes initiales ci-dessus.** Les octets doivent être inchangés. Vérifier également que les deux fichiers existent dans `_site/assets/films/` après construction.
-- [ ] **Step 5: Exécuter `git diff --check` et `git status --short`, cocher ce plan et consigner les résultats.** Garder la branche `plaidoyer`, sans push, fusion ni déploiement.
-- [ ] **Step 6: Répondre en français avec les deux pages mises à jour, le comportement de lecture volontaire et les résultats effectivement vérifiés.**
+Observation d’environnement : un `jekyll serve --host 0.0.0.0 --port 4000` préexistant régénère également `_site/`. Une exécution intermédiaire a donc lu des canonicals de prévisualisation (`http://0.0.0.0:4000/`) au lieu des URLs de production. Le diagnostic a confirmé que `_config.yml` conserve `https://nosia.ai`. Reconstruire juste avant les tests a rétabli les 56 réussites initiales sans modification de la configuration ni arrêt du serveur utilisateur.
+
+Complément issu de la revue média : le démarrage fonctionnait, mais un essai de déplacement à deux secondes revenait à zéro. Le serveur de tests ignorait `Range` : une demande de 32 octets recevait le fichier complet (HTTP 200) et Chromium annonçait une plage déplaçable `[0, 0]`. Deux tests de requêtes partielles et une assertion de déplacement ont d’abord reproduit les échecs. Le support des plages simples, ouvertes et suffixes pour les MP4, avec réponses 206/416 et longueur de contenu, corrige le serveur de tests sans modifier l’hébergement de production. Les deux films ont ensuite été déplacés à deux secondes et leurs images FR/EN examinées. La suite finale comporte désormais 58 tests.
+
+- [x] **Step 1: Charger `verification-before-completion`, relire la spec et vérifier que le diff est limité aux fichiers prévus.**
+- [x] **Step 2: Exécuter `bin/verify`, puis `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-films node --test test/engagement-films.test.mjs test/site-ui.test.mjs`.** Attendre une construction et des liens valides, ainsi que 58 tests réussis.
+- [x] **Step 3: Examiner avec read les captures `/tmp/opencode/nosia-films/film-fr-light-375.png`, `film-en-dark-375.png` et `film-fr-light-1280.png`.** Vérifier le lecteur sous le titre, son cadre, le lien visible et la séparation du texte. L’écran noir avant lecture est attendu avec `preload="none"` et sans affiche fournie ; ne pas générer d’image sans demande.
+- [x] **Step 4: Exécuter `sha256sum assets/films/nosia-film-fr-1280x720.mp4 assets/films/nosia-film-en-1280x720.mp4` et comparer aux empreintes initiales ci-dessus.** Les octets doivent être inchangés. Vérifier également que les deux fichiers existent dans `_site/assets/films/` après construction.
+- [x] **Step 5: Exécuter `git diff --check` et `git status --short`, cocher ce plan et consigner les résultats.** Garder la branche `plaidoyer`, sans push, fusion ni déploiement.
+- [x] **Step 6: Répondre en français avec les deux pages mises à jour, le comportement de lecture volontaire et les résultats effectivement vérifiés.**
+
+## Résultats vérifiés
+
+- Films intégrés sous le titre de `/engagement/` et `/en/commitment/`, chacun dans sa langue, via un include partagé ; aucun paragraphe du plaidoyer modifié.
+- Contrôles natifs, lecture en ligne mobile, `preload="none"`, absence d’autoplay et de boucle, lien direct traduit disponible même sans JavaScript.
+- `bin/verify` réussi : 14 fichiers HTML et 29 liens internes contrôlés. Avertissement connu et non bloquant : `IO::Buffer` expérimental dans html-proofer.
+- `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-films node --test test/engagement-films.test.mjs test/site-ui.test.mjs` : 58 tests réussis, aucun échec ni test ignoré.
+- Lecture volontaire réellement décodée dans Chromium, progression temporelle et déplacement à deux secondes vérifiés pour les deux films. Métadonnées confirmées : 84 secondes, 1280×720.
+- Captures examinées sur mobile clair/sombre, sur ordinateur et sur une image des deux films à deux secondes. Le lecteur reste dans la mesure de lecture sans déborder ni recouvrir le texte.
+- Empreintes SHA-256 inchangées pour les deux sources et les deux fichiers générés dans `_site/assets/films/`.
+- `git diff --check` réussi. Aucun ajout de JavaScript public, dépendance, affiche ou sous-titres générés, ni modification des accueils ou de la démonstration existante.
+- Travail conservé sur `plaidoyer`, sans sous-agents, push, fusion, déploiement ou arrêt du serveur de développement utilisateur.

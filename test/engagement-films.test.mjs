@@ -72,6 +72,24 @@ for (const film of films) {
     }
   });
 
+  test(`film ${film.language} supports byte range requests`, async () => {
+    const response = await fetch(browser.origin + film.source, { headers: { Range: 'bytes=0-31' } });
+    const first = await response.arrayBuffer();
+    assert.equal(response.status, 206);
+    assert.equal(response.headers.get('accept-ranges'), 'bytes');
+    assert.match(response.headers.get('content-range'), /^bytes 0-31\/\d+$/);
+    assert.equal(first.byteLength, 32);
+    const size = Number(response.headers.get('content-range').split('/')[1]);
+    const tail = await fetch(browser.origin + film.source, { headers: { Range: 'bytes=-16' } });
+    assert.equal(tail.status, 206);
+    assert.equal(tail.headers.get('content-range'), `bytes ${size - 16}-${size - 1}/${size}`);
+    assert.equal((await tail.arrayBuffer()).byteLength, 16);
+    const invalid = await fetch(browser.origin + film.source, { headers: { Range: `bytes=${size}-` } });
+    assert.equal(invalid.status, 416);
+    assert.equal(invalid.headers.get('content-range'), `bytes */${size}`);
+    assert.equal((await invalid.arrayBuffer()).byteLength, 0);
+  });
+
   test(`film ${film.language} is served as MP4 and plays after a user gesture`, async () => {
     const response = await fetch(browser.origin + film.source, { method: 'HEAD' });
     assert.equal(response.status, 200);
@@ -94,7 +112,11 @@ for (const film of films) {
             };
             video.pause();
             cleanup();
-            resolve(state);
+            video.addEventListener('seeked', () => {
+              state.seekTime = video.currentTime;
+              resolve(state);
+            }, { once: true });
+            video.currentTime = 2;
           }
         }
         function failed(error) {
@@ -115,5 +137,6 @@ for (const film of films) {
     assert.ok(state.time >= .1);
     assert.ok(state.frames > 0);
     assert.equal(state.paused, false);
+    assert.ok(Math.abs(state.seekTime - 2) < .05);
   });
 }

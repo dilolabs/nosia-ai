@@ -20,8 +20,28 @@ export async function openBrowser() {
       }
       if ((await stat(path)).isDirectory()) path = join(path, 'index.html');
       const body = await readFile(path);
-      response.writeHead(200, { 'Content-Type': types[extname(path)] || 'application/octet-stream' });
-      response.end(body);
+      const headers = { 'Content-Type': types[extname(path)] || 'application/octet-stream', 'Content-Length': body.length };
+      if (extname(path) === '.mp4') {
+        headers['Accept-Ranges'] = 'bytes';
+        if (request.method === 'GET' && request.headers.range) {
+          const range = /^bytes=(\d*)-(\d*)$/.exec(request.headers.range);
+          let start = Number(range?.[1] || 0);
+          let end = Math.min(Number(range?.[2] || body.length - 1), body.length - 1);
+          if (range && !range[1] && range[2]) {
+            start = Math.max(0, body.length - Number(range[2]));
+            end = body.length - 1;
+          }
+          if (!range || (!range[1] && !range[2]) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start >= body.length || end < start) {
+            response.writeHead(416, { ...headers, 'Content-Range': `bytes */${body.length}`, 'Content-Length': 0 }).end();
+            return;
+          }
+          response.writeHead(206, { ...headers, 'Content-Range': `bytes ${start}-${end}/${body.length}`, 'Content-Length': end - start + 1 });
+          response.end(body.subarray(start, end + 1));
+          return;
+        }
+      }
+      response.writeHead(200, headers);
+      response.end(request.method === 'HEAD' ? undefined : body);
     } catch {
       response.writeHead(404).end('Not found');
     }
