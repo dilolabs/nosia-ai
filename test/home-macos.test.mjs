@@ -151,12 +151,16 @@ for (const home of homes) {
       await browser.visit(home.path, { javascript });
       const state = await browser.evaluate(`(() => {
         const video = document.querySelector('.mac-video video');
+        const figure = video.closest('figure');
+        const caption = figure.querySelector('figcaption');
         return {
           source: video.querySelector('source').getAttribute('src'), type: video.querySelector('source').type,
           controls: video.controls, inline: video.playsInline, preload: video.preload,
           autoplay: video.autoplay, loop: video.loop, ready: video.readyState,
           loading: video.networkState === HTMLMediaElement.NETWORK_LOADING,
-          label: video.getAttribute('aria-label'), caption: video.closest('figure').querySelector('figcaption').textContent,
+          label: video.getAttribute('aria-label'), caption: caption.textContent,
+          captionIsLast: figure.lastElementChild === caption,
+          writtenInCaption: caption.contains(figure.querySelector('p.video-written')),
           link: document.querySelector('.mac-video figcaption a').getAttribute('href'),
           linkVisible: document.querySelector('.mac-video figcaption a').checkVisibility()
         };
@@ -166,6 +170,8 @@ for (const home of homes) {
       assert.equal(state.autoplay, false); assert.equal(state.loop, false); assert.equal(state.ready, 0); assert.equal(state.loading, false);
       assert.match(state.label, home.lang === 'fr' ? /français/ : /French/);
       assert.match(state.caption, home.lang === 'fr' ? /français/ : /French/);
+      assert.equal(state.captionIsLast, true);
+      assert.equal(state.writtenInCaption, true);
       assert.equal(state.link, film); assert.equal(state.linkVisible, true);
     }
   });

@@ -12,8 +12,9 @@
         <video controls playsinline preload="none" width="{{ macos.video_width }}" height="{{ macos.video_height }}" aria-label="{{ home.video_label | escape }}">
           <source src="{{ macos.video | relative_url }}" type="video/mp4">
         </video>
-        <figcaption>{{ home.video_caption }} <a href="{{ macos.video | relative_url }}">{{ home.video_open }}</a></figcaption>
-        <p class="video-written">{{ home.video_written }}</p>
+        <figcaption>{{ home.video_caption }} <a href="{{ macos.video | relative_url }}">{{ home.video_open }}</a>
+          <p class="video-written">{{ home.video_written }}</p>
+        </figcaption>
       </figure>
     </div>
     <aside class="mac-preflight" aria-labelledby="mac-preflight-title">
