@@ -462,3 +462,8 @@
 .dark :is(.home-install-link, .home-other-link) {
   color: var(--accent-soft-text);
 }
+
+/* Keep the floating 44px control outside the home's reading and focus lane. */
+main:has(> .home-hero) {
+  padding-right: calc(2.75rem + var(--space-5));
+}

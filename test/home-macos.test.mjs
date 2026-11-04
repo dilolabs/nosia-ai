@@ -36,6 +36,94 @@ for (const home of homes) {
 }
 
 for (const home of homes) {
+  for (const theme of ['light', 'dark']) {
+    for (const [width, height] of [[320, 900], [375, 900], [768, 900], [812, 375], [1280, 900]]) {
+      test(`back-to-top keeps ${home.lang} text unobscured in ${theme} ${width}x${height}`, async () => {
+        await browser.visit(home.path, { width, height, theme, reduced: true });
+        await browser.evaluate(`document.querySelectorAll('main details').forEach(details => { details.open = true; });
+          document.querySelector('.mac-video').scrollIntoView({ block: 'start', behavior: 'instant' });
+          new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))`);
+        const evidence = await browser.evaluate(`(() => {
+          const button = document.querySelector('.back-to-top');
+          const control = button.getBoundingClientRect();
+          const style = getComputedStyle(button);
+          const centerY = (control.top + control.bottom) / 2;
+          const maxScroll = document.documentElement.scrollHeight - innerHeight;
+          const lines = new Map();
+          const regions = new Set();
+          const blocked = [];
+          let glyphs = 0;
+          const walker = document.createTreeWalker(document.querySelector('main'), NodeFilter.SHOW_TEXT);
+          let node;
+          while ((node = walker.nextNode())) {
+            for (let i = 0; i < node.length; i += 1) {
+              if (!node.textContent[i].trim()) continue;
+              const range = document.createRange();
+              range.setStart(node, i);
+              range.setEnd(node, i + 1);
+              const glyph = range.getBoundingClientRect();
+              if (!glyph.width || !glyph.height) continue;
+              const region = node.parentElement.closest('.mac-steps, .mac-video, .mac-preflight, .other-installations, main > section, .footer');
+              const name = region.id || region.classList[0];
+              regions.add(name);
+              glyphs += 1;
+              const x = (glyph.left + glyph.right) / 2;
+              const targetScroll = scrollY + (glyph.top + glyph.bottom) / 2 - centerY;
+              if (x < control.left || x > control.right || targetScroll <= 400 || targetScroll > maxScroll) continue;
+              const line = Math.round(targetScroll);
+              if (!lines.has(line)) lines.set(line, []);
+              lines.get(line).push({ range, character: node.textContent[i], region: name });
+            }
+          }
+          // Align every potentially conflicting text line with the floating control.
+          // Hit testing the actual glyph centers distinguishes occlusion from empty box overlap.
+          for (const [top, candidates] of lines) {
+            window.scrollTo({ top, behavior: 'instant' });
+            for (const candidate of candidates) {
+              const glyph = candidate.range.getBoundingClientRect();
+              const x = (glyph.left + glyph.right) / 2;
+              const y = (glyph.top + glyph.bottom) / 2;
+              if (document.elementFromPoint(x, y)?.closest('.back-to-top')) {
+                blocked.push({ character: candidate.character, region: candidate.region, x, y });
+                break;
+              }
+            }
+          }
+          return {
+            glyphs, regions: [...regions], blocked,
+            visible: !button.hidden && style.visibility === 'visible' && Number(style.opacity) === 1,
+            width: control.width, height: control.height,
+            clickable: Boolean(document.elementFromPoint((control.left + control.right) / 2, centerY)?.closest('.back-to-top'))
+          };
+        })()`);
+        assert.ok(evidence.glyphs > 1000);
+        for (const region of ['mac-steps', 'mac-video', 'mac-preflight', 'other-installations', 'faq', 'story', 'community', 'documentation', 'demo', 'footer']) {
+          assert.ok(evidence.regions.includes(region), `checked ${region}`);
+        }
+        assert.equal(evidence.visible, true);
+        assert.ok(evidence.width >= 44 && evidence.height >= 44);
+        assert.equal(evidence.clickable, true);
+        assert.deepEqual(evidence.blocked, [], 'The floating control must not cover painted text anywhere in the home reading lane');
+        if (process.env.NOSIA_SCREENSHOTS) {
+          await browser.evaluate('document.querySelector(".mac-video").scrollIntoView({block:"start",behavior:"instant"}); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/control-gutter-${home.lang}-${theme}-${width}x${height}.png`);
+        }
+        await browser.evaluate('document.querySelector(".back-to-top").focus()');
+        assert.ok(await browser.evaluate('parseFloat(getComputedStyle(document.activeElement).outlineWidth)') >= 2);
+        for (const type of ['keyDown', 'keyUp']) {
+          await browser.cdp('Input.dispatchKeyEvent', {
+            type, key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13,
+            text: type === 'keyDown' ? '\r' : undefined
+          });
+        }
+        assert.equal(await browser.evaluate('scrollY'), 0);
+        assert.equal(await browser.evaluate('document.activeElement.id'), 'main-content');
+      });
+    }
+  }
+}
+
+for (const home of homes) {
   test(`installation ${home.lang} puts the native Mac flow before exact CLI alternatives`, async () => {
     await browser.visit(home.path, { javascript: false });
     const setup = await browser.evaluate('document.querySelector("#quickstart")?.textContent || ""');
