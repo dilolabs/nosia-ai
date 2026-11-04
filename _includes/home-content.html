@@ -1,0 +1,53 @@
+{%- assign home = site.data.home[page.lang] -%}
+{%- assign t = site.data.translations[page.lang] -%}
+<section id="description" class="description home-content">
+  <div class="container">
+    <figure class="home-quote">
+      <blockquote><p>{{ home.quote }}</p></blockquote>
+      <figcaption><a href="{{ t.engagement_url | relative_url }}">{{ home.commitment_link }}</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="features" class="features home-content">
+  <div class="container">
+    <h2>{{ home.features_title }}</h2>
+    <p>{{ home.features_intro }}</p>
+    <div class="grid">
+      {% for feature in home.features %}
+      <div class="card">
+        <span class="icon">{% include icon.html name=feature.icon %}</span>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="ai-caution">{{ home.caution }}</p>
+  </div>
+</section>
+
+<section id="use-cases-teaser" class="description home-content">
+  <div class="container">
+    <h2>{{ home.usecases_title }}</h2>
+    <p>{{ home.usecases_intro }}</p>
+    <a href="{{ t.usecases_url | relative_url }}" class="btn">{{ home.usecases_link }}</a>
+  </div>
+</section>
+
+{% include home-installation.html %}
+
+<section id="faq" class="features home-content">
+  <div class="container">
+    <h2>{{ home.faq_title }}</h2>
+    <div class="faq-list">
+      {% for item in home.faq %}
+      <details class="faq-item">
+        <summary><h3>{{ item.q }}</h3></summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include home-resources.html %}

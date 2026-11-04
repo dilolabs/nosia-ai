@@ -6,6 +6,10 @@ let browser;
 before(async () => { browser = await openBrowser(); });
 after(async () => { if (browser) await browser.close(); });
 
+async function revealOtherInstallations() {
+  await browser.evaluate('document.querySelector("#other-installations").open = true');
+}
+
 const engagementTitle = 'Pour une intelligence artificielle dont nous gardons la maîtrise';
 const engagementParagraphs = [
   'Une entreprise possède des années de savoir-faire. Une association conserve la mémoire de ses actions. Une collectivité connaît son territoire. Derrière leurs documents, leurs échanges et leurs procédures, il y a un patrimoine construit par des personnes.',
@@ -277,6 +281,7 @@ test('theme still follows the OS and accepts an explicit choice when storage is 
 
 test('command copying reports success only after the write succeeds', async () => {
   await browser.visit('/');
+  await revealOtherInstallations();
   assert.equal(await browser.evaluate('Boolean(document.querySelector("[data-copy-target]"))'), true);
   await browser.evaluate(`
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
@@ -297,6 +302,7 @@ test('command copying reports success only after the write succeeds', async () =
 test('clipboard rejection and unavailable API preserve selectable code and explain failure', async () => {
   for (const clipboard of ['{ writeText: async () => { throw new Error("denied"); } }', 'undefined']) {
     await browser.visit('/en/');
+    await revealOtherInstallations();
     assert.equal(await browser.evaluate('Boolean(document.querySelector("[data-copy-target]"))'), true);
     await browser.evaluate(`Object.defineProperty(navigator, 'clipboard', { configurable: true, value: ${clipboard} }); document.querySelector('[data-copy-target]').click()`);
     assert.match(await browser.evaluate('document.querySelector("[data-copy-status]").textContent'), /Unable to copy/);
@@ -305,29 +311,32 @@ test('clipboard rejection and unavailable API preserve selectable code and expla
   }
 });
 
-test('all platform commands remain visible without JavaScript', async () => {
+test('secondary platform commands remain available without JavaScript', async () => {
   await browser.visit('/', { javascript: false });
+  assert.equal(await browser.evaluate('document.querySelector("#other-installations").open'), false);
+  await browser.evaluate('document.querySelector("#other-installations > summary").click()');
   assert.equal(await browser.evaluate('document.querySelectorAll("#quickstart [data-command]").length'), 2);
+  assert.equal(await browser.evaluate('document.querySelector("#install-unix").checkVisibility()'), true);
   assert.equal(await browser.evaluate('document.querySelector("#install-windows").textContent'), 'irm https://get.nosia.ai/install.ps1 | iex');
   assert.equal(await browser.evaluate('[...document.querySelectorAll("[data-copy-target]")].every(button => getComputedStyle(button).display === "none")'), true);
 });
 
-test('developer-first home preserves anchors, moves installation forward, and keeps Windows exact', async () => {
-  const ids = ['description', 'features', 'quickstart', 'demo', 'use-cases-teaser', 'comparisons-teaser', 'documentation', 'story', 'commitment-teaser', 'community', 'faq'];
+test('public home preserves anchors and prioritizes native Mac installation', async () => {
+  const ids = ['description', 'features', 'use-cases-teaser', 'quickstart', 'faq', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo'];
   for (const path of ['/', '/en/']) {
     await browser.visit(path);
-    assert.equal(await browser.evaluate('Boolean(document.querySelector(".developer-hero #hero-install"))'), true);
     assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ids);
+    assert.equal(await browser.evaluate('document.querySelectorAll(".home-hero [data-command], #hero-install").length'), 0);
     assert.equal(await browser.evaluate('document.querySelector("#install-windows").textContent'), 'irm https://get.nosia.ai/install.ps1 | iex');
-    assert.equal(await browser.evaluate('document.querySelectorAll("#hero-install").length'), 1);
-    assert.equal(await browser.evaluate('document.querySelector(".developer-hero .btn-primary").getAttribute("href")'), '#quickstart');
+    assert.equal(await browser.evaluate('document.querySelector(".home-download").href'), 'https://github.com/dilolabs/nosia/releases/download/v0.6.1/Nosia-Native-arm64.dmg');
   }
 });
 
-test('installation command is visible in the first small-phone viewport', async () => {
+test('Mac download and requirements are visible in the first small-phone viewport', async () => {
   for (const path of ['/', '/en/']) {
     await browser.visit(path, { width: 375, height: 812 });
-    assert.equal(await browser.evaluate('document.querySelector("#hero-install").getBoundingClientRect().bottom <= innerHeight'), true);
+    assert.equal(await browser.evaluate('document.querySelector(".home-download").getBoundingClientRect().bottom <= innerHeight'), true);
+    assert.equal(await browser.evaluate('document.querySelector("#hero-requirements").getBoundingClientRect().bottom <= innerHeight'), true);
   }
 });
 
@@ -372,6 +381,7 @@ test('keyboard skip link, menu and command copying retain meaningful focus', asy
   assert.equal(await browser.evaluate('document.querySelector("#primary-nav").contains(document.activeElement)'), true);
   await pressKey('Escape');
   assert.equal(await browser.evaluate('document.activeElement.hasAttribute("data-menu-toggle")'), true);
+  await revealOtherInstallations();
   await browser.evaluate(`
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => {} } });
     document.querySelector('[data-copy-target]').focus();
@@ -389,6 +399,7 @@ test('responsive navigation transfers focus instead of hiding the active control
   await browser.cdp('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
   await browser.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
   assert.equal(await browser.evaluate('document.querySelector("#primary-nav").contains(document.activeElement)'), true);
+  await revealOtherInstallations();
   await browser.evaluate('document.querySelector("[data-copy-target]").focus()');
   await browser.cdp('Emulation.setDeviceMetricsOverride', { width: 375, height: 812, deviceScaleFactor: 1, mobile: false });
   await browser.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
@@ -399,7 +410,7 @@ test('normal interface text meets 4.5 to 1 contrast in both themes', async () =>
   for (const theme of ['light', 'dark']) {
     await browser.visit('/', { theme, reduced: true });
     const pairs = await browser.evaluate(`(() => {
-      const selectors = ['.developer-eyebrow', '.developer-summary', '.developer-ownership', '.developer-actions .btn', '.developer-terminal .copy-button', '.developer-terminal code', '.terminal-platforms', '#features > .container > p', '#features .card p', '#quickstart p', '#quickstart .copy-button', '#commitment-teaser p', '#commitment-teaser .btn', '.footer p', '.footer .links a', '.header-controls .lang-toggle', '.header .mobile-deploy'];
+      const selectors = ['.home-eyebrow', '.home-intro', '.home-summary', '.home-privacy', '.home-actions .btn', '.home-install-link', '.home-other-link', '.mac-requirements', '.mac-video figcaption', '.mac-preflight p', '.other-installations > summary', '#features > .container > p', '#features .card p', '#quickstart p', '#quickstart .copy-button', '#commitment-teaser p', '#commitment-teaser .btn', '.footer p', '.footer .links a', '.header-controls .lang-toggle', '.header .mobile-deploy'];
       const canvas = document.createElement('canvas');
       canvas.width = canvas.height = 1;
       const context = canvas.getContext('2d', { willReadFrequently: true });
@@ -426,10 +437,12 @@ test('normal interface text meets 4.5 to 1 contrast in both themes', async () =>
   }
 });
 
-test('below-fold demos defer loading in both languages', async () => {
+test('technical demos remain linked without loading a second player', async () => {
   for (const path of ['/', '/en/']) {
     await browser.visit(path);
-    assert.equal(await browser.evaluate('document.querySelector("#demo :is(iframe, img)").getAttribute("loading")'), 'lazy');
+    assert.equal(await browser.evaluate('document.querySelectorAll("#demo iframe, #demo img").length'), 0);
+    assert.equal(await browser.evaluate('document.querySelector("#demo a").checkVisibility()'), true);
+    assert.equal(await browser.evaluate('document.querySelector(".mac-video video").preload'), 'none');
   }
 });
 
@@ -473,13 +486,12 @@ for (const path of ['/', '/en/']) {
       test(`responsive ${path} ${theme} ${width}x${height}`, async () => {
         await browser.visit(path, { width, height, theme });
         assert.equal(await browser.evaluate('document.documentElement.scrollWidth <= innerWidth'), true);
-        const heroBackground = await browser.evaluate('getComputedStyle(document.querySelector(".developer-hero")).backgroundColor');
-        const expectedBackground = theme === 'dark'
-          ? await browser.evaluate('getComputedStyle(document.body).backgroundColor')
-          : 'rgb(16, 26, 20)';
+        const heroBackground = await browser.evaluate('getComputedStyle(document.querySelector(".home-hero")).backgroundColor');
+        const expectedBackground = await browser.evaluate('getComputedStyle(document.body).backgroundColor');
         assert.equal(heroBackground, expectedBackground);
         assert.equal(await browser.evaluate('document.documentElement.classList.contains("dark")'), theme === 'dark');
-        assert.equal(await browser.evaluate('document.querySelector("#hero-install").textContent'), 'curl -fsSL https://get.nosia.ai | sh');
+        assert.equal(await browser.evaluate('document.querySelectorAll("#hero-install").length'), 0);
+        assert.equal(await browser.evaluate('document.querySelector(".home-download").href'), 'https://github.com/dilolabs/nosia/releases/download/v0.6.1/Nosia-Native-arm64.dmg');
         if (process.env.NOSIA_SCREENSHOTS) {
           const language = path === '/' ? 'fr' : 'en';
           await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/${language}-${theme}-${width}x${height}.png`);

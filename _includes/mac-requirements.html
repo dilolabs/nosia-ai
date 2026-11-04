@@ -1,0 +1,6 @@
+{%- assign macos = site.data.downloads.macos -%}
+{%- assign home = site.data.home[page.lang] -%}
+<p class="mac-requirements" id="{{ include.id | escape }}">
+  <span>{{ home.mac_chip_label }} {{ macos.chip }} {{ home.mac_chip_suffix }} · macOS {{ macos.minimum_macos }} {{ home.macos_suffix }}</span>
+  <span>{{ home.memory_before }} {{ macos.memory_gb }} {{ home.memory_unit }} {{ home.memory_after }}</span>
+</p>

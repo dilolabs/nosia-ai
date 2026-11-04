@@ -390,3 +390,80 @@
   margin-top: var(--space-3);
   font-size: var(--text-sm);
 }
+
+/* Public-facing editorial home: existing theme tokens remain authoritative. */
+.home-hero { background: var(--bg-app); padding-block: clamp(2rem, 6vw, 5rem); }
+.home-hero .container { max-width: 64rem; }
+.home-eyebrow { color: var(--accent-strong); font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-4); }
+.dark .home-eyebrow { color: var(--accent-soft-text); }
+.home-hero h1 { max-width: 22ch; font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.12; text-wrap: balance; }
+.home-hero h1 span { display: block; color: var(--accent-strong); }
+.dark .home-hero h1 span { color: var(--accent-soft-text); }
+.home-intro, .home-summary, .home-privacy { max-width: 65ch; }
+.home-intro { margin-top: var(--space-6); font-size: var(--text-lg); }
+.home-summary { margin-top: var(--space-4); }
+.home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
+.home-actions a { min-height: 44px; display: inline-flex; align-items: center; }
+.mac-requirements { margin-top: var(--space-4); color: var(--text-muted); font-size: var(--text-sm); }
+.mac-requirements span { display: block; }
+.home-privacy { margin-top: var(--space-4); font-size: var(--text-sm); }
+.home-other-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: var(--space-2); }
+.home-hero a:not(.btn), .home-content a:not(.btn) { text-underline-offset: 3px; }
+@media (max-width: 600px) {
+  .home-hero { padding-block: var(--space-8); }
+  .home-eyebrow { font-size: var(--text-xs); margin-bottom: var(--space-3); }
+  .home-intro { margin-top: var(--space-4); font-size: var(--text-base); }
+  .home-summary { font-size: var(--text-15); }
+  .home-actions { margin-top: var(--space-4); gap: var(--space-2) var(--space-4); }
+  .home-actions .btn { padding-inline: var(--space-4); }
+}
+
+.home-installation > .container { display: block; }
+.home-installation > .container > h2 { text-align: left; }
+.home-installation p { max-width: 70ch; }
+.mac-installation { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-8); align-items: start; }
+.mac-installation > * { min-width: 0; }
+.mac-steps { padding-left: var(--space-6); margin-bottom: var(--space-6); }
+.mac-steps li { padding-left: var(--space-2); margin-bottom: var(--space-4); line-height: 1.7; }
+.mac-video { margin: 0; min-width: 0; }
+.mac-video video { display: block; width: 100%; height: auto; aspect-ratio: 1048 / 720; background: var(--neutral-950); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); }
+.mac-video figcaption { margin-top: var(--space-3); font-size: var(--text-sm); line-height: 1.7; }
+.mac-video .video-written { margin-top: var(--space-3); font-size: var(--text-sm); }
+.mac-preflight { margin-top: var(--space-8); padding: var(--space-5); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); background: var(--surface-card); }
+.mac-preflight h3 { margin-bottom: var(--space-3); }
+.mac-preflight .mac-requirements { max-width: none; }
+.other-installations { margin-top: var(--space-8); padding: var(--space-5); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); }
+.other-installations > summary { cursor: pointer; min-height: 44px; font-weight: 600; line-height: 1.6; }
+.other-installations > p { margin-top: var(--space-4); }
+.other-installations .command-block { max-width: none; }
+@media (max-width: 800px) { .mac-installation { grid-template-columns: minmax(0, 1fr); } }
+
+.home-quote { margin: 0; padding: var(--space-6); border-left: 3px solid var(--accent-strong); border-radius: var(--radius-lg); background: var(--surface-card); }
+#description .home-quote p { font-size: var(--text-xl); max-width: 65ch; }
+.home-quote figcaption { margin-top: var(--space-4); }
+.home-content .ai-caution { margin-top: var(--space-6); color: var(--text-muted); font-size: var(--text-sm); }
+.home-content :is(blockquote, .card, .story-content) { overflow-wrap: anywhere; }
+.home-content :is(h2, h3) { text-wrap: balance; }
+.home-content#demo h2 { text-align: left; }
+.home-content#demo .btn { min-height: 44px; }
+
+.home-hero,
+.home-content[id],
+.home-installation,
+#other-installations {
+  scroll-margin-top: 7rem;
+}
+
+.home-install-link,
+.home-other-link {
+  color: var(--accent-strong);
+}
+
+.dark :is(.home-install-link, .home-other-link) {
+  color: var(--accent-soft-text);
+}
+
+/* Keep the floating 44px control outside the home's reading and focus lane. */
+main:has(> .home-hero) {
+  padding-right: calc(2.75rem + var(--space-5));
+}
