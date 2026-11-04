@@ -6,6 +6,41 @@ let browser;
 before(async () => { browser = await openBrowser(); });
 after(async () => { if (browser) await browser.close(); });
 
+const engagementTitle = 'Pour une intelligence artificielle dont nous gardons la maîtrise';
+const engagementParagraphs = [
+  'Une entreprise possède des années de savoir-faire. Une association conserve la mémoire de ses actions. Une collectivité connaît son territoire. Derrière leurs documents, leurs échanges et leurs procédures, il y a un patrimoine construit par des personnes.',
+  'L’intelligence artificielle peut rendre ce patrimoine plus accessible. Elle peut aider à retrouver une information, comprendre un dossier, transmettre une compétence ou alléger une tâche répétitive. Mais son adoption pose une question essentielle : qui garde la maîtrise de ce que nous lui confions ?',
+  'Nous défendons le droit de choisir où nos données sont traitées, quels modèles nous utilisons et comment nos outils évoluent. Le droit de comprendre un système, de l’adapter et de pouvoir en changer.',
+  'C’est cette conviction qui anime Nosia.',
+  'Nosia permet de déployer une plateforme d’intelligence artificielle sur sa propre infrastructure, de l’appuyer sur ses documents et de la connecter à ses outils. Son code est ouvert : chacun peut l’étudier, l’utiliser, le modifier et contribuer à son évolution.',
+  'Ces choix techniques portent une ambition très concrète : donner aux organisations les moyens de construire une IA adaptée à leurs besoins, avec une maîtrise réelle de son fonctionnement.',
+  'Pour une petite entreprise, cela peut signifier retrouver une procédure sans interrompre toute une équipe. Pour une association, transmettre ses connaissances malgré le départ de bénévoles. Pour une organisation qui manipule des informations sensibles, choisir une architecture dans laquelle les documents et leur traitement restent dans un environnement maîtrisé.',
+  'Cette autonomie demande du travail. Héberger un logiciel implique de le maintenir, de le sécuriser et d’accompagner ses utilisateurs. Un modèle peut se tromper. Une réponse doit pouvoir être vérifiée. L’ouverture du code et l’hébergement local donnent des moyens d’agir ; la confiance se construit ensuite par la qualité du déploiement et des usages.',
+  'Nous défendons aussi une démarche de sobriété : partir d’un besoin précis, choisir un modèle et un matériel adaptés, mesurer l’utilité du service rendu. Chaque tâche ne nécessite pas le modèle le plus volumineux. Chaque nouvel usage mérite que l’on examine ses bénéfices et ses coûts.',
+  'Soutenir Nosia, c’est contribuer à rendre cette autonomie accessible. C’est financer du développement, de la documentation, des essais sur le terrain et de l’accompagnement. C’est permettre à davantage d’organisations de s’approprier ces technologies et de développer leurs compétences.',
+  'Nous invitons les entreprises, les associations, les collectivités, les développeurs et les partenaires à participer : tester Nosia sur un besoin réel, partager leurs retours, contribuer au code ou soutenir sa maintenance.',
+  'L’avenir de l’intelligence artificielle se joue aussi dans notre capacité collective à la comprendre, à l’adapter et à décider de la place que nous voulons lui donner.',
+  'Avec Nosia, nous voulons rendre cette liberté concrète.'
+];
+
+test('engagement preserves the complete French advocacy and its metadata', async () => {
+  await browser.visit('/engagement/');
+  assert.equal(await browser.evaluate('document.documentElement.lang'), 'fr');
+  assert.equal(await browser.evaluate('document.querySelectorAll("h1").length'), 1);
+  assert.equal(await browser.evaluate('document.querySelector("h1")?.textContent'), engagementTitle);
+  assert.equal(await browser.evaluate('document.title'), engagementTitle + ' | Nosia');
+  assert.equal(await browser.evaluate('document.querySelector("link[rel=canonical]")?.href'), 'https://nosia.ai/engagement/');
+  assert.equal(await browser.evaluate('document.querySelector("meta[name=description]")?.content'), 'Notre engagement pour une intelligence artificielle ouverte, maîtrisée et adaptée aux besoins des organisations, dans une démarche de sobriété.');
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), engagementParagraphs);
+  assert.equal(await browser.evaluate('document.querySelector("article.engagement p:last-child strong")?.textContent'), engagementParagraphs.at(-1));
+  assert.equal(await browser.evaluate('document.querySelector("article.engagement")?.getAttribute("aria-labelledby")'), 'engagement-title');
+  assert.equal(await browser.evaluate('document.querySelector(".lang-toggle")?.getAttribute("href")'), '/en/');
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("link[rel=alternate][hreflang]")].map(link => link.hreflang).sort()'), ['fr', 'x-default']);
+  const schemas = await browser.evaluate('[...document.querySelectorAll(\'script[type="application/ld+json"]\')].map(script => JSON.parse(script.textContent))');
+  const breadcrumbs = schemas.find(schema => schema['@type'] === 'BreadcrumbList');
+  assert.equal(breadcrumbs.itemListElement.at(-1).item, 'https://nosia.ai/engagement/');
+});
+
 test('existing FR and EN pages retain language and canonical URLs', async () => {
   for (const [path, language] of [['/', 'fr'], ['/en/', 'en']]) {
     await browser.visit(path);
