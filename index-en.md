@@ -157,6 +157,14 @@ faq:
   </div>
 </section>
 
+<section id="commitment-teaser" class="description">
+  <div class="container">
+    <h2>Our commitment</h2>
+    <p>We defend the right to choose where our data is processed, which models we use, and how our tools evolve. The right to understand a system, adapt it, and be able to switch to another.</p>
+    <a href="{{ '/en/commitment/' | relative_url }}" class="btn">Read our commitment</a>
+  </div>
+</section>
+
 <section id="community" class="community">
   <div class="container">
     <h2>Community & Support</h2>

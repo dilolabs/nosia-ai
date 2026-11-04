@@ -354,3 +354,15 @@ Adaptation issue de la revue visuelle : à 375px, la marge basse de 40px laissai
 - Captures examinées : article clair/sombre à 375px, article à 1280px, conclusion mobile, extrait sur l’accueil et menu en paysage. Les deux corrections de dégagement sont couvertes par des tests.
 - `git diff --check` : réussi ; seuls des fichiers source et documents de suivi sont versionnés.
 - Réalisation en session, sans sous-agents, sur la branche `plaidoyer`. Aucun push, fusion ou déploiement effectué.
+
+## Extension de traduction anglaise
+
+Demande complémentaire : « Traduit la en anglais aussi ». Réutiliser le design et les composants approuvés ; aucune nouvelle conception d’interface n’est nécessaire.
+
+- [x] Étendre les tests : treize paragraphes anglais, SEO, alternates et sélecteur FR/EN, navigation et extrait dans les deux langues, lecture mobile/ordinateur et conclusion.
+- [x] Observer les échecs attendus avant ajout de la traduction.
+- [x] Ajouter `en/commitment.md` à `/en/commitment/` avec `ref: engagement`, le contenu anglais intégral et les métadonnées traduites ; ajouter les clés de navigation anglaises et l’extrait après `story` dans `index-en.md`.
+- [x] Vérifier la construction, les liens internes, le sitemap et l’ensemble des tests navigateur ; examiner les captures anglaises. Ne modifier ni le plaidoyer français ni le CSS partagé.
+- [x] Consigner les résultats. Ne pas pousser, fusionner ni déployer sans demande.
+
+Résultats de l’extension : `bin/verify` réussi (14 fichiers HTML, 27 liens internes), puis 50 tests navigateur réussis avec `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-engagement-en node --test test/site-ui.test.mjs`. Les entrées française et anglaise sont présentes dans le sitemap. Captures anglaises examinées sur mobile en clair/sombre et sur ordinateur. `git diff --check` réussi ; aucun changement du plaidoyer français ni du CSS ou du header partagés. Aucun push, fusion ou déploiement effectué.

@@ -23,6 +23,23 @@ const engagementParagraphs = [
   'Avec Nosia, nous voulons rendre cette liberté concrète.'
 ];
 
+const commitmentTitle = 'For artificial intelligence that remains under our control';
+const commitmentParagraphs = [
+  'A company has years of expertise. An association preserves the memory of its work. A local authority knows its area. Behind their documents, conversations, and procedures lies a body of knowledge built by people.',
+  'Artificial intelligence can make this knowledge more accessible. It can help people find information, make sense of a case, pass on a skill, or ease a repetitive task. But adopting it raises an essential question: who stays in control of what we entrust to it?',
+  'We defend the right to choose where our data is processed, which models we use, and how our tools evolve. The right to understand a system, adapt it, and be able to switch to another.',
+  'This conviction is what drives Nosia.',
+  'Nosia lets you deploy an artificial intelligence platform on your own infrastructure, ground it in your documents, and connect it to your tools. Its code is open: anyone can study it, use it, modify it, and contribute to its development.',
+  'These technical choices serve a very practical ambition: to give organizations the means to build AI suited to their needs, with real control over how it works.',
+  'For a small business, this can mean finding a procedure without interrupting an entire team. For an association, passing on knowledge despite volunteers moving on. For an organization handling sensitive information, choosing an architecture in which documents and their processing remain within a controlled environment.',
+  'This autonomy takes work. Hosting software means maintaining it, securing it, and supporting its users. A model can make mistakes. An answer must be verifiable. Open-source code and local hosting give us the means to act; trust is then built through the quality of deployment and use.',
+  'We also advocate a resource-conscious approach: start with a specific need, choose a suitable model and hardware, and measure the usefulness of the service provided. Not every task needs the largest model. Every new use deserves an examination of its benefits and costs.',
+  'Supporting Nosia means helping make this autonomy accessible. It means funding development, documentation, field testing, and support. It means enabling more organizations to take ownership of these technologies and develop their skills.',
+  'We invite companies, associations, local authorities, developers, and partners to take part: test Nosia on a real use case, share feedback, contribute to the code, or support its maintenance.',
+  'The future of artificial intelligence also depends on our collective ability to understand it, adapt it, and decide the role we want it to play.',
+  'With Nosia, we want to make this freedom a reality.'
+];
+
 test('engagement preserves the complete French advocacy and its metadata', async () => {
   await browser.visit('/engagement/');
   assert.equal(await browser.evaluate('document.documentElement.lang'), 'fr');
@@ -34,76 +51,104 @@ test('engagement preserves the complete French advocacy and its metadata', async
   assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), engagementParagraphs);
   assert.equal(await browser.evaluate('document.querySelector("article.engagement p:last-child strong")?.textContent'), engagementParagraphs.at(-1));
   assert.equal(await browser.evaluate('document.querySelector("article.engagement")?.getAttribute("aria-labelledby")'), 'engagement-title');
-  assert.equal(await browser.evaluate('document.querySelector(".lang-toggle")?.getAttribute("href")'), '/en/');
-  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("link[rel=alternate][hreflang]")].map(link => link.hreflang).sort()'), ['fr', 'x-default']);
+  assert.equal(await browser.evaluate('document.querySelector(".lang-toggle")?.getAttribute("href")'), '/en/commitment/');
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("link[rel=alternate][hreflang]")].map(link => [link.hreflang, link.href]).sort()'), [
+    ['en', 'https://nosia.ai/en/commitment/'],
+    ['fr', 'https://nosia.ai/engagement/'],
+    ['x-default', 'https://nosia.ai/engagement/']
+  ]);
   const schemas = await browser.evaluate('[...document.querySelectorAll(\'script[type="application/ld+json"]\')].map(script => JSON.parse(script.textContent))');
   const breadcrumbs = schemas.find(schema => schema['@type'] === 'BreadcrumbList');
   assert.equal(breadcrumbs.itemListElement.at(-1).item, 'https://nosia.ai/engagement/');
 });
 
-test('engagement reading layout fits mobile and desktop in both themes', async () => {
-  for (const theme of ['light', 'dark']) {
-    for (const width of [320, 375, 768, 1280]) {
-      await browser.visit('/engagement/', { width, theme, reduced: true });
-      const reading = await browser.evaluate(`(() => {
-        const article = document.querySelector('article.engagement');
-        const p = article.querySelector('p');
-        const style = getComputedStyle(p);
-        const canvas = document.createElement('canvas');
-        canvas.width = canvas.height = 1;
-        const context = canvas.getContext('2d', { willReadFrequently: true });
-        const ancestors = [];
-        for (let node = p; node; node = node.parentElement) ancestors.unshift(node);
-        function paint(color) { context.fillStyle = color; context.fillRect(0, 0, 1, 1); }
-        function luminance() {
-          return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(value => {
-            value /= 255;
-            return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
-          }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+test('engagement includes the complete English translation and its metadata', async () => {
+  await browser.visit('/en/commitment/');
+  assert.equal(await browser.evaluate('document.documentElement.lang'), 'en');
+  assert.equal(await browser.evaluate('document.querySelectorAll("h1").length'), 1);
+  assert.equal(await browser.evaluate('document.querySelector("h1")?.textContent'), commitmentTitle);
+  assert.equal(await browser.evaluate('document.title'), commitmentTitle + ' | Nosia');
+  assert.equal(await browser.evaluate('document.querySelector("link[rel=canonical]")?.href'), 'https://nosia.ai/en/commitment/');
+  assert.equal(await browser.evaluate('document.querySelector("meta[name=description]")?.content'), 'Our commitment to open, adaptable artificial intelligence that organizations can control, with a resource-conscious approach.');
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), commitmentParagraphs);
+  assert.equal(await browser.evaluate('document.querySelector("article.engagement p:last-child strong")?.textContent'), commitmentParagraphs.at(-1));
+  assert.equal(await browser.evaluate('document.querySelector(".lang-toggle")?.getAttribute("href")'), '/engagement/');
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("link[rel=alternate][hreflang]")].map(link => [link.hreflang, link.href]).sort()'), [
+    ['en', 'https://nosia.ai/en/commitment/'],
+    ['fr', 'https://nosia.ai/engagement/'],
+    ['x-default', 'https://nosia.ai/engagement/']
+  ]);
+  const schemas = await browser.evaluate('[...document.querySelectorAll(\'script[type="application/ld+json"]\')].map(script => JSON.parse(script.textContent))');
+  const breadcrumbs = schemas.find(schema => schema['@type'] === 'BreadcrumbList');
+  assert.equal(breadcrumbs.itemListElement.at(-1).name, 'Our commitment');
+  assert.equal(breadcrumbs.itemListElement.at(-1).item, 'https://nosia.ai/en/commitment/');
+});
+
+for (const [path, language] of [['/engagement/', 'fr'], ['/en/commitment/', 'en']]) {
+  test(`engagement ${language} reading layout fits mobile and desktop in both themes`, async () => {
+    for (const theme of ['light', 'dark']) {
+      for (const width of [320, 375, 768, 1280]) {
+        await browser.visit(path, { width, theme, reduced: true });
+        const reading = await browser.evaluate(`(() => {
+          const article = document.querySelector('article.engagement');
+          const p = article.querySelector('p');
+          const style = getComputedStyle(p);
+          const canvas = document.createElement('canvas');
+          canvas.width = canvas.height = 1;
+          const context = canvas.getContext('2d', { willReadFrequently: true });
+          const ancestors = [];
+          for (let node = p; node; node = node.parentElement) ancestors.unshift(node);
+          function paint(color) { context.fillStyle = color; context.fillRect(0, 0, 1, 1); }
+          function luminance() {
+            return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(value => {
+              value /= 255;
+              return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
+            }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+          }
+          paint('#fff');
+          ancestors.forEach(node => paint(getComputedStyle(node).backgroundColor));
+          const background = luminance();
+          paint(style.color);
+          const foreground = luminance();
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            width: article.getBoundingClientRect().width,
+            font: parseFloat(style.fontSize),
+            leading: parseFloat(style.lineHeight) / parseFloat(style.fontSize),
+            spacing: parseFloat(style.marginBottom),
+            contrast: (Math.max(background, foreground) + .05) / (Math.min(background, foreground) + .05),
+            dark: document.documentElement.classList.contains('dark')
+          };
+        })()`);
+        assert.equal(reading.overflow, false, `${language} ${theme} ${width}`);
+        assert.ok(reading.width <= 900, `bounded reading width: ${reading.width}`);
+        assert.ok(reading.font >= 18);
+        assert.ok(reading.leading >= 1.6);
+        assert.ok(reading.spacing >= 20);
+        assert.ok(reading.contrast >= 4.5, `${theme}: ${reading.contrast}:1`);
+        assert.equal(reading.dark, theme === 'dark');
+        if (process.env.NOSIA_SCREENSHOTS) {
+          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/engagement-${language}-${theme}-${width}.png`);
         }
-        paint('#fff');
-        ancestors.forEach(node => paint(getComputedStyle(node).backgroundColor));
-        const background = luminance();
-        paint(style.color);
-        const foreground = luminance();
-        return {
-          overflow: document.documentElement.scrollWidth > innerWidth,
-          width: article.getBoundingClientRect().width,
-          font: parseFloat(style.fontSize),
-          leading: parseFloat(style.lineHeight) / parseFloat(style.fontSize),
-          spacing: parseFloat(style.marginBottom),
-          contrast: (Math.max(background, foreground) + .05) / (Math.min(background, foreground) + .05),
-          dark: document.documentElement.classList.contains('dark')
-        };
-      })()`);
-      assert.equal(reading.overflow, false, `${theme} ${width}`);
-      assert.ok(reading.width <= 900, `bounded reading width: ${reading.width}`);
-      assert.ok(reading.font >= 18);
-      assert.ok(reading.leading >= 1.6);
-      assert.ok(reading.spacing >= 20);
-      assert.ok(reading.contrast >= 4.5, `${theme}: ${reading.contrast}:1`);
-      assert.equal(reading.dark, theme === 'dark');
-      if (process.env.NOSIA_SCREENSHOTS) {
-        await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/engagement-${theme}-${width}.png`);
       }
     }
-  }
-});
+  });
 
-test('engagement conclusion stays clear of the back-to-top control', async () => {
-  for (const theme of ['light', 'dark']) {
-    await browser.visit('/engagement/', { width: 375, height: 812, theme, reduced: true });
-    await browser.evaluate('window.scrollTo(0, document.documentElement.scrollHeight); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
-    const conclusion = await browser.evaluate(`(() => {
-      const paragraph = document.querySelector('article.engagement p:last-child').getBoundingClientRect();
-      const button = document.querySelector('.back-to-top').getBoundingClientRect();
-      return { bottom: paragraph.bottom, buttonTop: button.top };
-    })()`);
-    assert.ok(conclusion.bottom + 8 <= conclusion.buttonTop, `${theme}: conclusion must stay above the floating control`);
-  }
-});
+  test(`engagement ${language} conclusion stays clear of the back-to-top control`, async () => {
+    for (const theme of ['light', 'dark']) {
+      await browser.visit(path, { width: 375, height: 812, theme, reduced: true });
+      await browser.evaluate('window.scrollTo(0, document.documentElement.scrollHeight); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+      const conclusion = await browser.evaluate(`(() => {
+        const paragraph = document.querySelector('article.engagement p:last-child').getBoundingClientRect();
+        const button = document.querySelector('.back-to-top').getBoundingClientRect();
+        return { bottom: paragraph.bottom, buttonTop: button.top };
+      })()`);
+      assert.ok(conclusion.bottom + 8 <= conclusion.buttonTop, `${language} ${theme}: conclusion must stay above the floating control`);
+    }
+  });
+}
 
-test('engagement is discoverable in French without changing the English home', async () => {
+test('engagement is discoverable from French navigation and home', async () => {
   for (const path of ['/', '/faq/', '/cas-usage/', '/engagement/']) {
     await browser.visit(path);
     assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.textContent'), 'Notre engagement');
@@ -116,23 +161,36 @@ test('engagement is discoverable in French without changing the English home', a
   assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser p")?.textContent'), engagementParagraphs[2]);
   assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.getAttribute("href")'), '/engagement/');
   assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.textContent'), 'Lire notre engagement');
-  for (const path of ['/en/', '/en/faq/', '/en/use-cases/']) {
-    await browser.visit(path);
-    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')'), null);
-    assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser")'), null);
-  }
 });
 
-test('engagement remains available in mobile navigation and without JavaScript', async () => {
-  await browser.visit('/', { width: 375 });
-  await browser.evaluate('document.querySelector("[data-menu-toggle]").click()');
-  assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.checkVisibility()'), true);
-  await browser.visit('/', { width: 375, javascript: false });
-  assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.checkVisibility()'), true);
-  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.checkVisibility()'), true);
-  await browser.visit('/engagement/', { width: 375, javascript: false });
-  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), engagementParagraphs);
+test('engagement is discoverable from English navigation and home', async () => {
+  for (const path of ['/en/', '/en/faq/', '/en/use-cases/', '/en/commitment/']) {
+    await browser.visit(path);
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/en/commitment/"]\')?.textContent'), 'Our commitment');
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/en/use-cases/"]\')?.nextElementSibling?.getAttribute("href")'), '/en/commitment/');
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')'), null);
+  }
+  await browser.visit('/en/');
+  assert.equal(await browser.evaluate('document.querySelector("#story")?.nextElementSibling?.id'), 'commitment-teaser');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser")?.nextElementSibling?.id'), 'community');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser h2")?.textContent'), 'Our commitment');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser p")?.textContent'), commitmentParagraphs[2]);
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.getAttribute("href")'), '/en/commitment/');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.textContent'), 'Read our commitment');
 });
+
+for (const [home, path, paragraphs] of [['/', '/engagement/', engagementParagraphs], ['/en/', '/en/commitment/', commitmentParagraphs]]) {
+  test(`engagement ${path} remains available in mobile navigation and without JavaScript`, async () => {
+    await browser.visit(home, { width: 375 });
+    await browser.evaluate('document.querySelector("[data-menu-toggle]").click()');
+    assert.equal(await browser.evaluate(`document.querySelector('#primary-nav a[href="${path}"]')?.checkVisibility()`), true);
+    await browser.visit(home, { width: 375, javascript: false });
+    assert.equal(await browser.evaluate(`document.querySelector('#primary-nav a[href="${path}"]')?.checkVisibility()`), true);
+    assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.checkVisibility()'), true);
+    await browser.visit(path, { width: 375, javascript: false });
+    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), paragraphs);
+  });
+}
 
 test('existing FR and EN pages retain language and canonical URLs', async () => {
   for (const [path, language] of [['/', 'fr'], ['/en/', 'en']]) {
@@ -255,14 +313,11 @@ test('all platform commands remain visible without JavaScript', async () => {
 });
 
 test('developer-first home preserves anchors, moves installation forward, and keeps Windows exact', async () => {
-  const ids = ['description', 'features', 'quickstart', 'demo', 'use-cases-teaser', 'comparisons-teaser', 'documentation', 'story', 'community', 'faq'];
+  const ids = ['description', 'features', 'quickstart', 'demo', 'use-cases-teaser', 'comparisons-teaser', 'documentation', 'story', 'commitment-teaser', 'community', 'faq'];
   for (const path of ['/', '/en/']) {
     await browser.visit(path);
     assert.equal(await browser.evaluate('Boolean(document.querySelector(".developer-hero #hero-install"))'), true);
-    const expectedIds = path === '/'
-      ? [...ids.slice(0, 8), 'commitment-teaser', ...ids.slice(8)]
-      : ids;
-    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), expectedIds);
+    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ids);
     assert.equal(await browser.evaluate('document.querySelector("#install-windows").textContent'), 'irm https://get.nosia.ai/install.ps1 | iex');
     assert.equal(await browser.evaluate('document.querySelectorAll("#hero-install").length'), 1);
     assert.equal(await browser.evaluate('document.querySelector(".developer-hero .btn-primary").getAttribute("href")'), '#quickstart');
@@ -380,7 +435,7 @@ test('below-fold demos defer loading in both languages', async () => {
 
 for (const theme of ['light', 'dark']) {
   test(`page backgrounds stay uniform with the ${theme} theme`, async () => {
-    for (const path of ['/', '/en/', '/engagement/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
+    for (const path of ['/', '/en/', '/engagement/', '/en/commitment/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
       await browser.visit(path, { theme, reduced: true });
       const surfaces = await browser.evaluate(`(() => {
         const canvas = document.createElement('canvas');
@@ -435,7 +490,7 @@ for (const path of ['/', '/en/']) {
 }
 
 test('secondary pages retain readable headings, valid schema and no horizontal page overflow', async () => {
-  for (const path of ['/engagement/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
+  for (const path of ['/engagement/', '/en/commitment/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
     await browser.visit(path, { width: 375 });
     assert.equal(await browser.evaluate('document.querySelectorAll("h1").length'), 1, path);
     assert.equal(await browser.evaluate('document.documentElement.scrollWidth <= innerWidth'), true, path);

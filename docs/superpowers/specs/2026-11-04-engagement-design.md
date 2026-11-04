@@ -12,6 +12,13 @@ Publier le plaidoyer « Pour une intelligence artificielle dont nous gardons la 
 - « Un lien dans la navigation » et « un court extrait sur l’accueil, près de “Notre histoire” » : proposition approuvée, pour rendre le texte visible dans les parcours existants.
 - « Une mise en page de lecture sobre, cohérente avec le site » : proposition approuvée, pour privilégier la lecture plutôt qu’un nouveau dispositif graphique.
 - Cadrage écrit validé par l’utilisateur (« Oui »), y compris la première publication en français uniquement : le document ci-dessous constitue la référence pour l’implémentation.
+- Demande complémentaire après publication dans le dépôt : « Traduit la en anglais aussi ». Ajouter la traduction avec la même présentation et les mêmes points d’accès ; cette demande lève la restriction française de la première publication, sans modifier le texte français.
+
+## Extension anglaise demandée
+
+Cette extension reprend le design approuvé, sans nouveau composant ni style. Ajouter `en/commitment.md`, à `/en/commitment/`, intitulé « Our commitment », avec `lang: en` et le même `ref: engagement`. Le titre du plaidoyer devient « For artificial intelligence that remains under our control ». Conserver les treize paragraphes, leur sens et leurs nuances, notamment les limites des modèles, les responsabilités d’hébergement et la sobriété ; garder la conclusion en gras.
+
+Traduire également l’extrait de l’accueil anglais et son lien (« Read our commitment »), ainsi que le libellé de navigation. Les mécanismes existants relient désormais directement les deux traductions dans le sélecteur de langue et les alternates hreflang. Étendre les tests de texte, métadonnées, affichage, navigation mobile et dégagement de la conclusion à l’anglais. Les restrictions françaises et le repli du sélecteur EN décrits plus bas documentent uniquement la première publication, antérieure à cette demande.
 
 ## Périmètre proposé pour cette première publication
 

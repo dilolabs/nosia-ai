@@ -35,6 +35,8 @@ en:
   toggle_theme: "Toggle theme"
   nav_features: "Features"
   nav_usecases: "Use cases"
+  nav_engagement: "Our commitment"
+  engagement_url: "/en/commitment/"
   nav_faq: "FAQ"
   usecases_url: "/en/use-cases/"
   faq_url: "/en/faq/"
