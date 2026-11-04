@@ -34,3 +34,80 @@ for (const home of homes) {
     assert.match(requirements, home.lang === 'fr' ? /16 Go/ : /16 GB/);
   });
 }
+
+for (const home of homes) {
+  test(`installation ${home.lang} puts the native Mac flow before exact CLI alternatives`, async () => {
+    await browser.visit(home.path, { javascript: false });
+    const setup = await browser.evaluate('document.querySelector("#quickstart")?.textContent || ""');
+    assert.match(setup, new RegExp(home.setup));
+    assert.match(setup, /Applications/);
+    assert.match(setup, /Nosia-Native-arm64\.dmg/);
+    assert.match(setup, home.lang === 'fr' ? /plusieurs gigaoctets/ : /several gigabytes/);
+    assert.match(setup, home.lang === 'fr' ? /Trousseau/ : /Keychain/);
+    assert.equal(await browser.evaluate('document.querySelector(".mac-download").href'), download);
+    assert.equal(await browser.evaluate('document.querySelector(".release-link").href'), release);
+    assert.equal(await browser.evaluate('document.querySelectorAll(".mac-steps li").length'), 5);
+    assert.equal(await browser.evaluate('document.querySelector("#other-installations").open'), false);
+    assert.equal(await browser.evaluate('Boolean(document.querySelector(".mac-installation").compareDocumentPosition(document.querySelector("#other-installations")) & Node.DOCUMENT_POSITION_FOLLOWING)'), true);
+    await browser.evaluate('document.querySelector("#other-installations > summary").click()');
+    assert.equal(await browser.evaluate('document.querySelector("#other-installations").open'), true);
+    assert.equal(await browser.evaluate('document.querySelector("#install-unix").checkVisibility()'), true);
+    assert.equal(await browser.evaluate('document.querySelector("#install-unix").textContent'), 'curl -fsSL https://get.nosia.ai | sh');
+    assert.equal(await browser.evaluate('document.querySelector("#install-windows").textContent'), 'irm https://get.nosia.ai/install.ps1 | iex');
+    assert.equal(await browser.evaluate('document.querySelector("#install-unix").closest("[data-command]").querySelector(".command-heading span").textContent'), 'Linux');
+    assert.equal(await browser.evaluate('document.querySelectorAll("[data-copy-target]:not([hidden])").length'), 0);
+  });
+
+  test(`tutorial ${home.lang} is optional, localized and keeps a visible file fallback`, async () => {
+    for (const javascript of [true, false]) {
+      await browser.visit(home.path, { javascript });
+      const state = await browser.evaluate(`(() => {
+        const video = document.querySelector('.mac-video video');
+        return {
+          source: video.querySelector('source').getAttribute('src'), type: video.querySelector('source').type,
+          controls: video.controls, inline: video.playsInline, preload: video.preload,
+          autoplay: video.autoplay, loop: video.loop, ready: video.readyState,
+          loading: video.networkState === HTMLMediaElement.NETWORK_LOADING,
+          label: video.getAttribute('aria-label'), caption: video.closest('figure').querySelector('figcaption').textContent,
+          link: document.querySelector('.mac-video figcaption a').getAttribute('href'),
+          linkVisible: document.querySelector('.mac-video figcaption a').checkVisibility()
+        };
+      })()`);
+      assert.equal(state.source, film); assert.equal(state.type, 'video/mp4');
+      assert.equal(state.controls, true); assert.equal(state.inline, true); assert.equal(state.preload, 'none');
+      assert.equal(state.autoplay, false); assert.equal(state.loop, false); assert.equal(state.ready, 0); assert.equal(state.loading, false);
+      assert.match(state.label, home.lang === 'fr' ? /français/ : /French/);
+      assert.match(state.caption, home.lang === 'fr' ? /français/ : /French/);
+      assert.equal(state.link, film); assert.equal(state.linkVisible, true);
+    }
+  });
+
+  test(`tutorial ${home.lang} decodes, plays and seeks after a user gesture`, async () => {
+    const response = await fetch(browser.origin + film, { headers: { Range: 'bytes=0-31' } });
+    assert.equal(response.status, 206); assert.equal(response.headers.get('content-type'), 'video/mp4');
+    assert.equal((await response.arrayBuffer()).byteLength, 32);
+    await browser.visit(home.path);
+    const playback = await browser.cdp('Runtime.evaluate', {
+      userGesture: true, awaitPromise: true, returnByValue: true,
+      expression: `new Promise((resolve, reject) => {
+        const video = document.querySelector('.mac-video video');
+        const timeout = setTimeout(() => { cleanup(); reject(new Error('Tutorial playback timed out')); }, 8000);
+        function cleanup() { clearTimeout(timeout); video.removeEventListener('timeupdate', progressed); video.removeEventListener('error', failed); }
+        function failed(error) { cleanup(); reject(new Error(video.error?.message || error?.message || 'Tutorial playback failed')); }
+        function progressed() {
+          if (video.currentTime < .1) return;
+          video.removeEventListener('timeupdate', progressed);
+          const state = { time: video.currentTime, duration: video.duration, width: video.videoWidth, height: video.videoHeight, frames: video.getVideoPlaybackQuality().totalVideoFrames };
+          video.pause();
+          video.addEventListener('seeked', () => { state.seekTime = video.currentTime; cleanup(); resolve(state); }, { once: true });
+          video.currentTime = 2;
+        }
+        video.addEventListener('timeupdate', progressed); video.addEventListener('error', failed); video.play().catch(failed);
+      })`
+    });
+    assert.equal(playback.exceptionDetails, undefined, JSON.stringify(playback.exceptionDetails));
+    const state = playback.result.value;
+    assert.equal(state.width, 1048); assert.equal(state.height, 720); assert.ok(Math.abs(state.duration - 108.4) < .2);
+    assert.ok(state.time >= .1); assert.ok(state.frames > 0); assert.ok(Math.abs(state.seekTime - 2) < .1);
+  });
+}

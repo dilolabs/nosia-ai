@@ -417,3 +417,23 @@
   .home-actions { margin-top: var(--space-4); gap: var(--space-2) var(--space-4); }
   .home-actions .btn { padding-inline: var(--space-4); }
 }
+
+.home-installation > .container { display: block; }
+.home-installation > .container > h2 { text-align: left; }
+.home-installation p { max-width: 70ch; }
+.mac-installation { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-8); align-items: start; }
+.mac-installation > * { min-width: 0; }
+.mac-steps { padding-left: var(--space-6); margin-bottom: var(--space-6); }
+.mac-steps li { padding-left: var(--space-2); margin-bottom: var(--space-4); line-height: 1.7; }
+.mac-video { margin: 0; min-width: 0; }
+.mac-video video { display: block; width: 100%; height: auto; aspect-ratio: 1048 / 720; background: var(--neutral-950); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); }
+.mac-video figcaption { margin-top: var(--space-3); font-size: var(--text-sm); line-height: 1.7; }
+.mac-video .video-written { margin-top: var(--space-3); font-size: var(--text-sm); }
+.mac-preflight { margin-top: var(--space-8); padding: var(--space-5); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); background: var(--surface-card); }
+.mac-preflight h3 { margin-bottom: var(--space-3); }
+.mac-preflight .mac-requirements { max-width: none; }
+.other-installations { margin-top: var(--space-8); padding: var(--space-5); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); }
+.other-installations > summary { cursor: pointer; min-height: 44px; font-weight: 600; line-height: 1.6; }
+.other-installations > p { margin-top: var(--space-4); }
+.other-installations .command-block { max-width: none; }
+@media (max-width: 800px) { .mac-installation { grid-template-columns: minmax(0, 1fr); } }

@@ -71,15 +71,7 @@ faq:
   </div>
 </section>
 
-<section id="quickstart" class="quickstart">
-  <div class="container">
-    <h2>Get Started in Minutes</h2>
-    <p>One command installs Docker and all dependencies:</p>
-    {% include install-command.html id="install-unix" label="Linux / macOS" command="curl -fsSL https://get.nosia.ai | sh" %}
-    <p>For Windows:</p>
-    {% include install-command.html id="install-windows" label="Windows · PowerShell" command="irm https://get.nosia.ai/install.ps1 | iex" %}
-  </div>
-</section>
+{% include home-installation.html %}
 
 <section id="demo" class="demo">
   <div class="container">

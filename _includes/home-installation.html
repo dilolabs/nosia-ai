@@ -1,0 +1,31 @@
+{%- assign home = site.data.home[page.lang] -%}
+{%- assign macos = site.data.downloads.macos -%}
+<section id="quickstart" class="quickstart home-installation">
+  <div class="container">
+    <h2>{{ home.install_title }}</h2><p>{{ home.install_intro }}</p>
+    <div class="mac-installation">
+      <div>
+        <ol class="mac-steps">{% for step in home.steps %}<li>{{ step }}</li>{% endfor %}</ol>
+        <a class="btn btn-primary mac-download" href="{{ macos.download_url }}" aria-describedby="install-requirements">{{ home.download }}</a>
+      </div>
+      <figure class="mac-video">
+        <video controls playsinline preload="none" width="{{ macos.video_width }}" height="{{ macos.video_height }}" aria-label="{{ home.video_label | escape }}">
+          <source src="{{ macos.video | relative_url }}" type="video/mp4">
+        </video>
+        <figcaption>{{ home.video_caption }} <a href="{{ macos.video | relative_url }}">{{ home.video_open }}</a></figcaption>
+        <p class="video-written">{{ home.video_written }}</p>
+      </figure>
+    </div>
+    <aside class="mac-preflight" aria-labelledby="mac-preflight-title">
+      <h3 id="mac-preflight-title">{{ home.before_install }}</h3>
+      {% include mac-requirements.html id="install-requirements" %}
+      <p>{{ home.setup_downloads }}</p><p>{{ home.permissions }}</p>
+      <p>{{ home.signed }} <a class="release-link" href="{{ macos.release_url }}">{{ home.release }}</a></p>
+    </aside>
+    <details id="other-installations" class="other-installations">
+      <summary>{{ home.other_title }}</summary><p>{{ home.other_intro }}</p>
+      {% include install-command.html id="install-unix" label=home.linux command="curl -fsSL https://get.nosia.ai | sh" %}
+      {% include install-command.html id="install-windows" label=home.windows command="irm https://get.nosia.ai/install.ps1 | iex" %}
+    </details>
+  </div>
+</section>
