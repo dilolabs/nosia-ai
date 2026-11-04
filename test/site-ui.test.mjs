@@ -90,6 +90,19 @@ test('engagement reading layout fits mobile and desktop in both themes', async (
   }
 });
 
+test('engagement conclusion stays clear of the back-to-top control', async () => {
+  for (const theme of ['light', 'dark']) {
+    await browser.visit('/engagement/', { width: 375, height: 812, theme, reduced: true });
+    await browser.evaluate('window.scrollTo(0, document.documentElement.scrollHeight); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+    const conclusion = await browser.evaluate(`(() => {
+      const paragraph = document.querySelector('article.engagement p:last-child').getBoundingClientRect();
+      const button = document.querySelector('.back-to-top').getBoundingClientRect();
+      return { bottom: paragraph.bottom, buttonTop: button.top };
+    })()`);
+    assert.ok(conclusion.bottom + 8 <= conclusion.buttonTop, `${theme}: conclusion must stay above the floating control`);
+  }
+});
+
 test('engagement is discoverable in French without changing the English home', async () => {
   for (const path of ['/', '/faq/', '/cas-usage/', '/engagement/']) {
     await browser.visit(path);

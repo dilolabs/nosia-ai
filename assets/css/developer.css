@@ -360,7 +360,8 @@
 /* Long-form advocacy uses the shared theme and a bounded reading measure. */
 .engagement {
   max-width: calc(70ch + 3rem);
-  padding-block: clamp(var(--space-10), 6vw, var(--space-20));
+  padding-top: clamp(var(--space-10), 6vw, var(--space-20));
+  padding-bottom: var(--space-20);
   font-size: var(--text-lg);
 }
 
