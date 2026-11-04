@@ -129,6 +129,8 @@ for (const home of homes) {
     assert.match(await browser.evaluate('document.title'), /Mac/);
     assert.equal(await browser.evaluate('document.querySelector(\'link[rel="canonical"]\').href'), 'https://nosia.ai' + home.path);
     const faq = schemas.find(schema => schema['@type'] === 'FAQPage');
+    assert.equal(faq.mainEntity.length, 6);
+    assert.equal(await browser.evaluate('document.querySelectorAll("#faq .faq-item").length'), 6);
     assert.deepEqual(faq.mainEntity.map(item => [item.name, item.acceptedAnswer.text]), await browser.evaluate('[...document.querySelectorAll("#faq .faq-item")].map(item => [item.querySelector("h3").textContent, item.querySelector("p").textContent])'));
     assert.equal(await browser.evaluate('document.querySelectorAll("#demo iframe, #demo img").length'), 0);
     assert.equal(await browser.evaluate('document.querySelector("#demo a").getAttribute("href")'), home.lang === 'fr' ? 'https://www.youtube.com/watch?v=HD5k-LjGvGw' : '/assets/images/nosia-demo.gif');
