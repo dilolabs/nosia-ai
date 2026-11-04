@@ -12,13 +12,14 @@
 - Film anglais : `assets/films/nosia-film-en-1280x720.mp4`, 21 497 782 octets.
 - Les vidéos sont des fichiers utilisateur non encore suivis par Git ; ne pas les modifier ni les réencoder sans demande.
 - Aucun fichier de sous-titres séparé n’est présent dans `assets/films/`.
-- `ffprobe` n’est pas disponible ; dimensions, codecs et lecture effective restent à vérifier avant toute affirmation de compatibilité.
+- `ffprobe` n’est pas disponible. L’analyse directe des conteneurs MP4 confirme pour chaque film une durée de 84 secondes, une piste vidéo H.264 (`avc1`) et des dimensions de 1280×720 ; la lecture effective reste à vérifier dans le navigateur.
 
 ## Decisions
 
 - Utiliser les films présents dans `assets/films/` : demande explicite de l’utilisateur, pour réutiliser les médias fournis sans hébergement tiers.
 - Placement sous le titre, avant le texte, avec le film de chaque langue : proposition approuvée par l’utilisateur (« Ouoi », compris comme « Oui »), pour rendre le film visible sans remplacer le plaidoyer écrit.
 - Lecteur adaptatif avec contrôles, sans démarrage automatique ni préchargement : inclus dans la proposition approuvée, pour laisser le choix de la lecture et éviter de charger environ 21–22 Mo sans action de l’utilisateur.
+- Document de cadrage validé par l’utilisateur (« Oui ») avant préparation du plan d’implémentation.
 
 ## Intégration retenue
 
