@@ -31,7 +31,7 @@ Ne pas modifier `_site/`, `_layouts/default.html`, les includes SEO, `index-en.m
 
 **Files:** Create `engagement.md`; Modify `test/site-ui.test.mjs`.
 
-- [ ] **Step 1: Ajouter les assertions de contenu et de métadonnées après les hooks du fichier de tests.** Les paragraphes attendus sont des constantes indépendantes du fichier public ; ne pas les lire depuis `engagement.md`, car cela masquerait une modification involontaire du texte.
+- [x] **Step 1: Ajouter les assertions de contenu et de métadonnées après les hooks du fichier de tests.** Les paragraphes attendus sont des constantes indépendantes du fichier public ; ne pas les lire depuis `engagement.md`, car cela masquerait une modification involontaire du texte.
 
 ```js
 const engagementTitle = 'Pour une intelligence artificielle dont nous gardons la maîtrise';
@@ -70,13 +70,13 @@ test('engagement preserves the complete French advocacy and its metadata', async
 });
 ```
 
-- [ ] **Step 2: Construire et exécuter le nouveau test avant l’implémentation.**
+- [x] **Step 2: Construire et exécuter le nouveau test avant l’implémentation.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test --test-name-pattern='engagement preserves' test/site-ui.test.mjs`.
 
 Expected: FAIL, car `/engagement/` n’existe pas et les métadonnées/paragraphes attendus sont absents. Une erreur de démarrage Chromium n’est pas un échec fonctionnel : résoudre ce prérequis avant de continuer.
 
-- [ ] **Step 3: Créer `engagement.md` avec ce contenu exact.** Utiliser l’outil patch, comme pour les autres modifications de fichiers. Le HTML explicite évite toute transformation typographique du plaidoyer par Markdown.
+- [x] **Step 3: Créer `engagement.md` avec ce contenu exact.** Utiliser l’outil patch, comme pour les autres modifications de fichiers. Le HTML explicite évite toute transformation typographique du plaidoyer par Markdown.
 
 ```html
 ---
@@ -121,13 +121,13 @@ schema: [BreadcrumbList]
 </article>
 ```
 
-- [ ] **Step 4: Reconstruire et relancer le test ciblé.**
+- [x] **Step 4: Reconstruire et relancer le test ciblé.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test --test-name-pattern='engagement preserves' test/site-ui.test.mjs`.
 
 Expected: PASS, treize paragraphes strictement identiques, un seul h1, canonical et fil d’Ariane corrects, aucun alternate anglais fictif.
 
-- [ ] **Step 5: Créer un commit ciblé.**
+- [x] **Step 5: Créer un commit ciblé.**
 
 Run `git add -- engagement.md test/site-ui.test.mjs`, puis `git commit -m "feat: publish French Nosia engagement"`.
 
@@ -135,7 +135,7 @@ Run `git add -- engagement.md test/site-ui.test.mjs`, puis `git commit -m "feat:
 
 **Files:** Modify `assets/css/developer.css`; Modify `test/site-ui.test.mjs`.
 
-- [ ] **Step 1: Ajouter un test navigateur de lecture, sans dépendance supplémentaire.**
+- [x] **Step 1: Ajouter un test navigateur de lecture, sans dépendance supplémentaire.**
 
 ```js
 test('engagement reading layout fits mobile and desktop in both themes', async () => {
@@ -188,13 +188,13 @@ test('engagement reading layout fits mobile and desktop in both themes', async (
 });
 ```
 
-- [ ] **Step 2: Exécuter le test avant le CSS.**
+- [x] **Step 2: Exécuter le test avant le CSS.**
 
 Run `node --test --test-name-pattern='engagement reading' test/site-ui.test.mjs`.
 
 Expected: FAIL sur la taille de police (16px), l’espacement (0) ou la largeur sur ordinateur. Le site généré contient déjà la page de Task 1.
 
-- [ ] **Step 3: Ajouter ces règles ciblées à la fin de `assets/css/developer.css`.** Les couleurs héritées utilisent les tokens des thèmes existants ; ne pas ajouter de fond de section ni de palette spécifique.
+- [x] **Step 3: Ajouter ces règles ciblées à la fin de `assets/css/developer.css`.** Les couleurs héritées utilisent les tokens des thèmes existants ; ne pas ajouter de fond de section ni de palette spécifique.
 
 ```css
 /* Long-form advocacy uses the shared theme and a bounded reading measure. */
@@ -214,13 +214,13 @@ Expected: FAIL sur la taille de police (16px), l’espacement (0) ou la largeur 
 .engagement p:last-child { margin-bottom: 0; }
 ```
 
-- [ ] **Step 4: Reconstruire et vérifier les deux tests de page.**
+- [x] **Step 4: Reconstruire et vérifier les deux tests de page.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test --test-name-pattern='engagement (preserves|reading)' test/site-ui.test.mjs`.
 
 Expected: PASS dans les deux thèmes, sur toutes les largeurs.
 
-- [ ] **Step 5: Créer un commit ciblé.**
+- [x] **Step 5: Créer un commit ciblé.**
 
 Run `git add -- assets/css/developer.css test/site-ui.test.mjs`, puis `git commit -m "style: add accessible engagement reading layout"`.
 
@@ -228,7 +228,7 @@ Run `git add -- assets/css/developer.css test/site-ui.test.mjs`, puis `git commi
 
 **Files:** Modify `_data/translations.yml`, `_includes/header.html`, `index.md`, `test/site-ui.test.mjs`.
 
-- [ ] **Step 1: Ajouter les tests de découverte et de non-régression anglaise.**
+- [x] **Step 1: Ajouter les tests de découverte et de non-régression anglaise.**
 
 ```js
 test('engagement is discoverable in French without changing the English home', async () => {
@@ -263,20 +263,20 @@ test('engagement remains available in mobile navigation and without JavaScript',
 });
 ```
 
-- [ ] **Step 2: Exécuter les tests avant de modifier la navigation et l’accueil.**
+- [x] **Step 2: Exécuter les tests avant de modifier la navigation et l’accueil.**
 
 Run `node --test --test-name-pattern='engagement (is discoverable|remains available)' test/site-ui.test.mjs`.
 
 Expected: FAIL, lien de navigation et extrait absents.
 
-- [ ] **Step 3: Ajouter ces deux clés à la section `fr:` de `_data/translations.yml`, à proximité de `nav_usecases`.** Ne rien ajouter dans `en:`.
+- [x] **Step 3: Ajouter ces deux clés à la section `fr:` de `_data/translations.yml`, à proximité de `nav_usecases`.** Ne rien ajouter dans `en:`.
 
 ```yaml
   nav_engagement: "Notre engagement"
   engagement_url: "/engagement/"
 ```
 
-- [ ] **Step 4: Insérer ce bloc immédiatement après le lien `t.nav_usecases` dans `_includes/header.html`.** Le menu existant est partagé entre ordinateur et mobile ; ne pas créer une seconde navigation.
+- [x] **Step 4: Insérer ce bloc immédiatement après le lien `t.nav_usecases` dans `_includes/header.html`.** Le menu existant est partagé entre ordinateur et mobile ; ne pas créer une seconde navigation.
 
 ```liquid
       {% if t.engagement_url %}
@@ -284,7 +284,7 @@ Expected: FAIL, lien de navigation et extrait absents.
       {% endif %}
 ```
 
-- [ ] **Step 5: Ajouter cette section dans `index.md`, juste après la fermeture de `story` et avant l’ouverture de `community`.**
+- [x] **Step 5: Ajouter cette section dans `index.md`, juste après la fermeture de `story` et avant l’ouverture de `community`.**
 
 ```html
 <section id="commitment-teaser" class="description">
@@ -296,7 +296,7 @@ Expected: FAIL, lien de navigation et extrait absents.
 </section>
 ```
 
-- [ ] **Step 6: Adapter le test existant `developer-first home preserves anchors...`.** Conserver la constante `ids` existante pour l’anglais et remplacer uniquement son assertion de liste par :
+- [x] **Step 6: Adapter le test existant `developer-first home preserves anchors...`.** Conserver la constante `ids` existante pour l’anglais et remplacer uniquement son assertion de liste par :
 
 ```js
     const expectedIds = path === '/'
@@ -305,7 +305,7 @@ Expected: FAIL, lien de navigation et extrait absents.
     assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), expectedIds);
 ```
 
-- [ ] **Step 7: Ajouter `/engagement/` aux tableaux des tests existants `page backgrounds stay uniform...` et `secondary pages retain...`.** Ajouter `#commitment-teaser p` et `#commitment-teaser .btn` au tableau `selectors` du test existant de contraste de l’accueil. Les tests dédiés de Task 2 couvrent déjà le contraste de l’article.
+- [x] **Step 7: Ajouter `/engagement/` aux tableaux des tests existants `page backgrounds stay uniform...` et `secondary pages retain...`.** Ajouter `#commitment-teaser p` et `#commitment-teaser .btn` au tableau `selectors` du test existant de contraste de l’accueil. Les tests dédiés de Task 2 couvrent déjà le contraste de l’article.
 
 Le fragment ajouté aux deux tableaux d’URL est :
 
@@ -319,22 +319,38 @@ Le fragment ajouté au tableau de sélecteurs de contraste est :
 '#commitment-teaser p', '#commitment-teaser .btn'
 ```
 
-- [ ] **Step 8: Reconstruire et exécuter toute la suite navigateur.**
+- [x] **Step 8: Reconstruire et exécuter toute la suite navigateur.**
 
 Run `bundle exec jekyll build --baseurl ""`, puis `node --test test/site-ui.test.mjs`.
 
 Expected: tous les tests passent, y compris l’absence de débordement de la navigation française à 1280px, les menus mobiles et l’ordre des sections FR/EN.
 
-- [ ] **Step 9: Créer un commit ciblé.**
+Adaptation constatée pendant l’exécution : le lien supplémentaire révèle que le `justify-content: flex-end` du menu ordinateur reste actif sur l’axe vertical du menu mobile. À 812×375, le premier lien déborde au-dessus de la zone défilable (9,4px contre un panneau commençant à 52px) et ne peut pas être atteint par défilement. Le test de focus existant reproduit cette régression. Ajouter `justify-content: flex-start` uniquement à `.header .nav` dans la règle mobile de `assets/css/developer.css` rétablit l’accès à toute la liste ; l’hypothèse a été confirmée dans Chromium avant modification du fichier.
 
-Run `git add -- _data/translations.yml _includes/header.html index.md test/site-ui.test.mjs`, puis `git commit -m "feat: link engagement from French navigation and home"`.
+- [x] **Step 9: Créer un commit ciblé.**
+
+Run `git add -- _data/translations.yml _includes/header.html index.md assets/css/developer.css test/site-ui.test.mjs`, puis `git commit -m "feat: link engagement from French navigation and home"`.
 
 ## Task 4: Vérification finale et compte rendu
 
 **Files:** Relire les six fichiers de la table initiale et cocher ce plan au fur et à mesure.
 
-- [ ] **Step 1: Charger `verification-before-completion` et effectuer une revue de fidélité au cadrage.** Comparer le texte publié avec les treize paragraphes du document approuvé. Vérifier que la dernière phrase est en gras, qu’aucun nouveau CTA financier n’a été ajouté et que les textes anglais n’ont pas changé.
-- [ ] **Step 2: Exécuter `bin/verify`.** Expected: construction Jekyll réussie, html-proofer sans erreur de lien interne, présence de `https://nosia.ai/engagement/` dans `_site/sitemap.xml`.
-- [ ] **Step 3: Exécuter `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-engagement node --test test/site-ui.test.mjs`.** Expected: aucun test en échec. Ouvrir avec l’outil read les captures `engagement-light-375.png`, `engagement-dark-375.png` et `engagement-light-1280.png` dans ce répertoire ; contrôler titre, mesure de lecture, marges et conclusion.
-- [ ] **Step 4: Exécuter `git diff --check` et `git status --short`.** Expected: aucun problème d’espacement, aucun fichier généré versionné ni modification hors périmètre. Consigner les commandes effectivement exécutées et leurs résultats, sans annoncer une mise en ligne : cette tâche modifie le dépôt, pas le déploiement.
-- [ ] **Step 5: Répondre en français avec l’URL de la nouvelle page, les deux points d’accès et le résultat des vérifications.** Ne proposer ni traduction ni fonctionnalité supplémentaire comme si elle était incluse.
+- [x] **Step 1: Charger `verification-before-completion` et effectuer une revue de fidélité au cadrage.** Comparer le texte publié avec les treize paragraphes du document approuvé. Vérifier que la dernière phrase est en gras, qu’aucun nouveau CTA financier n’a été ajouté et que les textes anglais n’ont pas changé.
+- [x] **Step 2: Exécuter `bin/verify`.** Expected: construction Jekyll réussie, html-proofer sans erreur de lien interne, présence de `https://nosia.ai/engagement/` dans `_site/sitemap.xml`.
+- [x] **Step 3: Exécuter `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-engagement node --test test/site-ui.test.mjs`.** Expected: aucun test en échec. Ouvrir avec l’outil read les captures `engagement-light-375.png`, `engagement-dark-375.png` et `engagement-light-1280.png` dans ce répertoire ; contrôler titre, mesure de lecture, marges et conclusion.
+
+Adaptation issue de la revue visuelle : à 375px, la marge basse de 40px laissait le bouton flottant de retour en haut recouvrir la fin de la conclusion. Un test navigateur dédié reproduit le recouvrement après défilement complet, dans les deux thèmes. Remplacer `padding-block` de `.engagement` par le même `padding-top` et `padding-bottom: var(--space-20)` réserve 80px en fin d’article, sans modifier le texte ni le contrôle partagé.
+- [x] **Step 4: Exécuter `git diff --check` et `git status --short`.** Expected: aucun problème d’espacement, aucun fichier généré versionné ni modification hors périmètre. Consigner les commandes effectivement exécutées et leurs résultats, sans annoncer une mise en ligne : cette tâche modifie le dépôt, pas le déploiement.
+- [x] **Step 5: Répondre en français avec l’URL de la nouvelle page, les deux points d’accès et le résultat des vérifications.** Ne proposer ni traduction ni fonctionnalité supplémentaire comme si elle était incluse.
+
+## Résultats de l’exécution
+
+- Baseline avant implémentation : construction Jekyll réussie et 40 tests navigateur réussis.
+- Cycles rouge/vert observés pour la page absente, le rythme de lecture, les liens de découverte et la conclusion recouverte.
+- `bin/verify` : réussi, 13 fichiers HTML analysés et 26 liens internes contrôlés. Seul avertissement non bloquant : `IO::Buffer` expérimental dans html-proofer sous Ruby 4.0.7.
+- `NOSIA_SCREENSHOTS=/tmp/opencode/nosia-engagement node --test test/site-ui.test.mjs` : 45 tests réussis, aucun échec ni test ignoré.
+- Comparaison indépendante avec le texte de référence : treize paragraphes identiques. Aucun changement dans `index-en.md` ou `en/`.
+- Canonical, alternates français, repli EN, fil d’Ariane et entrée de sitemap vérifiés.
+- Captures examinées : article clair/sombre à 375px, article à 1280px, conclusion mobile, extrait sur l’accueil et menu en paysage. Les deux corrections de dégagement sont couvertes par des tests.
+- `git diff --check` : réussi ; seuls des fichiers source et documents de suivi sont versionnés.
+- Réalisation en session, sans sous-agents, sur la branche `plaidoyer`. Aucun push, fusion ou déploiement effectué.
