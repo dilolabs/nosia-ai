@@ -41,6 +41,55 @@ test('engagement preserves the complete French advocacy and its metadata', async
   assert.equal(breadcrumbs.itemListElement.at(-1).item, 'https://nosia.ai/engagement/');
 });
 
+test('engagement reading layout fits mobile and desktop in both themes', async () => {
+  for (const theme of ['light', 'dark']) {
+    for (const width of [320, 375, 768, 1280]) {
+      await browser.visit('/engagement/', { width, theme, reduced: true });
+      const reading = await browser.evaluate(`(() => {
+        const article = document.querySelector('article.engagement');
+        const p = article.querySelector('p');
+        const style = getComputedStyle(p);
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 1;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        const ancestors = [];
+        for (let node = p; node; node = node.parentElement) ancestors.unshift(node);
+        function paint(color) { context.fillStyle = color; context.fillRect(0, 0, 1, 1); }
+        function luminance() {
+          return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(value => {
+            value /= 255;
+            return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
+          }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+        }
+        paint('#fff');
+        ancestors.forEach(node => paint(getComputedStyle(node).backgroundColor));
+        const background = luminance();
+        paint(style.color);
+        const foreground = luminance();
+        return {
+          overflow: document.documentElement.scrollWidth > innerWidth,
+          width: article.getBoundingClientRect().width,
+          font: parseFloat(style.fontSize),
+          leading: parseFloat(style.lineHeight) / parseFloat(style.fontSize),
+          spacing: parseFloat(style.marginBottom),
+          contrast: (Math.max(background, foreground) + .05) / (Math.min(background, foreground) + .05),
+          dark: document.documentElement.classList.contains('dark')
+        };
+      })()`);
+      assert.equal(reading.overflow, false, `${theme} ${width}`);
+      assert.ok(reading.width <= 900, `bounded reading width: ${reading.width}`);
+      assert.ok(reading.font >= 18);
+      assert.ok(reading.leading >= 1.6);
+      assert.ok(reading.spacing >= 20);
+      assert.ok(reading.contrast >= 4.5, `${theme}: ${reading.contrast}:1`);
+      assert.equal(reading.dark, theme === 'dark');
+      if (process.env.NOSIA_SCREENSHOTS) {
+        await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/engagement-${theme}-${width}.png`);
+      }
+    }
+  }
+});
+
 test('existing FR and EN pages retain language and canonical URLs', async () => {
   for (const [path, language] of [['/', 'fr'], ['/en/', 'en']]) {
     await browser.visit(path);

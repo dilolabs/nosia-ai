@@ -355,3 +355,19 @@
   .footer .links { gap: var(--space-3) var(--space-5); }
   .back-to-top { bottom: var(--space-4); right: var(--space-4); }
 }
+
+/* Long-form advocacy uses the shared theme and a bounded reading measure. */
+.engagement {
+  max-width: calc(70ch + 3rem);
+  padding-block: clamp(var(--space-10), 6vw, var(--space-20));
+  font-size: var(--text-lg);
+}
+
+.engagement h1 {
+  margin-bottom: var(--space-8);
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-wrap: balance;
+}
+
+.engagement p { margin-bottom: var(--space-6); }
+.engagement p:last-child { margin-bottom: 0; }
