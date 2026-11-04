@@ -1,0 +1,10 @@
+macos:
+  version: "0.6.1"
+  chip: "Apple M1"
+  minimum_macos: "26.5"
+  memory_gb: 16
+  download_url: "https://github.com/dilolabs/nosia/releases/download/v0.6.1/Nosia-Native-arm64.dmg"
+  release_url: "https://github.com/dilolabs/nosia/releases/tag/v0.6.1"
+  video: "/assets/films/nosia-macos-installation-fr-v0.6.1.mp4"
+  video_width: 1048
+  video_height: 720

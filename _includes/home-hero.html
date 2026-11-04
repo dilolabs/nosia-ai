@@ -1,32 +1,17 @@
 {%- assign home = site.data.home[page.lang] -%}
-{%- assign t = site.data.translations[page.lang] -%}
-<section class="developer-hero">
-  <div class="container developer-hero-grid">
-    <div class="developer-hero-copy">
-      <p class="developer-eyebrow">{{ home.eyebrow }}</p>
-      <h1>{{ home.title }} <span>{{ home.title_accent }}</span></h1>
-      <p class="developer-summary">{{ home.summary }}</p>
-      <div class="developer-actions">
-        <a class="btn btn-primary" href="#quickstart">{{ t.deploy }}</a>
-        <a class="btn" href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">{{ home.source }}</a>
-      </div>
-      <p class="developer-ownership">{{ home.ownership }}</p>
-    </div>
-    <div class="developer-terminal">
-      <div class="terminal-heading">
-        <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span>{{ home.terminal_title }}</span>
-      </div>
-      <div class="terminal-content">
-        <p class="terminal-intro">{{ home.terminal_intro }}</p>
-        {% include install-command.html id="hero-install" label="Linux / macOS" command="curl -fsSL https://get.nosia.ai | sh" %}
-        <a class="terminal-platforms" href="#quickstart">{{ home.platforms }}</a>
-      </div>
-    </div>
-  </div>
+{%- assign macos = site.data.downloads.macos -%}
+<section class="home-hero" aria-labelledby="home-title">
   <div class="container">
-    <ul class="developer-capabilities">
-      {% for capability in home.capabilities %}<li>{{ capability }}</li>{% endfor %}
-    </ul>
+    <p class="home-eyebrow">{{ home.eyebrow }}</p>
+    <h1 id="home-title">{{ home.title }} <span>{{ home.title_accent }}</span></h1>
+    <p class="home-intro">{{ home.intro }}</p>
+    <p class="home-summary">{{ home.summary }}</p>
+    <div class="home-actions">
+      <a class="btn btn-primary home-download" href="{{ macos.download_url }}" aria-describedby="hero-requirements">{{ home.download }}</a>
+      <a class="home-install-link" href="#quickstart">{{ home.installation }}</a>
+    </div>
+    {% include mac-requirements.html id="hero-requirements" %}
+    <p class="home-privacy">{{ home.privacy }}</p>
+    <a class="home-other-link" href="#other-installations">{{ home.other_platforms }}</a>
   </div>
 </section>
