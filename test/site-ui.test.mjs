@@ -90,6 +90,37 @@ test('engagement reading layout fits mobile and desktop in both themes', async (
   }
 });
 
+test('engagement is discoverable in French without changing the English home', async () => {
+  for (const path of ['/', '/faq/', '/cas-usage/', '/engagement/']) {
+    await browser.visit(path);
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.textContent'), 'Notre engagement');
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/cas-usage/"]\')?.nextElementSibling?.getAttribute("href")'), '/engagement/');
+  }
+  await browser.visit('/');
+  assert.equal(await browser.evaluate('document.querySelector("#story")?.nextElementSibling?.id'), 'commitment-teaser');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser")?.nextElementSibling?.id'), 'community');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser h2")?.textContent'), 'Notre engagement');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser p")?.textContent'), engagementParagraphs[2]);
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.getAttribute("href")'), '/engagement/');
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.textContent'), 'Lire notre engagement');
+  for (const path of ['/en/', '/en/faq/', '/en/use-cases/']) {
+    await browser.visit(path);
+    assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')'), null);
+    assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser")'), null);
+  }
+});
+
+test('engagement remains available in mobile navigation and without JavaScript', async () => {
+  await browser.visit('/', { width: 375 });
+  await browser.evaluate('document.querySelector("[data-menu-toggle]").click()');
+  assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.checkVisibility()'), true);
+  await browser.visit('/', { width: 375, javascript: false });
+  assert.equal(await browser.evaluate('document.querySelector(\'#primary-nav a[href="/engagement/"]\')?.checkVisibility()'), true);
+  assert.equal(await browser.evaluate('document.querySelector("#commitment-teaser a")?.checkVisibility()'), true);
+  await browser.visit('/engagement/', { width: 375, javascript: false });
+  assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("article.engagement p")].map(p => p.textContent)'), engagementParagraphs);
+});
+
 test('existing FR and EN pages retain language and canonical URLs', async () => {
   for (const [path, language] of [['/', 'fr'], ['/en/', 'en']]) {
     await browser.visit(path);
@@ -215,7 +246,10 @@ test('developer-first home preserves anchors, moves installation forward, and ke
   for (const path of ['/', '/en/']) {
     await browser.visit(path);
     assert.equal(await browser.evaluate('Boolean(document.querySelector(".developer-hero #hero-install"))'), true);
-    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ids);
+    const expectedIds = path === '/'
+      ? [...ids.slice(0, 8), 'commitment-teaser', ...ids.slice(8)]
+      : ids;
+    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), expectedIds);
     assert.equal(await browser.evaluate('document.querySelector("#install-windows").textContent'), 'irm https://get.nosia.ai/install.ps1 | iex');
     assert.equal(await browser.evaluate('document.querySelectorAll("#hero-install").length'), 1);
     assert.equal(await browser.evaluate('document.querySelector(".developer-hero .btn-primary").getAttribute("href")'), '#quickstart');
@@ -297,7 +331,7 @@ test('normal interface text meets 4.5 to 1 contrast in both themes', async () =>
   for (const theme of ['light', 'dark']) {
     await browser.visit('/', { theme, reduced: true });
     const pairs = await browser.evaluate(`(() => {
-      const selectors = ['.developer-eyebrow', '.developer-summary', '.developer-ownership', '.developer-actions .btn', '.developer-terminal .copy-button', '.developer-terminal code', '.terminal-platforms', '#features > .container > p', '#features .card p', '#quickstart p', '#quickstart .copy-button', '.footer p', '.footer .links a', '.header-controls .lang-toggle', '.header .mobile-deploy'];
+      const selectors = ['.developer-eyebrow', '.developer-summary', '.developer-ownership', '.developer-actions .btn', '.developer-terminal .copy-button', '.developer-terminal code', '.terminal-platforms', '#features > .container > p', '#features .card p', '#quickstart p', '#quickstart .copy-button', '#commitment-teaser p', '#commitment-teaser .btn', '.footer p', '.footer .links a', '.header-controls .lang-toggle', '.header .mobile-deploy'];
       const canvas = document.createElement('canvas');
       canvas.width = canvas.height = 1;
       const context = canvas.getContext('2d', { willReadFrequently: true });
@@ -333,7 +367,7 @@ test('below-fold demos defer loading in both languages', async () => {
 
 for (const theme of ['light', 'dark']) {
   test(`page backgrounds stay uniform with the ${theme} theme`, async () => {
-    for (const path of ['/', '/en/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
+    for (const path of ['/', '/en/', '/engagement/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
       await browser.visit(path, { theme, reduced: true });
       const surfaces = await browser.evaluate(`(() => {
         const canvas = document.createElement('canvas');
@@ -388,7 +422,7 @@ for (const path of ['/', '/en/']) {
 }
 
 test('secondary pages retain readable headings, valid schema and no horizontal page overflow', async () => {
-  for (const path of ['/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
+  for (const path of ['/engagement/', '/faq/', '/en/faq/', '/cas-usage/', '/en/use-cases/', '/nosia-vs-openai/', '/en/nosia-vs-openai/', '/nosia-vs-ollama/', '/en/nosia-vs-ollama/', '/404.html']) {
     await browser.visit(path, { width: 375 });
     assert.equal(await browser.evaluate('document.querySelectorAll("h1").length'), 1, path);
     assert.equal(await browser.evaluate('document.documentElement.scrollWidth <= innerWidth'), true, path);

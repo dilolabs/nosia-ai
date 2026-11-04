@@ -163,6 +163,14 @@ faq:
   </div>
 </section>
 
+<section id="commitment-teaser" class="description">
+  <div class="container">
+    <h2>Notre engagement</h2>
+    <p>Nous défendons le droit de choisir où nos données sont traitées, quels modèles nous utilisons et comment nos outils évoluent. Le droit de comprendre un système, de l’adapter et de pouvoir en changer.</p>
+    <a href="{{ '/engagement/' | relative_url }}" class="btn">Lire notre engagement</a>
+  </div>
+</section>
+
 <section id="community" class="community">
   <div class="container">
     <h2>Communauté & Support</h2>

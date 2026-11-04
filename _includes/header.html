@@ -20,6 +20,9 @@
     </a>
     <nav class="nav" id="primary-nav" aria-label="{{ t.nav_aria }}">
       <a href="{{ t.usecases_url | relative_url }}">{{ t.nav_usecases }}</a>
+      {% if t.engagement_url %}
+      <a href="{{ t.engagement_url | relative_url }}">{{ t.nav_engagement }}</a>
+      {% endif %}
       <a href="{{ t.faq_url | relative_url }}">{{ t.nav_faq }}</a>
       <a href="{{ home_url | relative_url }}#documentation">{{ t.documentation }}</a>
       <a href="{{ home_url | relative_url }}#community">{{ t.community }}</a>
