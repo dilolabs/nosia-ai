@@ -149,3 +149,77 @@ for (const home of homes) {
     assert.match(copy, /OpenAI/);
   });
 }
+
+for (const home of homes) {
+  test(`layout ${home.lang} fits small screens and preserves the real tutorial ratio`, async () => {
+    for (const theme of ['light', 'dark']) {
+      for (const width of [320, 375, 768, 1280]) {
+        await browser.visit(home.path, { width, height: 900, theme, reduced: true });
+        await browser.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+        const layout = await browser.evaluate(`(() => {
+          const video = document.querySelector('.mac-video video').getBoundingClientRect();
+          const steps = document.querySelector('.mac-steps').getBoundingClientRect();
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            ratio: video.width / video.height,
+            stacked: video.top >= steps.bottom,
+            columns: video.left > steps.right,
+            requests: performance.getEntriesByType('resource').filter(entry => entry.name.includes('nosia-macos-installation-fr-v0.6.1.mp4')).length
+          };
+        })()`);
+        assert.equal(layout.overflow, false, `${home.lang} ${theme} ${width}`);
+        assert.ok(Math.abs(layout.ratio - 1048 / 720) < .03);
+        assert.equal(layout.requests, 0);
+        if (width <= 768) assert.equal(layout.stacked, true);
+        if (width === 1280) assert.equal(layout.columns, true);
+        if (process.env.NOSIA_SCREENSHOTS) {
+          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/home-${home.lang}-${theme}-${width}.png`);
+          await browser.evaluate('document.querySelector("#quickstart").scrollIntoView({block:"start",behavior:"instant"})');
+          await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/mac-guide-${home.lang}-${theme}-${width}.png`);
+        }
+      }
+    }
+  });
+
+  test(`secondary installation ${home.lang} stays clear of the header and works by keyboard`, async () => {
+    await browser.visit(home.path, { width: 375, height: 812, reduced: true });
+    await browser.evaluate('document.querySelector(".home-other-link").click(); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
+    const clear = await browser.evaluate('document.querySelector("#other-installations > summary").getBoundingClientRect().top >= document.querySelector(".header").getBoundingClientRect().bottom');
+    assert.equal(clear, true);
+    await browser.evaluate('document.querySelector("#other-installations > summary").focus()');
+    for (const type of ['keyDown', 'keyUp']) {
+      await browser.cdp('Input.dispatchKeyEvent', {
+        type, key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13,
+        text: type === 'keyDown' ? '\r' : undefined
+      });
+    }
+    assert.equal(await browser.evaluate('document.querySelector("#other-installations").open'), true);
+    assert.equal(await browser.evaluate('document.activeElement.matches("#other-installations > summary")'), true);
+    assert.ok(await browser.evaluate('parseFloat(getComputedStyle(document.activeElement).outlineWidth)') >= 2);
+    assert.equal(await browser.evaluate('document.querySelector("#install-unix").checkVisibility()'), true);
+  });
+
+  test(`tutorial failure ${home.lang} leaves the written guide and direct file link available`, async () => {
+    await browser.cdp('Network.setBlockedURLs', { urls: ['https://*', '*nosia-macos-installation-fr-v0.6.1.mp4*'] });
+    try {
+      await browser.visit(home.path);
+      const failed = await browser.cdp('Runtime.evaluate', {
+        userGesture: true, awaitPromise: true, returnByValue: true,
+        expression: `new Promise(resolve => {
+          const video = document.querySelector('.mac-video video');
+          const timeout = setTimeout(() => resolve(false), 5000);
+          // A failed nested source emits a non-bubbling error in Chromium.
+          video.addEventListener('error', () => { clearTimeout(timeout); resolve(true); }, { once: true, capture: true });
+          video.play().catch(() => { clearTimeout(timeout); resolve(true); });
+        })`
+      });
+      assert.equal(failed.exceptionDetails, undefined);
+      assert.equal(failed.result.value, true);
+      assert.equal(await browser.evaluate('document.querySelector(".mac-steps").checkVisibility()'), true);
+      assert.equal(await browser.evaluate('document.querySelector(".mac-video figcaption a").checkVisibility()'), true);
+      assert.equal(await browser.evaluate('document.querySelector(".mac-video figcaption a").getAttribute("href")'), film);
+    } finally {
+      await browser.cdp('Network.setBlockedURLs', { urls: ['https://*'] });
+    }
+  });
+}

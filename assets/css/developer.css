@@ -446,3 +446,19 @@
 .home-content :is(h2, h3) { text-wrap: balance; }
 .home-content#demo h2 { text-align: left; }
 .home-content#demo .btn { min-height: 44px; }
+
+.home-hero,
+.home-content[id],
+.home-installation,
+#other-installations {
+  scroll-margin-top: 7rem;
+}
+
+.home-install-link,
+.home-other-link {
+  color: var(--accent-strong);
+}
+
+.dark :is(.home-install-link, .home-other-link) {
+  color: var(--accent-soft-text);
+}
