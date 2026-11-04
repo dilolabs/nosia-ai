@@ -71,4 +71,49 @@ for (const film of films) {
       }
     }
   });
+
+  test(`film ${film.language} is served as MP4 and plays after a user gesture`, async () => {
+    const response = await fetch(browser.origin + film.source, { method: 'HEAD' });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'video/mp4');
+    await browser.visit(film.path);
+    const playback = await browser.cdp('Runtime.evaluate', {
+      expression: `new Promise((resolve, reject) => {
+        const video = document.querySelector('.engagement-film video');
+        function cleanup() {
+          video.removeEventListener('timeupdate', progressed);
+          video.removeEventListener('error', failed);
+        }
+        function progressed() {
+          if (video.currentTime >= .1) {
+            const state = {
+              time: video.currentTime, duration: video.duration,
+              width: video.videoWidth, height: video.videoHeight,
+              frames: video.getVideoPlaybackQuality().totalVideoFrames,
+              paused: video.paused
+            };
+            video.pause();
+            cleanup();
+            resolve(state);
+          }
+        }
+        function failed(error) {
+          cleanup();
+          reject(new Error(video.error?.message || error?.message || 'Video playback failed'));
+        }
+        video.addEventListener('timeupdate', progressed);
+        video.addEventListener('error', failed);
+        video.play().catch(failed);
+      })`,
+      userGesture: true, awaitPromise: true, returnByValue: true
+    });
+    assert.equal(playback.exceptionDetails, undefined, JSON.stringify(playback.exceptionDetails));
+    const state = playback.result.value;
+    assert.equal(state.width, 1280);
+    assert.equal(state.height, 720);
+    assert.ok(state.duration > 0);
+    assert.ok(state.time >= .1);
+    assert.ok(state.frames > 0);
+    assert.equal(state.paused, false);
+  });
 }

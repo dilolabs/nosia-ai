@@ -8,6 +8,7 @@ export async function openBrowser() {
   const root = resolve('_site');
   const types = {
     '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
+    '.mp4': 'video/mp4',
     '.png': 'image/png', '.gif': 'image/gif', '.svg': 'image/svg+xml'
   };
   const server = createServer(async (request, response) => {
