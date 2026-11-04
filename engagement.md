@@ -7,10 +7,13 @@ title: Notre engagement
 seo_title: "Pour une intelligence artificielle dont nous gardons la maîtrise"
 seo_description: "Notre engagement pour une intelligence artificielle ouverte, maîtrisée et adaptée aux besoins des organisations, dans une démarche de sobriété."
 schema: [BreadcrumbList]
+film: /assets/films/nosia-film-fr-1280x720.mp4
 ---
 
 <article class="container engagement" aria-labelledby="engagement-title">
   <h1 id="engagement-title">Pour une intelligence artificielle dont nous gardons la maîtrise</h1>
+
+  {% include engagement-film.html %}
 
   <p>Une entreprise possède des années de savoir-faire. Une association conserve la mémoire de ses actions. Une collectivité connaît son territoire. Derrière leurs documents, leurs échanges et leurs procédures, il y a un patrimoine construit par des personnes.</p>
 

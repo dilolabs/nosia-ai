@@ -7,10 +7,13 @@ title: Our commitment
 seo_title: "For artificial intelligence that remains under our control"
 seo_description: "Our commitment to open, adaptable artificial intelligence that organizations can control, with a resource-conscious approach."
 schema: [BreadcrumbList]
+film: /assets/films/nosia-film-en-1280x720.mp4
 ---
 
 <article class="container engagement" aria-labelledby="engagement-title">
   <h1 id="engagement-title">For artificial intelligence that remains under our control</h1>
+
+  {% include engagement-film.html %}
 
   <p>A company has years of expertise. An association preserves the memory of its work. A local authority knows its area. Behind their documents, conversations, and procedures lies a body of knowledge built by people.</p>
 

@@ -1,0 +1,7 @@
+{%- assign film_text = site.data.translations[page.lang] -%}
+<figure class="engagement-film">
+  <video controls playsinline preload="none" width="1280" height="720" aria-label="{{ film_text.engagement_film_label }}">
+    <source src="{{ page.film | relative_url }}" type="video/mp4">
+  </video>
+  <figcaption><a href="{{ page.film | relative_url }}">{{ film_text.engagement_film_open }}</a></figcaption>
+</figure>

@@ -373,3 +373,20 @@
 
 .engagement p { margin-bottom: var(--space-6); }
 .engagement p:last-child { margin-bottom: 0; }
+
+.engagement-film { margin-bottom: var(--space-8); }
+
+.engagement-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  background: var(--neutral-950);
+}
+
+.engagement-film figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+}
