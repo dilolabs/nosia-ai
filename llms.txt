@@ -1,12 +1,13 @@
 # Nosia
 
-> Nosia is an open-core, self-hosted AI platform that runs large language models on your own infrastructure with Retrieval Augmented Generation (RAG), Model Context Protocol (MCP), an OpenAI-compatible API, and (soon) agent skills. It is built for data privacy and sovereignty.
+> Nosia is an open-source AI assistant developed by Dilolabs for working with documents and tools. Use the native Mac app or deploy the platform on your infrastructure. Retrieval Augmented Generation (RAG) adds document context; Model Context Protocol (MCP) connects tools. The platform also offers an OpenAI-compatible API and configurable agent skills.
 
 ## Key facts
 - License: MIT (open source). Repository: https://github.com/dilolabs/nosia
-- Install (Linux/macOS): `curl -fsSL https://get.nosia.ai | sh`
-- OpenAI-compatible API: drop-in replacement for OpenAI clients.
-- Self-hosted: your data stays on your own servers.
+- Native Mac v0.6.1: Apple silicon M1 or later, macOS 26.5 or later; plan for 16 GB memory and initial downloads. DMG: https://github.com/dilolabs/nosia/releases/tag/v0.6.1
+- Linux/Windows command-line installation and prerequisites: https://github.com/dilolabs/nosia#quickstart
+- OpenAI-compatible API: test compatibility with the functions and models your client needs.
+- Data processing depends on hosting, models and external services configured. Local hosting alone does not guarantee privacy or compliance.
 - Maintained by Dilolabs.
 
 ## Links

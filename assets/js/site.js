@@ -111,19 +111,12 @@
   function initBackToTop() {
     var button = document.querySelector('.back-to-top');
     if (!button) return;
-    function update() {
-      var visible = window.scrollY > 400;
-      button.hidden = !visible;
-      button.classList.toggle('visible', visible);
-    }
     button.addEventListener('click', function (event) {
       event.preventDefault();
       document.getElementById('main-content').focus({ preventScroll: true });
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: reduced ? 'instant' : 'smooth' });
     });
-    window.addEventListener('scroll', update, { passive: true });
-    update();
   }
 
   function init() {

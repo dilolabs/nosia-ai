@@ -1,0 +1,7 @@
+<section id="fonctionnement" class="home-content how-section" aria-labelledby="how-title">
+  <div class="container">
+    <header class="section-heading"><p class="eyebrow">{{ product.how_eyebrow }}</p><div><h2 id="how-title">{{ product.how_title }}</h2><p>{{ product.how_intro }}</p></div></header>
+    <ol class="how-grid">{% for item in product.how %}<li><span class="how-icon">{% include icon.html name=item.icon %}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></li>{% endfor %}</ol>
+    <details class="technical-details"><summary>{{ product.technical }}</summary><p>{{ product.technical_text }}</p><a href="https://github.com/dilolabs/nosia/blob/main/docs/ARCHITECTURE.md" class="text-link">{{ product.technical_link }} {% include icon.html name="arrow" %}</a></details>
+  </div>
+</section>

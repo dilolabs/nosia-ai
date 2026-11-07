@@ -6,8 +6,8 @@ permalink: /en/
 redirect_from:
   - /index-en.html
 title: Home
-seo_title: "Nosia — Your AI assistant on Mac, your data under your control"
-seo_description: "Write, explore your documents and stay in control of your data with Nosia. Install the Mac app with guided steps and no Terminal commands."
+seo_title: "Nosia — Open-source AI assistant on Mac and your servers"
+seo_description: "Your open-source AI assistant for working with documents and connecting tools. On Mac or your infrastructure, developed by Dilolabs."
 schema: [SoftwareApplication, FAQPage]
 ---
 

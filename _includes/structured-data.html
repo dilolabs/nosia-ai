@@ -4,8 +4,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Dilolabs",
-  "url": "{{ site.url }}",
-  "logo": "{{ '/assets/images/nosia-logo.png' | absolute_url }}",
+  "url": "https://dilolabs.fr/",
   "sameAs": [
     "https://github.com/dilolabs/nosia",
     "https://hub.docker.com/r/dilolabs/nosia"
@@ -24,6 +23,7 @@
   "description": {{ page.seo_description | default: site.description | jsonify }},
   "url": "{{ site.url }}",
   "license": "https://github.com/dilolabs/nosia/blob/main/LICENSE",
+  "publisher": { "@type": "Organization", "name": "Dilolabs", "url": "https://dilolabs.fr/" },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "sameAs": [
     "https://github.com/dilolabs/nosia",

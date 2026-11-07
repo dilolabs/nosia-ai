@@ -10,8 +10,8 @@ const download = 'https://github.com/dilolabs/nosia/releases/download/v0.6.1/Nos
 const release = 'https://github.com/dilolabs/nosia/releases/tag/v0.6.1';
 const film = '/assets/films/nosia-macos-installation-fr-v0.6.1.mp4';
 const homes = [
-  { path: '/', lang: 'fr', title: 'Une IA utile. Et la liberté de choisir.', install: 'Installer Nosia', setup: 'Préparer Nosia', local: 'Sur ce Mac' },
-  { path: '/en/', lang: 'en', title: 'Useful AI. And the freedom to choose.', install: 'Install Nosia', setup: 'Set Up Nosia', local: 'On this Mac' }
+  { path: '/', lang: 'fr', title: 'Votre IA. Vos documents. Vos outils. Vous gardez la main.', install: 'Installer Nosia', setup: 'Préparer Nosia', local: 'Sur ce Mac' },
+  { path: '/en/', lang: 'en', title: 'Your AI. Your documents. Your tools. You stay in control.', install: 'Install Nosia', setup: 'Set Up Nosia', local: 'On this Mac' }
 ];
 
 for (const home of homes) {
@@ -43,67 +43,19 @@ for (const home of homes) {
         await browser.evaluate(`document.querySelectorAll('main details').forEach(details => { details.open = true; });
           document.querySelector('.mac-video').scrollIntoView({ block: 'start', behavior: 'instant' });
           new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))`);
+        // The redesign removes the overlay entirely instead of narrowing mobile content.
+        await browser.evaluate('document.querySelector(".back-to-top").scrollIntoView({block:"end",behavior:"instant"})');
         const evidence = await browser.evaluate(`(() => {
           const button = document.querySelector('.back-to-top');
-          const control = button.getBoundingClientRect();
-          const style = getComputedStyle(button);
-          const centerY = (control.top + control.bottom) / 2;
-          const maxScroll = document.documentElement.scrollHeight - innerHeight;
-          const lines = new Map();
-          const regions = new Set();
-          const blocked = [];
-          let glyphs = 0;
-          const walker = document.createTreeWalker(document.querySelector('main'), NodeFilter.SHOW_TEXT);
-          let node;
-          while ((node = walker.nextNode())) {
-            for (let i = 0; i < node.length; i += 1) {
-              if (!node.textContent[i].trim()) continue;
-              const range = document.createRange();
-              range.setStart(node, i);
-              range.setEnd(node, i + 1);
-              const glyph = range.getBoundingClientRect();
-              if (!glyph.width || !glyph.height) continue;
-              const region = node.parentElement.closest('.mac-steps, .mac-video, .mac-preflight, .other-installations, main > section, .footer');
-              const name = region.id || region.classList[0];
-              regions.add(name);
-              glyphs += 1;
-              const x = (glyph.left + glyph.right) / 2;
-              const targetScroll = scrollY + (glyph.top + glyph.bottom) / 2 - centerY;
-              if (x < control.left || x > control.right || targetScroll <= 400 || targetScroll > maxScroll) continue;
-              const line = Math.round(targetScroll);
-              if (!lines.has(line)) lines.set(line, []);
-              lines.get(line).push({ range, character: node.textContent[i], region: name });
-            }
-          }
-          // Align every potentially conflicting text line with the floating control.
-          // Hit testing the actual glyph centers distinguishes occlusion from empty box overlap.
-          for (const [top, candidates] of lines) {
-            window.scrollTo({ top, behavior: 'instant' });
-            for (const candidate of candidates) {
-              const glyph = candidate.range.getBoundingClientRect();
-              const x = (glyph.left + glyph.right) / 2;
-              const y = (glyph.top + glyph.bottom) / 2;
-              if (document.elementFromPoint(x, y)?.closest('.back-to-top')) {
-                blocked.push({ character: candidate.character, region: candidate.region, x, y });
-                break;
-              }
-            }
-          }
-          return {
-            glyphs, regions: [...regions], blocked,
-            visible: !button.hidden && style.visibility === 'visible' && Number(style.opacity) === 1,
-            width: control.width, height: control.height,
-            clickable: Boolean(document.elementFromPoint((control.left + control.right) / 2, centerY)?.closest('.back-to-top'))
-          };
+          const rect = button.getBoundingClientRect();
+          return { position: getComputedStyle(button).position, footer: Boolean(button.closest('body > footer')),
+            width: rect.width, height: rect.height,
+            clickable: Boolean(document.elementFromPoint((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2)?.closest('.back-to-top')) };
         })()`);
-        assert.ok(evidence.glyphs > 1000);
-        for (const region of ['mac-steps', 'mac-video', 'mac-preflight', 'other-installations', 'faq', 'story', 'community', 'documentation', 'demo', 'footer']) {
-          assert.ok(evidence.regions.includes(region), `checked ${region}`);
-        }
-        assert.equal(evidence.visible, true);
+        assert.equal(evidence.position, 'static');
+        assert.equal(evidence.footer, true);
         assert.ok(evidence.width >= 44 && evidence.height >= 44);
         assert.equal(evidence.clickable, true);
-        assert.deepEqual(evidence.blocked, [], 'The floating control must not cover painted text anywhere in the home reading lane');
         if (process.env.NOSIA_SCREENSHOTS) {
           await browser.evaluate('document.querySelector(".mac-video").scrollIntoView({block:"start",behavior:"instant"}); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
           await browser.screenshot(`${process.env.NOSIA_SCREENSHOTS}/control-gutter-${home.lang}-${theme}-${width}x${height}.png`);
@@ -209,7 +161,7 @@ for (const home of homes) {
 for (const home of homes) {
   test(`public journey ${home.lang} follows direction C and publishes matching metadata`, async () => {
     await browser.visit(home.path);
-    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ['description', 'features', 'use-cases-teaser', 'quickstart', 'faq', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo']);
+    assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ['features', 'use-cases-teaser', 'product', 'fonctionnement', 'quickstart', 'description', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo', 'faq', 'next-step']);
     assert.equal(await browser.evaluate('document.querySelectorAll("#features .card").length'), 3);
     const quote = await browser.evaluate('document.querySelector("#description blockquote").textContent.trim()');
     assert.equal(quote, home.lang === 'fr' ? 'Le droit de comprendre un système, de l’adapter et de pouvoir en changer.' : 'The right to understand a system, adapt it, and be able to switch to another.');
@@ -223,8 +175,8 @@ for (const home of homes) {
     assert.match(await browser.evaluate('document.title'), /Mac/);
     assert.equal(await browser.evaluate('document.querySelector(\'link[rel="canonical"]\').href'), 'https://nosia.ai' + home.path);
     const faq = schemas.find(schema => schema['@type'] === 'FAQPage');
-    assert.equal(faq.mainEntity.length, 6);
-    assert.equal(await browser.evaluate('document.querySelectorAll("#faq .faq-item").length'), 6);
+    assert.equal(faq.mainEntity.length, 8);
+    assert.equal(await browser.evaluate('document.querySelectorAll("#faq .faq-item").length'), 8);
     assert.deepEqual(faq.mainEntity.map(item => [item.name, item.acceptedAnswer.text]), await browser.evaluate('[...document.querySelectorAll("#faq .faq-item")].map(item => [item.querySelector("h3").textContent, item.querySelector("p").textContent])'));
     assert.equal(await browser.evaluate('document.querySelectorAll("#demo iframe, #demo img").length'), 0);
     assert.equal(await browser.evaluate('document.querySelector("#demo a").getAttribute("href")'), home.lang === 'fr' ? 'https://www.youtube.com/watch?v=HD5k-LjGvGw' : '/assets/images/nosia-demo.gif');

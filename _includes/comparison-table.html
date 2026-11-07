@@ -5,10 +5,12 @@
         rows=page.comparison %}
   where page.comparison is a list of { dimension, a, b } maps.
 {%- endcomment -%}
-<div class="comparison-table-wrap nosia-scroll">
+{%- assign product = site.data.product[page.lang] -%}
+<p class="table-hint">{{ product.table_hint }}</p>
+<div class="comparison-table-wrap nosia-scroll" tabindex="0" role="region" aria-label="{{ product.table_label }}">
   <table class="comparison-table">
     <thead>
-      <tr><th></th><th>{{ include.col_a }}</th><th>{{ include.col_b }}</th></tr>
+      <tr><th scope="col">{{ product.table_dimension }}</th><th scope="col">{{ include.col_a }}</th><th scope="col">{{ include.col_b }}</th></tr>
     </thead>
     <tbody>
       {%- for row in include.rows -%}

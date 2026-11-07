@@ -1,0 +1,120 @@
+fr:
+  discover: "Découvrir le fonctionnement"
+  by: "Développé par"
+  preview_label: "Nosia, en vrai"
+  preview_type: "Application Mac · v0.6.1"
+  preview_caption: "Une question, vos documents, votre espace de travail."
+  capture_note: "Capture réelle extraite du tutoriel Mac v0.6.1, interface en français."
+  capture_alt: "Application Nosia : nouvelle conversation, champ de question, ajout de PDF et sélection du compte."
+  workspace_alt: "Espace de travail Nosia : nouvelle conversation et bouton Importer des sources de connaissances."
+  product_eyebrow: "02 — Le produit, en pratique"
+  product_title: "Un espace pour poser vos questions. Et avancer."
+  product_intro: "Une conversation pour réfléchir, vos documents pour apporter du contexte. L’interface reste au service de ce que vous cherchez à faire."
+  full_capture: "Ouvrir la capture en grand"
+  annotations:
+    - { title: "Posez votre question", text: "Écrivez avec vos mots, pour explorer une idée ou préparer un contenu." }
+    - { title: "Ajoutez vos documents", text: "Joignez un PDF ou importez des sources de connaissances dans votre compte." }
+    - { title: "Choisissez votre espace", text: "Le compte sélectionné détermine les sources utilisées dans la conversation." }
+  uses_eyebrow: "01 — Partir de vos usages"
+  examples: "Exemples de questions illustratifs, pas des témoignages clients."
+  how_eyebrow: "03 — Comment ça fonctionne"
+  how_title: "Vos connaissances. Un modèle. Les bonnes connexions."
+  how_intro: "Vous choisissez les briques dont vous avez besoin. Pas besoin de tout connecter pour commencer."
+  how:
+    - { icon: "document", title: "Vos documents", text: "Importez les contenus utiles. La recherche documentaire apporte du contexte à vos questions." }
+    - { icon: "spark", title: "Vos modèles", text: "Une configuration locale sur Mac, ou des modèles configurés pour votre instance." }
+    - { icon: "plug", title: "Vos outils", text: "Connectez des services compatibles, avec leurs autorisations, quand votre usage le demande." }
+    - { icon: "deploy", title: "Votre déploiement", text: "Sur un Mac compatible ou sur une infrastructure que votre équipe administre." }
+  technical: "Et pour les équipes techniques ?"
+  technical_text: "Le RAG (génération augmentée par récupération) enrichit les réponses avec les passages retrouvés dans vos documents. Le MCP (Model Context Protocol) relie l’IA à des outils et des sources externes. L’interface de programmation (API) compatible OpenAI permet de connecter des clients existants ; la compatibilité dépend des fonctions et modèles utilisés."
+  technical_link: "Lire l’architecture et les guides"
+  install_eyebrow: "04 — Commencer avec Nosia"
+  cli_requirements: "Linux : Debian ou Ubuntu, connexion internet et accès administrateur si Docker doit être installé. Windows 10/11 64 bits : Docker Desktop installé et démarré. Les besoins mémoire et stockage dépendent des modèles."
+  cli_caution: "Ces commandes téléchargent et exécutent un script. Consultez-le avant de le lancer. Après l’installation, démarrez les services selon le guide complet ; la configuration HTTPS locale y est expliquée."
+  cli_guide: "Lire les instructions complètes et les scripts"
+  team_install: "Pour une équipe ou un serveur"
+  team_install_text: "Le déploiement Docker Compose est documenté. Prévoyez la configuration des modèles, les accès, le domaine, les sauvegardes et la maintenance."
+  team_install_link: "Le guide de déploiement"
+  ownership_eyebrow: "05 — Ouverture et maîtrise"
+  ownership_title: "La liberté de choisir. Avec les moyens d’agir."
+  ownership:
+    - { title: "Un code ouvert", text: "Consulter, utiliser, modifier, contribuer : le code de Nosia est disponible sous licence MIT." }
+    - { title: "Un hébergement choisi", text: "Le local et l’auto-hébergement vous donnent des leviers de contrôle, avec une responsabilité de sécurité et de maintenance." }
+    - { title: "Des connexions explicites", text: "Les données traitées et leur destination dépendent de l’hébergement, des modèles et des services externes que vous activez." }
+  company_eyebrow: "06 — Dilolabs & la communauté"
+  company_title: "Un produit ouvert. Une équipe à vos côtés."
+  company_text: "Nosia est développé par Dilolabs, en Normandie. Cyril, Aude et Melvin en sont les trois co-gérants. L’entreprise accompagne les organisations dans leurs outils numériques et leurs usages de l’IA."
+  company_link: "Découvrir Dilolabs"
+  contact: "Parlons de votre besoin"
+  history: "Les débuts de Nosia"
+  final_title: "Votre premier pas : un besoin concret."
+  final_text: "Essayez Nosia sur vos documents, explorez le code ou échangez avec Dilolabs pour préparer un déploiement adapté."
+  start: "Installer Nosia"
+  footer_text: "Une IA utile. Et la liberté de choisir."
+  region: "Normandie"
+  footer_product: "Le produit"
+  footer_resources: "Les ressources"
+  footer_company: "L’entreprise"
+  table_label: "Tableau comparatif, défilement horizontal possible"
+  table_dimension: "Critère"
+  table_hint: "Sur petit écran, faites défiler le tableau horizontalement pour lire les trois colonnes."
+en:
+  discover: "See how it works"
+  by: "Developed by"
+  preview_label: "This is Nosia"
+  preview_type: "Mac app · v0.6.1"
+  preview_caption: "A question, your documents, your workspace."
+  capture_note: "Actual frame from the Mac v0.6.1 tutorial, French interface."
+  capture_alt: "Nosia app: new conversation, question field, PDF attachment and account selection."
+  workspace_alt: "Nosia workspace: new conversation and Import knowledge sources button."
+  product_eyebrow: "02 — The product in practice"
+  product_title: "A place to ask questions. And move forward."
+  product_intro: "A conversation to think things through, your documents to add context. The interface stays focused on what you want to do."
+  full_capture: "Open the full-size screenshot"
+  annotations:
+    - { title: "Ask your question", text: "Use your own words to explore an idea or prepare a piece of writing." }
+    - { title: "Add your documents", text: "Attach a PDF or import knowledge sources into your account." }
+    - { title: "Choose your workspace", text: "The selected account determines which sources are used in the conversation." }
+  uses_eyebrow: "01 — Start with your needs"
+  examples: "Illustrative example questions, not customer testimonials."
+  how_eyebrow: "03 — How it works"
+  how_title: "Your knowledge. A model. The right connections."
+  how_intro: "Choose the building blocks you need. You don’t have to connect everything to get started."
+  how:
+    - { icon: "document", title: "Your documents", text: "Import useful content. Document search adds context to your questions." }
+    - { icon: "spark", title: "Your models", text: "A local configuration on Mac, or models configured for your instance." }
+    - { icon: "plug", title: "Your tools", text: "Connect compatible services, with their permissions, when your use case calls for it." }
+    - { icon: "deploy", title: "Your deployment", text: "On a compatible Mac or on infrastructure administered by your team." }
+  technical: "What about the technical details?"
+  technical_text: "RAG (Retrieval Augmented Generation) enriches answers with passages found in your documents. MCP (Model Context Protocol) links AI to tools and external sources. The OpenAI-compatible application programming interface (API) lets you connect existing clients; compatibility depends on the functions and models you use."
+  technical_link: "Read the architecture and guides"
+  install_eyebrow: "04 — Get started with Nosia"
+  cli_requirements: "Linux: Debian or Ubuntu, internet access and administrator privileges if Docker needs installing. Windows 10/11 64-bit: Docker Desktop installed and running. Memory and storage needs depend on your models."
+  cli_caution: "These commands download and execute a script. Read it before running it. After installation, start the services using the full guide, which also explains local HTTPS configuration."
+  cli_guide: "Read the full instructions and scripts"
+  team_install: "For a team or a server"
+  team_install_text: "Docker Compose deployment is documented. Plan for model configuration, access permissions, your domain, backups and maintenance."
+  team_install_link: "The deployment guide"
+  ownership_eyebrow: "05 — Openness and control"
+  ownership_title: "The freedom to choose. The means to act."
+  ownership:
+    - { title: "Open code", text: "Read, use, modify, contribute: Nosia’s source code is available under the MIT license." }
+    - { title: "Your choice of hosting", text: "Local use and self-hosting give you control, alongside responsibility for security and maintenance." }
+    - { title: "Explicit connections", text: "Where your data is processed depends on the hosting, models and external services you enable." }
+  company_eyebrow: "06 — Dilolabs & the community"
+  company_title: "An open product. A team by your side."
+  company_text: "Nosia is developed by Dilolabs, in Normandy. Cyril, Aude and Melvin are its three co-managers. The company helps organizations with their digital tools and practical AI use cases."
+  company_link: "Meet Dilolabs"
+  contact: "Let’s talk about your needs"
+  history: "How Nosia began"
+  final_title: "Your first step: a practical need."
+  final_text: "Try Nosia with your documents, explore the code or talk to Dilolabs about a deployment that fits your needs."
+  start: "Install Nosia"
+  footer_text: "Useful AI. And the freedom to choose."
+  region: "Normandy"
+  footer_product: "The product"
+  footer_resources: "Resources"
+  footer_company: "The company"
+  table_label: "Comparison table, horizontal scrolling available"
+  table_dimension: "Feature"
+  table_hint: "On small screens, scroll the table horizontally to read all three columns."
