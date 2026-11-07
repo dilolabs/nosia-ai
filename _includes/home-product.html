@@ -1,0 +1,12 @@
+<section id="product" class="home-content product-section" aria-labelledby="product-title">
+  <div class="container">
+    <div class="product-panel">
+      <header class="section-heading"><p class="eyebrow">{{ product.product_eyebrow }}</p><div><h2 id="product-title">{{ product.product_title }}</h2><p>{{ product.product_intro }}</p></div></header>
+      <figure class="product-figure">
+        <picture><source type="image/webp" srcset="{{ '/assets/images/nosia-macos.webp' | relative_url }}"><img src="{{ '/assets/images/nosia-macos.png' | relative_url }}" alt="{{ product.capture_alt | escape }}" width="904" height="574" loading="lazy"></picture>
+        <figcaption>{{ product.capture_note }} <a href="{{ '/assets/images/nosia-macos.png' | relative_url }}">{{ product.full_capture }}</a></figcaption>
+      </figure>
+      <ol class="product-annotations">{% for item in product.annotations %}<li><span class="step-number" aria-hidden="true">0{{ forloop.index }}</span><div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></li>{% endfor %}</ol>
+    </div>
+  </div>
+</section>

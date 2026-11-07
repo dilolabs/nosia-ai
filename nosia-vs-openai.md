@@ -12,10 +12,10 @@ comparison:
     a: "Auto-hébergé sur votre propre infrastructure ou cloud"
     b: "Service cloud hébergé par OpenAI"
   - dimension: "Confidentialité et souveraineté des données"
-    a: "Les données restent sur vos serveurs ; souveraineté totale"
+    a: "Selon l’hébergement, les modèles et les connexions configurés"
     b: "Données envoyées sur les serveurs d'OpenAI"
   - dimension: "Modèle de coût"
-    a: "Gratuit, open source ; vous ne payez que votre propre infrastructure"
+    a: "Logiciel MIT gratuit ; infrastructure, maintenance et éventuels services externes à prévoir"
     b: "Tarification API à l'usage / abonnement"
   - dimension: "RAG sur vos données"
     a: "Génération augmentée par récupération intégrée sur vos documents"
@@ -36,9 +36,9 @@ faq:
   - q: "Nosia est-il un remplacement direct d'OpenAI ?"
     a: "Pour de nombreux cas d'usage, oui. Nosia expose une API compatible OpenAI : les bibliothèques et outils clients OpenAI existants peuvent pointer vers votre instance Nosia avec un minimum de modifications. La parité exacte dépend des fonctionnalités et modèles utilisés."
   - q: "Nosia est-il moins cher qu'OpenAI ?"
-    a: "Il n'y a pas de frais d'API au token avec Nosia — il est gratuit et open source. Vous ne payez que l'infrastructure sur laquelle vous l'exécutez, ce qui peut être plus économique à grande échelle ou pour des charges régulières."
+    a: "Cela dépend de votre usage. Le code de Nosia est gratuit sous licence MIT. Prévoyez le matériel ou l’hébergement, la maintenance et les coûts éventuels des modèles ou services externes. Aucun avantage de coût n’est garanti."
   - q: "Puis-je garder mes données privées avec Nosia ?"
-    a: "Oui. Nosia est auto-hébergé : vos documents et vos requêtes restent sur votre propre infrastructure au lieu d'être envoyés à un cloud tiers."
+    a: "Une configuration locale ou auto-hébergée peut conserver les traitements dans votre environnement. Vérifiez aussi le lieu d’exécution des modèles, les services documentaires et les connexions externes activées : ceux-ci peuvent recevoir des données."
 ---
 
 <section class="hero">
@@ -50,7 +50,7 @@ faq:
 
 <section id="tldr" class="description">
   <div class="container">
-    <p><strong>En bref :</strong> choisissez <strong>OpenAI / ChatGPT</strong> si vous voulez un service cloud entièrement géré, avec des modèles de pointe et aucune infrastructure à gérer. Choisissez <strong>Nosia</strong> si vos données doivent rester sur vos propres serveurs, si vous voulez une plateforme open source avec RAG et MCP intégrés, et si vous préférez payer votre infrastructure plutôt qu'un usage API au token.</p>
+    <p><strong>En bref :</strong> <strong>OpenAI / ChatGPT</strong> propose des services hébergés. <strong>Nosia</strong> vous donne le choix d’une application locale ou d’un déploiement sur votre infrastructure. Son code est ouvert et ses modèles et connexions sont configurables. Comparez le parcours utile, les conditions de traitement des données et le coût complet, pas seulement le prix du logiciel.</p>
   </div>
 </section>
 
@@ -64,12 +64,12 @@ faq:
 <section id="details" class="description">
   <div class="container">
     <h2>Confidentialité et souveraineté des données</h2>
-    <p>Avec OpenAI, les requêtes et les documents sont traités sur le cloud d'OpenAI. Avec Nosia, tout s'exécute sur une infrastructure que vous contrôlez : les données sensibles et réglementées ne quittent jamais votre environnement — une exigence clé pour de nombreuses organisations européennes et le secteur public.</p>
+    <p>Les services hébergés OpenAI traitent les données selon leurs conditions et la configuration du service choisi. Avec Nosia, vous pouvez choisir une infrastructure et des modèles locaux. Un modèle distant, un traitement documentaire ou un outil externe peut cependant recevoir des données. L’auto-hébergement ne constitue pas à lui seul une garantie de confidentialité ou de conformité réglementaire.</p>
     <h2>Coût</h2>
-    <p>OpenAI facture au token ou par abonnement. Nosia est gratuit et open source ; votre coût se limite au matériel ou au cloud sur lequel vous l'exécutez. Pour des charges régulières ou volumineuses, l'auto-hébergement peut être plus prévisible et économique.</p>
+    <p>OpenAI propose des abonnements et une facturation API à l’usage selon le produit. Nosia est gratuit sous licence MIT ; son exploitation implique du matériel ou de l’hébergement, de la maintenance et parfois des services externes payants. Évaluez ces coûts selon votre usage et les compétences de votre équipe.</p>
     <h2>RAG, MCP et l'API compatible OpenAI</h2>
-    <p>Nosia intègre nativement la génération augmentée par récupération sur vos propres documents et le Model Context Protocol, tout en exposant une API compatible OpenAI pour réutiliser vos clients et outils OpenAI existants.</p>
-    <a href="/#quickstart" class="btn btn-primary">Commencer avec Nosia</a>
+    <p>La génération augmentée par récupération (RAG) enrichit les réponses à partir de passages retrouvés dans vos documents. Le Model Context Protocol (MCP) permet de connecter des outils compatibles. Une interface de programmation (API) compatible OpenAI permet de réutiliser des clients existants, après vérification des fonctions et modèles nécessaires.</p>
+    <a href="{{ '/' | relative_url }}#quickstart" class="btn btn-primary">Commencer avec Nosia</a>
   </div>
 </section>
 

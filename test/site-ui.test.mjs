@@ -322,7 +322,7 @@ test('secondary platform commands remain available without JavaScript', async ()
 });
 
 test('public home preserves anchors and prioritizes native Mac installation', async () => {
-  const ids = ['description', 'features', 'use-cases-teaser', 'quickstart', 'faq', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo'];
+  const ids = ['features', 'use-cases-teaser', 'product', 'fonctionnement', 'quickstart', 'description', 'story', 'commitment-teaser', 'community', 'documentation', 'comparisons-teaser', 'demo', 'faq', 'next-step'];
   for (const path of ['/', '/en/']) {
     await browser.visit(path);
     assert.deepEqual(await browser.evaluate('[...document.querySelectorAll("main > section[id]")].map(section => section.id)'), ids);
@@ -350,9 +350,9 @@ test('home cards use decorative SVGs and language sibling links remain native', 
   }
 });
 
-test('back to top is not focusable when invisible and respects reduced motion', async () => {
+test('inline back to top stays in the footer and respects reduced motion', async () => {
   await browser.visit('/', { reduced: true });
-  assert.equal(await browser.evaluate('document.querySelector(".back-to-top").hidden'), true);
+  assert.equal(await browser.evaluate('getComputedStyle(document.querySelector(".back-to-top")).position'), 'static');
   await browser.evaluate('window.scrollTo(0, 600); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))');
   assert.equal(await browser.evaluate('document.querySelector(".back-to-top").hidden'), false);
   await browser.evaluate('window.scrollTo = options => { window.lastScroll = options; }; document.querySelector(".back-to-top").click()');
@@ -466,8 +466,7 @@ for (const theme of ['light', 'dark']) {
           }
           return [...context.getImageData(0, 0, 1, 1).data].join(',');
         }
-        const sections = document.documentElement.classList.contains('dark')
-          ? 'main > section' : 'main > section:not(.developer-hero)';
+        const sections = 'main > section:not(.hero)';
         return {
           page: background(document.body),
           regions: [...document.querySelectorAll('.header, ' + sections + ', .footer')].map(node => ({ name: node.id || node.className, color: background(node) })),

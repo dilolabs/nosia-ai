@@ -1,12 +1,12 @@
 fr:
-  eyebrow: "L’intelligence artificielle, autrement"
-  title: "Une IA utile."
-  title_accent: "Et la liberté de choisir."
-  intro: "Vos documents racontent votre travail, vos projets et votre histoire. Vous devriez pouvoir vous faire aider par une IA sans en perdre la maîtrise."
-  summary: "Nosia est un assistant d’intelligence artificielle pour écrire, réfléchir et retrouver des informations dans vos documents."
+  eyebrow: "L’intelligence artificielle, à votre façon"
+  title: "Votre IA. Vos documents. Vos outils."
+  title_accent: "Vous gardez la main."
+  intro: "Retrouvez une information, explorez un dossier ou préparez un texte avec Nosia, votre assistant d’intelligence artificielle."
+  summary: "Sur votre Mac ou sur votre infrastructure. À vous de choisir."
   privacy: "Dans l’espace « Sur ce Mac », l’IA fonctionne sur votre ordinateur, où vos échanges et vos fichiers sont conservés."
   download: "Télécharger pour Mac"
-  installation: "Voir les étapes d’installation"
+  installation: "Le guide d’installation"
   other_platforms: "Vous utilisez Linux ou Windows ?"
   mac_chip_label: "Mac avec puce"
   mac_chip_suffix: "ou ultérieure"
@@ -40,9 +40,9 @@ fr:
   features_title: "Votre savoir, plus accessible"
   features_intro: "Au travail, dans une association ou pour vos projets : partez d’un besoin concret."
   features:
-    - { icon: "document", title: "Préparer un texte", text: "Trouver une première formulation pour un courrier, développer une idée ou clarifier un texte." }
-    - { icon: "book", title: "Comprendre un dossier", text: "Importer vos documents et poser des questions sur leur contenu, avec vos propres mots." }
-    - { icon: "chat", title: "Retrouver une information", text: "Explorer les connaissances de votre équipe sans devoir relire tous les documents." }
+    - { icon: "book", title: "Retrouver une information", text: "Une procédure se cache dans vos documents ? Importez-les et posez votre question, plutôt que de tout relire.", example: "« Quelle est la procédure de retour ? »" }
+    - { icon: "document", title: "Comprendre un dossier", text: "Un document demande une deuxième lecture ? Interrogez son contenu pour en dégager les points à vérifier.", example: "« Quels sont les points clés de ce dossier ? »" }
+    - { icon: "chat", title: "Préparer un contenu", text: "Une page blanche à dépasser ? Demandez une première formulation, puis ajustez-la avec votre expérience.", example: "« Aide-moi à rédiger un message d’accueil. »" }
   caution: "Une IA peut se tromper. Vérifiez les réponses importantes dans les documents d’origine."
   usecases_title: "Un besoin concret en tête ?"
   usecases_intro: "Découvrez comment Nosia peut aider une petite entreprise, une association ou une équipe à retrouver et transmettre ses connaissances."
@@ -59,6 +59,10 @@ fr:
       a: "La préparation télécharge les ressources nécessaires pour faire fonctionner l’IA sur votre Mac. Elle nécessite internet et peut prendre du temps selon votre connexion. Nosia affiche l’avancement et vous permet d’annuler."
     - q: "Puis-je faire confiance à toutes les réponses ?"
       a: "Non. Comme toute IA, Nosia peut se tromper ou mal interpréter un document. Vérifiez les informations importantes et ne remplacez pas un avis professionnel par une réponse automatique."
+    - q: "Quels modèles et outils puis-je utiliser ?"
+      a: "L’installation Mac fournit une configuration locale. Pour une instance d’équipe, les modèles se configurent selon votre matériel et vos besoins. La plateforme permet aussi des connexions via le Model Context Protocol (MCP), un protocole ouvert reliant l’IA à des outils. Vérifiez les accès et les données transmis à chaque service."
+    - q: "Dilolabs peut-il m’accompagner ?"
+      a: "Oui. Dilolabs, l’entreprise qui développe Nosia, propose un accompagnement autour de vos usages, du déploiement et de la prise en main. Le lien de contact ci-dessous permet d’expliquer votre besoin, sans présumer d’un tarif ou d’un engagement."
     - q: "Que se passe-t-il quand je ferme Nosia ?"
       a: "Fermer la fenêtre laisse Nosia actif. Quitter l’application arrête ses services locaux et conserve vos données pour la prochaine ouverture."
   story_title: "Une aventure humaine"
@@ -94,14 +98,14 @@ fr:
   license: "Sous licence"
   website: "Site web"
 en:
-  eyebrow: "A different approach to artificial intelligence"
-  title: "Useful AI."
-  title_accent: "And the freedom to choose."
-  intro: "Your documents tell the story of your work, your projects and your ideas. You should be able to get help from AI without losing control of them."
-  summary: "Nosia is an artificial intelligence assistant for writing, thinking through ideas and finding information in your documents."
+  eyebrow: "Artificial intelligence, on your terms"
+  title: "Your AI. Your documents. Your tools."
+  title_accent: "You stay in control."
+  intro: "Find information, explore a document or prepare a piece of writing with Nosia, your artificial intelligence assistant."
+  summary: "On your Mac or on your infrastructure. The choice is yours."
   privacy: "In the “On this Mac” workspace, AI runs on your computer, where your conversations and files are stored."
   download: "Download for Mac"
-  installation: "See the installation steps"
+  installation: "The installation guide"
   other_platforms: "Using Linux or Windows?"
   mac_chip_label: "Mac with"
   mac_chip_suffix: "or later"
@@ -135,9 +139,9 @@ en:
   features_title: "Make your knowledge easier to use"
   features_intro: "At work, in an association or for your own projects: start with a practical need."
   features:
-    - { icon: "document", title: "Prepare a piece of writing", text: "Find a starting point for a letter, develop an idea or make a text clearer." }
-    - { icon: "book", title: "Understand a document", text: "Import your documents and ask about their content in your own words." }
-    - { icon: "chat", title: "Find information", text: "Explore your team’s knowledge without rereading every document." }
+    - { icon: "book", title: "Find information", text: "A procedure buried in your documents? Import them and ask your question instead of rereading every page.", example: "“What is our returns procedure?”" }
+    - { icon: "document", title: "Understand a document", text: "A document needs a second look? Ask about its content to identify the points worth checking.", example: "“What are the key points in this document?”" }
+    - { icon: "chat", title: "Prepare a piece of writing", text: "A blank page to get past? Ask for a first draft, then adapt it with your own experience.", example: "“Help me write a welcome message.”" }
   caution: "AI can make mistakes. Check important answers against the original documents."
   usecases_title: "Have a practical need in mind?"
   usecases_intro: "See how Nosia can help a small business, an association or a team find information and pass on knowledge."
@@ -154,6 +158,10 @@ en:
       a: "Setup downloads the resources needed to run AI on your Mac. It needs internet and may take time depending on your connection. Nosia shows progress and lets you cancel."
     - q: "Can I trust every answer?"
       a: "No. Like any AI, Nosia can make mistakes or misinterpret a document. Check important information and do not replace professional advice with an automatic answer."
+    - q: "Which models and tools can I use?"
+      a: "The Mac installation includes a local AI configuration. For a team instance, models are configured to suit your hardware and needs. The platform also supports connections through the Model Context Protocol (MCP), an open protocol linking AI to tools. Review the permissions and data sent to each service."
+    - q: "Can Dilolabs help me get started?"
+      a: "Yes. Dilolabs, the company developing Nosia, can help with your use cases, deployment and onboarding. Use the contact link below to describe your needs; no price or commitment is implied."
     - q: "What happens when I close Nosia?"
       a: "Closing the window keeps Nosia running. Quitting the app stops its local services and saves your data for the next launch."
   story_title: "A human story"

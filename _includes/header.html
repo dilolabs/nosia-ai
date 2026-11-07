@@ -16,14 +16,14 @@
     {%- assign fallback_url = '/' -%}
     {%- if opp_lang == 'en' -%}{%- assign fallback_url = '/en/' -%}{%- endif -%}
     <a href="{{ home_url | relative_url }}" class="logo" aria-label="{{ t.home }}">
-      <img src="{{ '/assets/images/nosia-logo.png' | relative_url }}" alt="{{ t.logo_alt }}" width="399" height="120">
+      <img src="{{ '/assets/images/nosia-logo.png' | relative_url }}" alt="{{ t.logo_alt }}" width="393" height="121">
     </a>
     <nav class="nav" id="primary-nav" aria-label="{{ t.nav_aria }}">
-      <a href="{{ t.usecases_url | relative_url }}">{{ t.nav_usecases }}</a>
+      <a href="{{ t.usecases_url | relative_url }}" {% if page.ref == 'use-cases' %}aria-current="page"{% endif %}>{{ t.nav_usecases }}</a>
       {% if t.engagement_url %}
-      <a href="{{ t.engagement_url | relative_url }}">{{ t.nav_engagement }}</a>
+      <a href="{{ t.engagement_url | relative_url }}" {% if page.ref == 'engagement' %}aria-current="page"{% endif %}>{{ t.nav_engagement }}</a>
       {% endif %}
-      <a href="{{ t.faq_url | relative_url }}">{{ t.nav_faq }}</a>
+      <a href="{{ t.faq_url | relative_url }}" {% if page.ref == 'faq' %}aria-current="page"{% endif %}>{{ t.nav_faq }}</a>
       <a href="{{ home_url | relative_url }}#documentation">{{ t.documentation }}</a>
       <a href="{{ home_url | relative_url }}#community">{{ t.community }}</a>
       <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -32,8 +32,8 @@
     <div class="header-controls">
       <a href="{% if alt_url != '' %}{{ alt_url | relative_url }}{% else %}{{ fallback_url | relative_url }}{% endif %}" class="lang-toggle" lang="{{ opp_lang }}" hreflang="{{ opp_lang }}" aria-label="{{ t.other_lang_label }}" title="{{ t.other_lang_name }}">{{ t.other_lang }}</a>
       <button type="button" class="theme-toggle" data-theme-toggle aria-label="{{ t.dark_mode }}" aria-pressed="false" hidden>
-        <svg class="icon-sun" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
-        <svg class="icon-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20 13A8.5 8.5 0 0 1 11 4a8.5 8.5 0 1 0 9 9Z"/></svg>
+        {% include icon.html name="sun" class="icon-sun" %}
+        {% include icon.html name="moon" class="icon-moon" %}
       </button>
       <a class="btn btn-primary header-deploy" href="{{ home_url | relative_url }}#quickstart">{{ t.deploy }}</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-controls="primary-nav" aria-expanded="false" hidden>{{ t.menu }}</button>

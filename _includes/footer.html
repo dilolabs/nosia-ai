@@ -1,0 +1,11 @@
+{%- assign product = site.data.product[page.lang] -%}
+{%- assign home = site.data.home[page.lang] -%}
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand"><a href="{{ home_url | relative_url }}" aria-label="{{ t.home }}"><img src="{{ '/assets/images/nosia-logo.png' | relative_url }}" alt="{{ t.logo_alt }}" width="393" height="121" loading="lazy"></a><p>{{ product.footer_text }}</p><p>{{ product.by }} <a href="https://dilolabs.fr/">Dilolabs</a>, {{ product.region }}.</p></div>
+    <div><h2>{{ product.footer_product }}</h2><ul><li><a href="{{ t.usecases_url | relative_url }}">{{ t.nav_usecases }}</a></li><li><a href="{{ t.engagement_url | relative_url }}">{{ t.nav_engagement }}</a></li><li><a href="{{ t.faq_url | relative_url }}">{{ t.nav_faq }}</a></li><li><a href="{{ home_url | relative_url }}#quickstart">{{ t.deploy }}</a></li></ul></div>
+    <div><h2>{{ product.footer_resources }}</h2><ul><li><a href="{{ home_url | relative_url }}#documentation">{{ t.documentation }}</a></li><li><a href="https://github.com/dilolabs/nosia">GitHub</a></li><li><a href="https://blog.nosia.ai/">Blog</a></li><li><a href="https://hub.docker.com/r/dilolabs/nosia">Docker Hub</a></li></ul></div>
+    <div><h2>{{ product.footer_company }}</h2><ul><li><a href="https://dilolabs.fr/">Dilolabs</a></li><li><a href="https://dilolabs.fr/contact">{{ product.contact }}</a></li><li><a href="{{ home_url | relative_url }}#community">{{ t.community }}</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><p>© 2024–{{ site.time | date: '%Y' }} Dilolabs · <a href="https://github.com/dilolabs/nosia/blob/main/LICENSE">{{ home.license }} MIT</a></p><a href="#main-content" class="back-to-top">{{ t.back_to_top }} {% include icon.html name="up" %}</a></div>
+</footer>

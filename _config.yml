@@ -1,8 +1,8 @@
 # Site settings
 title: Nosia
 description: >-
-  Self-hosted AI RAG + MCP Platform. Run AI models on your own data with
-  complete privacy and control.
+  Nosia, votre assistant d’intelligence artificielle pour travailler avec vos
+  documents et vos outils, sur votre Mac ou votre infrastructure.
 url: https://nosia.ai
 baseurl: ""
 

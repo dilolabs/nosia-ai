@@ -2,11 +2,13 @@
 {%- assign t = site.data.translations[page.lang] -%}
 <section id="story" class="story highlighted home-content">
   <div class="container">
-    <h2>{{ home.story_title }}</h2>
-    <div class="story-content">
+    <div class="company-panel">
+    <div class="company-intro"><p class="eyebrow">{{ product.company_eyebrow }}</p><h2>{{ product.company_title }}</h2><p>{{ product.company_text }}</p><div class="company-actions"><a class="btn btn-primary" href="https://dilolabs.fr/contact">{{ product.contact }}</a><a class="text-link" href="https://dilolabs.fr/">{{ product.company_link }} {% include icon.html name="arrow" %}</a></div></div>
+    <div class="story-content"><h3>{{ product.history }}</h3>
       {% for paragraph in home.story %}
       <p>{{ paragraph }}</p>
       {% endfor %}
+    </div>
     </div>
   </div>
 </section>
@@ -74,16 +76,3 @@
     {% endif %}
   </div>
 </section>
-
-<footer class="footer">
-  <div class="container">
-    <p>Copyright © 2024-2026 Dilolabs</p>
-    <p class="links">{{ home.license }} <a href="https://github.com/dilolabs/nosia/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT</a></p>
-    <div class="links">
-      <a href="https://nosia.ai">{{ home.website }}</a>
-      <a href="https://blog.nosia.ai/" target="_blank" rel="noopener noreferrer">Blog</a>
-      <a href="https://github.com/dilolabs/nosia" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://hub.docker.com/r/dilolabs/nosia" target="_blank" rel="noopener noreferrer">Docker Hub</a>
-    </div>
-  </div>
-</footer>
